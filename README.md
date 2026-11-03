@@ -14,9 +14,9 @@
 
 [English](#english) · [简体中文](#zh-cn) · [Deutsch](#deutsch)
 
-[Sources / 来源目录 / Quellen](docs/SOURCES.md) · [Recipes / 配方草案 / Rezeptentwürfe](recipes/README.md) · [Goal / 项目目标 / Ziel](GOAL.md)
+[Sources / 来源目录 / Quellen](docs/SOURCES.md) · [Recipes / 配方 / Rezepte](recipes/README.md) · [n8n operations / n8n 运维 / n8n-Betrieb](docs/n8n/OPERATIONS.md) · [Catalog / 机器可读目录 / Katalog](docs/CATALOG.md) · [Goal / 项目目标 / Ziel](GOAL.md)
 
-Catalog version: **0.1 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
+Catalog version: **0.2 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
 
 <a id="english"></a>
 ## English
@@ -27,27 +27,35 @@ FlowLore is a knowledge catalog for automation platforms, agent skills, web work
 
 ### Status
 
-**v0.1 is a catalog draft.** Five automation sources, five web/HTML-related skills, five recipe drafts and a project goal are documented. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled or tested. Reference links do not establish compatibility, endorsement or a working integration.
+**v0.2 is a catalog draft.** Documented are five automation sources, two primary references, five web/HTML-related skills, twelve recipes, four operating documents, one 30-lesson learning path, a machine-readable catalog and the project goal. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled or tested. Reference links do not establish compatibility, endorsement or a working integration.
 
 ### When to use it
 
 - Find tools and source material for an automation need.
 - Compare the roles of workflow engines, agent skills and browser tooling.
 - Turn an idea into a recipe with inputs, outputs, dependencies and validation criteria.
+- Operate an n8n instance: change, publish, debug and inventory workflows without breaking them.
 
 ### Start here
 
 1. Browse [automation platforms](docs/SOURCES.md#automation-platforms) and [web/HTML agent skills](docs/SOURCES.md#web-and-html-agent-skills).
-2. Choose a [recipe draft](recipes/README.md) and read its upstream sources and validation requirements.
-3. Test in an isolated environment with non-production data; record versions and evidence before calling a recipe verified.
+2. Choose a [recipe](recipes/README.md) and read its upstream sources and validation requirements.
+3. Running n8n in production? Read [n8n operations](docs/n8n/OPERATIONS.md) first, and keep [failure modes](docs/n8n/FAILURE-MODES.md) open.
+4. Test in an isolated environment with non-production data; record versions and evidence before calling a recipe verified.
 
 ### What is in the catalog
 
 | Area | Contents | Status |
 | --- | --- | --- |
 | [Automation sources](docs/SOURCES.md#automation-platforms) | n8n, Huginn, Awesome n8n Templates, Activepieces, n8n-MCP | References only |
+| [Primary references](docs/SOURCES.md#primary-references) | n8n documentation, n8n public API reference | References only |
 | [Web/HTML skills](docs/SOURCES.md#web-and-html-agent-skills) | Frontend Design, Webapp Testing, Web Artifacts Builder, Web Design Guidelines, Agent Browser | References only |
-| [Recipe drafts](recipes/README.md) | Release digest, web change monitor, HTML report, workflow authoring, file classification | All draft; not verified |
+| [n8n operations](docs/n8n/OPERATIONS.md) | API surface, publishing model, safe changes, execution diagnosis, data tables, AI and MCP nodes | Field notes; every claim version-stamped |
+| [Failure modes](docs/n8n/FAILURE-MODES.md) | Symptom → cause → fix across triggers, data flow, validation, executions, credentials and AI nodes | Field notes |
+| [Version matrix](docs/n8n/VERSION-MATRIX.md) | Which statement holds on which n8n version, plus an upgrade checklist | Reviewed 2026-11-03 |
+| [Recipes](recipes/README.md) | Twelve recipes: five drafts, four field-tested, three course-derived patterns | No recipe verified yet |
+| [Learning path](docs/learning-paths/ihk-ki-automatisierung.md) | A 30-lesson German AI-automation course mapped to competences, checkpoints and gaps | Syllabus verified against certificates |
+| [Catalog](docs/CATALOG.md) | Machine-readable catalog, JSON Schema, validator and its tests | Validated by script |
 | [Project goal](GOAL.md) | Scope, quality principles and next milestones | Planned work |
 
 The selections cover complementary roles; “top five” is not a live ranking by stars or benchmark results.
@@ -64,7 +72,7 @@ The projects are independent. No shared integration or automatic handoff is impl
 
 ### Next steps
 
-The [roadmap in GOAL.md](GOAL.md#next-milestones) starts with a machine-readable catalog, then one reproducibly tested recipe, search and evaluation of a read-only agent interface. The proposed first recipe is a [GitHub release digest](recipes/README.md).
+The machine-readable catalog is in place (`catalog/catalog.json`, schema, validator and tests). The [roadmap in GOAL.md](GOAL.md#next-milestones) continues with one reproducibly tested recipe, search and the evaluation of a read-only agent interface. The proposed first recipe is still the [GitHub release digest](recipes/README.md).
 
 ### Working principles
 
@@ -81,27 +89,35 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 ### 当前状态
 
-**v0.1 为目录草稿。** 已收录五个自动化来源、五个网页／HTML 相关技能、五个配方草案和项目目标。尚未内置或验证执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力。收录链接不代表已集成、兼容或获得上游背书。
+**v0.2 为目录草稿。** 已收录五个自动化来源、两个一手参考资料、五个网页／HTML 相关技能、十二个配方、四份运维文档、一条三十课学习路径、一份机器可读目录和项目目标。尚未内置或验证执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力。收录链接不代表已集成、兼容或获得上游背书。
 
 ### 适用场景
 
 - 为自动化需求寻找工具、来源与实现思路。
 - 理解工作流引擎、智能体技能和浏览器工具各自的用途。
 - 将想法整理为包含输入、输出、依赖和验收条件的配方。
+- 运维 n8n 实例：在不打断生产的前提下修改、发布、排查和盘点工作流。
 
 ### 从这里开始
 
 1. 浏览[自动化平台](docs/SOURCES.md#automation-platforms)和[网页／HTML 技能](docs/SOURCES.md#web-and-html-agent-skills)。
-2. 选择一个[配方草案](recipes/README.md)，阅读原始来源、前提条件和待验证事项。
-3. 在隔离环境中使用非生产数据测试，记录版本与结果证据，再决定能否标记为已验证。
+2. 选择一个[配方](recipes/README.md)，阅读原始来源、前提条件和待验证事项。
+3. 生产环境运行 n8n？先读 [n8n 运维](docs/n8n/OPERATIONS.md)，并常备[故障速查](docs/n8n/FAILURE-MODES.md)。
+4. 在隔离环境中使用非生产数据测试，记录版本与结果证据，再决定能否标记为已验证。
 
 ### 目录内容
 
 | 分类 | 内容 | 状态 |
 | --- | --- | --- |
 | [自动化来源](docs/SOURCES.md#automation-platforms) | n8n、Huginn、Awesome n8n Templates、Activepieces、n8n-MCP | 仅作参考来源 |
+| [一手参考资料](docs/SOURCES.md#primary-references) | n8n 官方文档、n8n 公共 API 参考 | 仅作参考来源 |
 | [网页／HTML 技能](docs/SOURCES.md#web-and-html-agent-skills) | Frontend Design、Webapp Testing、Web Artifacts Builder、Web Design Guidelines、Agent Browser | 仅作参考来源 |
-| [配方草案](recipes/README.md) | 发布摘要、网页变更监控、HTML 报告、工作流编写助手、文件分类 | 均为草案，尚未验证 |
+| [n8n 运维](docs/n8n/OPERATIONS.md) | API 面、发布模型、安全变更、执行排查、数据表、AI 与 MCP 节点 | 实战笔记；逐条标注版本 |
+| [故障速查](docs/n8n/FAILURE-MODES.md) | 触发器、数据流、校验、执行、凭据与 AI 节点的症状 → 原因 → 处置 | 实战笔记 |
+| [版本矩阵](docs/n8n/VERSION-MATRIX.md) | 哪条结论适用于哪个 n8n 版本，附升级检查表 | 2026-11-03 复核 |
+| [配方](recipes/README.md) | 十二个配方：五个草案、四个实战验证、三个课程模式 | 暂无已验证配方 |
+| [学习路径](docs/learning-paths/ihk-ki-automatisierung.md) | 三十课德语 AI 自动化课程，映射到能力、检验点与缺口 | 大纲已对照证书 |
+| [目录规范](docs/CATALOG.md) | 机器可读目录、JSON Schema、校验器及其测试 | 由脚本校验 |
 | [项目目标](GOAL.md) | 范围、质量原则与后续里程碑 | 后续计划 |
 
 “五个精选”强调能力互补，不是实时星标榜单或性能排名。
@@ -118,7 +134,7 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 ### 下一步
 
-按照 [GOAL.md](GOAL.md#next-milestones)，依次推进机器可读目录、一个可复现验证的配方、检索能力，以及只读智能体接口的评估。首个建议实现的是 [GitHub 发布摘要](recipes/README.md)。
+机器可读目录已就位（`catalog/catalog.json`、schema、校验器与测试）。按 [GOAL.md](GOAL.md#next-milestones) 继续推进：一个可复现验证的配方、检索能力，以及只读智能体接口的评估。首个建议实现的仍是 [GitHub 发布摘要](recipes/README.md)。
 
 ### 使用原则
 
@@ -135,27 +151,35 @@ FlowLore ist ein Wissenskatalog für Automatisierungsplattformen, Agent Skills, 
 
 ### Aktueller Stand
 
-**Version 0.1 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, fünf Web-/HTML-bezogene Skills, fünf Rezeptentwürfe und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung sind weder mitgeliefert noch getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
+**Version 0.2 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, zwei Primärquellen, fünf Web-/HTML-bezogene Skills, zwölf Rezepte, vier Betriebsdokumente, ein Lernpfad über 30 Lektionen, ein maschinenlesbarer Katalog und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung sind weder mitgeliefert noch getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
 
 ### Einsatzgebiete
 
 - Werkzeuge und Quellen für eine Automatisierungsaufgabe finden.
 - Die Rollen von Workflow-Engines, Agent Skills und Browser-Werkzeugen vergleichen.
 - Eine Idee als Rezept mit Eingaben, Ausgaben, Abhängigkeiten und Prüfkriterien beschreiben.
+- Eine n8n-Instanz betreiben: Workflows ändern, veröffentlichen, debuggen und inventarisieren, ohne den Betrieb zu brechen.
 
 ### Einstieg
 
 1. Die [Automatisierungsplattformen](docs/SOURCES.md#automation-platforms) und [Web-/HTML-Skills](docs/SOURCES.md#web-and-html-agent-skills) durchsehen.
-2. Einen [Rezeptentwurf](recipes/README.md) auswählen und seine Originalquellen sowie offenen Prüfpunkte lesen.
-3. In einer isolierten Umgebung mit Testdaten prüfen; Versionen und Nachweise dokumentieren, bevor ein Rezept als verifiziert gilt.
+2. Ein [Rezept](recipes/README.md) auswählen und seine Originalquellen sowie offenen Prüfpunkte lesen.
+3. n8n im Produktivbetrieb? Zuerst [n8n-Betrieb](docs/n8n/OPERATIONS.md) lesen und die [Fehlerbilder](docs/n8n/FAILURE-MODES.md) griffbereit halten.
+4. In einer isolierten Umgebung mit Testdaten prüfen; Versionen und Nachweise dokumentieren, bevor ein Rezept als verifiziert gilt.
 
 ### Inhalt des Katalogs
 
 | Bereich | Inhalt | Status |
 | --- | --- | --- |
 | [Automatisierungsquellen](docs/SOURCES.md#automation-platforms) | n8n, Huginn, Awesome n8n Templates, Activepieces, n8n-MCP | Nur Referenzen |
+| [Primärquellen](docs/SOURCES.md#primary-references) | n8n-Dokumentation, n8n-API-Referenz | Nur Referenzen |
 | [Web-/HTML-Skills](docs/SOURCES.md#web-and-html-agent-skills) | Frontend Design, Webapp Testing, Web Artifacts Builder, Web Design Guidelines, Agent Browser | Nur Referenzen |
-| [Rezeptentwürfe](recipes/README.md) | Release-Zusammenfassung, Web-Änderungsmonitor, HTML-Bericht, Workflow-Autor, Dateiklassifizierung | Entwürfe; nicht verifiziert |
+| [n8n-Betrieb](docs/n8n/OPERATIONS.md) | API-Oberfläche, Veröffentlichungsmodell, sichere Änderungen, Ausführungsdiagnose, Data Tables, AI- und MCP-Knoten | Feldnotizen; jede Aussage versioniert |
+| [Fehlerbilder](docs/n8n/FAILURE-MODES.md) | Symptom → Ursache → Abhilfe bei Triggern, Datenfluss, Validierung, Ausführungen, Credentials und AI-Knoten | Feldnotizen |
+| [Versionsmatrix](docs/n8n/VERSION-MATRIX.md) | Welche Aussage auf welcher n8n-Version gilt, plus Upgrade-Checkliste | Geprüft 2026-11-03 |
+| [Rezepte](recipes/README.md) | Zwölf Rezepte: fünf Entwürfe, vier feldgetestet, drei Kursmuster | Noch kein Rezept verifiziert |
+| [Lernpfad](docs/learning-paths/ihk-ki-automatisierung.md) | 30-teiliger deutscher KI-Automatisierungskurs, auf Kompetenzen, Prüfsteine und Lücken abgebildet | Lehrplan gegen Zertifikate geprüft |
+| [Katalog](docs/CATALOG.md) | Maschinenlesbarer Katalog, JSON-Schema, Validator und Tests | Durch Skript validiert |
 | [Projektziel](GOAL.md) | Umfang, Qualitätsprinzipien und nächste Meilensteine | Geplante Arbeit |
 
 Die Auswahl deckt ergänzende Rollen ab; sie ist keine aktuelle Rangliste nach Sternen oder Benchmark-Ergebnissen.
@@ -172,7 +196,7 @@ Die Projekte sind unabhängig. Eine gemeinsame Integration oder automatische Üb
 
 ### Nächste Schritte
 
-Die [Meilensteine in GOAL.md](GOAL.md#next-milestones) beginnen mit einem maschinenlesbaren Katalog und einem reproduzierbar getesteten Rezept. Danach folgen Suche und die Prüfung einer lesenden Agent-Schnittstelle. Als erster Kandidat ist eine [GitHub-Release-Zusammenfassung](recipes/README.md) vorgesehen.
+Der maschinenlesbare Katalog liegt vor (`catalog/catalog.json`, Schema, Validator und Tests). Die [Meilensteine in GOAL.md](GOAL.md#next-milestones) führen weiter zu einem reproduzierbar getesteten Rezept, zur Suche und zur Prüfung einer lesenden Agent-Schnittstelle. Erster Kandidat bleibt die [GitHub-Release-Zusammenfassung](recipes/README.md).
 
 ### Arbeitsprinzipien
 
