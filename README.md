@@ -25,6 +25,8 @@
 
 Catalog version: **0.2 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
 
+[Roadmap / 路线图 / Entwicklungsplan](ROADMAP.md) — the next three steps, what is blocked and what is deliberately not planned; proposed work, not shipped features.
+
 <a id="english"></a>
 ## English
 
@@ -83,7 +85,7 @@ The projects are independent. No shared integration or automatic handoff is impl
 
 ### Next steps
 
-The machine-readable catalog is in place (`catalog/catalog.json`, schema, validator and tests). The [roadmap in GOAL.md](GOAL.md#next-milestones) continues with one reproducibly tested recipe, search and the evaluation of a read-only agent interface. The proposed first recipe is still the [GitHub release digest](recipes/README.md).
+The machine-readable catalog is in place (`catalog/catalog.json`, schema, validator and tests). The ordered work is in the [roadmap](ROADMAP.md): first verify one recipe end to end, then add a recipe contract and validator, then check links and versions in CI. Search and a read-only agent interface follow only after that. The proposed first recipe is still the [GitHub release digest](recipes/README.md).
 
 ### Working principles
 
@@ -149,7 +151,7 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 ### 下一步
 
-机器可读目录已就位（`catalog/catalog.json`、schema、校验器与测试）。按 [GOAL.md](GOAL.md#next-milestones) 继续推进：一个可复现验证的配方、检索能力，以及只读智能体接口的评估。首个建议实现的仍是 [GitHub 发布摘要](recipes/README.md)。
+机器可读目录已就位（`catalog/catalog.json`、schema、校验器与测试）。有序的后续工作见[路线图](ROADMAP.md)：先端到端验证一个配方，再补配方契约与校验器，然后在 CI 中检查链接与版本号；检索能力和只读智能体接口在此之后。首个建议实现的仍是 [GitHub 发布摘要](recipes/README.md)。
 
 ### 使用原则
 
@@ -215,7 +217,7 @@ Die Projekte sind unabhängig. Eine gemeinsame Integration oder automatische Üb
 
 ### Nächste Schritte
 
-Der maschinenlesbare Katalog liegt vor (`catalog/catalog.json`, Schema, Validator und Tests). Die [Meilensteine in GOAL.md](GOAL.md#next-milestones) führen weiter zu einem reproduzierbar getesteten Rezept, zur Suche und zur Prüfung einer lesenden Agent-Schnittstelle. Erster Kandidat bleibt die [GitHub-Release-Zusammenfassung](recipes/README.md).
+Der maschinenlesbare Katalog liegt vor (`catalog/catalog.json`, Schema, Validator und Tests). Die geordnete Arbeit steht im [Entwicklungsplan](ROADMAP.md): zuerst ein Rezept Ende zu Ende verifizieren, dann einen Rezept-Vertrag mit Validator ergänzen, dann Links und Versionsangaben in CI prüfen. Suche und eine lesende Agent-Schnittstelle folgen erst danach. Erster Kandidat bleibt die [GitHub-Release-Zusammenfassung](recipes/README.md).
 
 ### Arbeitsprinzipien
 

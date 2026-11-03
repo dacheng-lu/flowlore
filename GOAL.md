@@ -26,6 +26,8 @@ Help people and agents turn an automation need into an understandable, source-ba
 
 ## Next milestones
 
+The ordered, current plan with acceptance criteria is in [ROADMAP.md](ROADMAP.md). The list below states the goals; the roadmap states the next steps.
+
 1. ✅ **Done in v0.2.** Machine-readable catalog with schema validation, referential
    integrity and an optional external link check: `python3 scripts/validate_catalog.py`.
 2. Implement and test one source-backed recipe using pinned versions and an isolated environment; publish reproducible evidence.

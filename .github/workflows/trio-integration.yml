@@ -32,6 +32,7 @@ jobs:
         run: |
           python scripts/validate_catalog.py
           python scripts/test_validate_catalog.py
+          python scripts/test_roadmap.py
           python examples/release-digest/test_digest.py
       - name: Exercise all three projects
         working-directory: flowlore
