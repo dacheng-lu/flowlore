@@ -26,6 +26,17 @@ These five cover complementary parts of a web workflow. Their ranking is editori
 
 The web design guidelines skill retrieves rules from a moving source; record the rules revision for reproducible audits. The HTML artifacts builder targets a specific Claude artifact workflow and is not a general-purpose browser automation tool. Browser automation requires a compatible runtime and site access.
 
+## Primary references
+
+Not projects to evaluate but the sources this catalog checks technical claims against. Both
+were read on 2026-11-03; the operational conclusions drawn from them are in
+[n8n/OPERATIONS.md](n8n/OPERATIONS.md) and [n8n/VERSION-MATRIX.md](n8n/VERSION-MATRIX.md).
+
+| Source | Role in FlowLore | Integration status |
+|---|---|---|
+| [n8n documentation](https://docs.n8n.io) | Vendor documentation: flow logic, node reference, error handling, data tables | Reference only |
+| [n8n public API reference](https://docs.n8n.io/connect/n8n-api/api-reference.md) | Generated endpoint reference (API `1.1.1`) used for every API statement in this repository | Reference only |
+
 ## Attribution and licensing
 
 No upstream code, prompts or workflows are copied into this catalog. Links and descriptions are editorial summaries, not vendor partnerships. Licenses can differ by repository, directory, template and release; check the source directly before copying or redistribution. n8n describes itself as fair-code; Activepieces distinguishes MIT community features from commercial enterprise features.
