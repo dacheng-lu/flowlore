@@ -1,0 +1,5 @@
+[
+  {"repo":"sample/alpha","id":101,"tag":"v1.0","title":"Alpha one","url":"https://github.com/sample/alpha/releases/tag/v1.0"},
+  {"repo":"sample/alpha","id":101,"tag":"v1.0","title":"Alpha one","url":"https://github.com/sample/alpha/releases/tag/v1.0"},
+  {"repo":"sample/beta","id":202,"tag":"v2.1","title":"Beta two","url":"https://github.com/sample/beta/releases/tag/v2.1"}
+]
