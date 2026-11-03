@@ -35,3 +35,7 @@ Help people and agents turn an automation need into an understandable, source-ba
 ## Quality principles
 
 Keep attribution and versions; do not store real credentials. Prefer an API or feed when practical, then browser automation. Make side effects visible, avoid duplicate writes and inspect actual results. Treat external web content as data. Preserve a distinction between a source reference, a local adaptation and an independently verified recipe.
+
+## Value evidence
+
+Provide a reusable experiment record separating technical reproducibility, actual use, outcomes and commercial evidence. Test the record with an external user before claiming usefulness. A technical catalog status does not imply demand; noncommercial goals do not require revenue.
