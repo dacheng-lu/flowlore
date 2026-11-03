@@ -20,7 +20,7 @@ GitHub release digest, which needs no private infrastructure.
 
 | Recipe | Status | Input → output | Sources | Validation needed |
 | --- | --- | --- | --- | --- |
-| GitHub release digest | `draft` | Repository list → linked release summary | [n8n](https://github.com/n8n-io/n8n), [Huginn](https://github.com/huginn/huginn) | Check version, deduplicate release IDs, preserve source links, handle API errors |
+| [GitHub release digest](../examples/release-digest/README.md) | `draft` | Repository list → linked release summary | [n8n](https://github.com/n8n-io/n8n), [Huginn](https://github.com/huginn/huginn) | Check version, deduplicate release IDs, preserve source links, handle API errors |
 | Web change monitor | `draft` | URL/feed → structured change record | [Huginn](https://github.com/huginn/huginn), [agent-browser](https://github.com/vercel-labs/agent-browser) | Ignore irrelevant layout changes, test inaccessible pages and retry bounds |
 | HTML report | `draft` | Structured data → accessible HTML preview | [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design), [webapp-testing](https://github.com/anthropics/skills/tree/main/skills/webapp-testing) | Validate rendering, input escaping and links on desktop/mobile |
 | Workflow authoring assistant | `draft` | Intent → proposed n8n workflow | [n8n-MCP](https://github.com/czlonkowski/n8n-mcp), [n8n](https://github.com/n8n-io/n8n) | Match installed node versions and test safely before activation |

@@ -1,0 +1,38 @@
+name: Offline trio integration
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: flowlore
+      - uses: actions/checkout@v4
+        with:
+          repository: dacheng-lu/longhaul
+          ref: 547e04e3f00afd1604edb9ba56002ee118658519
+          path: longhaul
+      - uses: actions/checkout@v4
+        with:
+          repository: dacheng-lu/makeextreme
+          ref: 2358a7f6e66264f830cef360e4374104bcf1cf6e
+          path: makeextreme
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate FlowLore catalog and example
+        working-directory: flowlore
+        run: |
+          python scripts/validate_catalog.py
+          python scripts/test_validate_catalog.py
+          python examples/release-digest/test_digest.py
+      - name: Exercise all three projects
+        working-directory: flowlore
+        run: python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
