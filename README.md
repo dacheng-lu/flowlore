@@ -14,6 +14,11 @@
 
 [English](#english) · [简体中文](#zh-cn) · [Deutsch](#deutsch)
 
+[Website](https://www.dev-lu.com/) · [Documentation](docs/CATALOG.md) · License not yet specified
+
+**Three independent projects:** [FlowLore](https://github.com/dacheng-lu/flowlore) · [Longhaul](https://github.com/dacheng-lu/longhaul) · [Makeextreme](https://github.com/dacheng-lu/makeextreme)  
+**No shared adapter or automatic handoff is built in.**
+
 [Value experiment template / 价值实验模板 / Nutzenexperiment-Vorlage](docs/VALUE-EXPERIMENT.md)
 
 [Three-project example / 三项目示例 / Drei-Projekte-Beispiel](examples/release-digest/README.md) · [Agent guide / 智能体指南 / Agent-Leitfaden](AGENT-GUIDE.md) · [Sources / 来源目录 / Quellen](docs/SOURCES.md) · [Recipes / 配方 / Rezepte](recipes/README.md) · [n8n operations / n8n 运维 / n8n-Betrieb](docs/n8n/OPERATIONS.md) · [Catalog / 机器可读目录 / Katalog](docs/CATALOG.md) · [Goal / 项目目标 / Ziel](GOAL.md)
@@ -30,6 +35,10 @@ FlowLore is a knowledge catalog for automation platforms, agent skills, web work
 ### Status
 
 **v0.2 is a catalog draft.** Documented are five automation sources, two primary references, five web/HTML-related skills, twelve recipes, four operating documents, one 30-lesson learning path, a machine-readable catalog and the project goal. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled or tested. Reference links do not establish compatibility, endorsement or a working integration.
+
+**At a glance:** 5 automation sources · 5 web/HTML skill references · 12 recipes · 1 learning path (30 lessons) · **0 verified recipes**. [Browse the catalog](docs/CATALOG.md).
+
+Recipe labels distinguish `draft`, `field-tested` and `verified`; field-tested does not mean verified. See the [status definitions](recipes/README.md#status). No workflow engine is bundled.
 
 ### When to use it
 
@@ -93,6 +102,10 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 **v0.2 为目录草稿。** 已收录五个自动化来源、两个一手参考资料、五个网页／HTML 相关技能、十二个配方、四份运维文档、一条三十课学习路径、一份机器可读目录和项目目标。尚未内置或验证执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力。收录链接不代表已集成、兼容或获得上游背书。
 
+**一览：** 5 个自动化来源 · 5 个网页／HTML 技能参考 · 12 个配方 · 1 条 30 课学习路径 · **0 个已验证配方**。[浏览目录](docs/CATALOG.md)。
+
+配方以 `draft`（草稿）、`field-tested`（实战记录）和 `verified`（已验证）区分状态；实战记录不等于已验证。参见[状态定义](recipes/README.md#status)。项目没有内置工作流引擎。
+
 ### 适用场景
 
 - 为自动化需求寻找工具、来源与实现思路。
@@ -155,6 +168,10 @@ FlowLore ist ein Wissenskatalog für Automatisierungsplattformen, Agent Skills, 
 
 **Version 0.2 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, zwei Primärquellen, fünf Web-/HTML-bezogene Skills, zwölf Rezepte, vier Betriebsdokumente, ein Lernpfad über 30 Lektionen, ein maschinenlesbarer Katalog und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung sind weder mitgeliefert noch getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
 
+**Auf einen Blick:** 5 Automatisierungsquellen · 5 Web/HTML-Skill-Referenzen · 12 Rezepte · 1 Lernpfad mit 30 Lektionen · **0 verifizierte Rezepte**. [Katalog ansehen](docs/CATALOG.md).
+
+Die Kennzeichnungen `draft`, `field-tested` und `verified` unterscheiden den Reifegrad; Praxiserfahrung ist keine Verifizierung. Siehe [Statusdefinitionen](recipes/README.md#status). Eine Workflow-Engine ist nicht enthalten.
+
 ### Einsatzgebiete
 
 - Werkzeuge und Quellen für eine Automatisierungsaufgabe finden.
@@ -213,3 +230,4 @@ Third-party projects are linked, not bundled. Review each upstream's license, ve
 第三方项目仅提供链接，未打包收录。复制或安装前请核对上游许可、版本与依赖。**FlowLore 自身尚未指定许可证。**
 
 Fremde Projekte werden verlinkt, nicht mitgeliefert. Vor dem Kopieren oder Installieren sind Lizenz, Version und Abhängigkeiten der Originalquelle zu prüfen. **Für FlowLore selbst ist noch keine Lizenz festgelegt.**
+
