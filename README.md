@@ -5,7 +5,7 @@
 # 流谱 · FlowLore
 
 **Flows that work. Knowledge that connects.**  
-**汇知识成谱，让工作成流。**  
+**汇知识成谱，集工作成流。**  
 **Wissen verbinden. Abläufe gestalten.**
 
 **Sources you can trace · Patterns you can understand · Recipes you can verify**  
