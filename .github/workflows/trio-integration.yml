@@ -37,3 +37,19 @@ jobs:
       - name: Exercise all three projects
         working-directory: flowlore
         run: python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
+  sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: flowlore
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prove the checker fails on a broken link and a dateless claim
+        working-directory: flowlore
+        run: python scripts/test_check_sources.py
+      - name: Check that every source answers and every n8n claim names its version
+        working-directory: flowlore
+        run: python scripts/check_sources.py
