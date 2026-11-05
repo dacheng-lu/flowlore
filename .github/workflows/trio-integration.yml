@@ -10,20 +10,34 @@ jobs:
   offline:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: pinned
+            longhaul: 547e04e3f00afd1604edb9ba56002ee118658519
+            makeextreme: 2358a7f6e66264f830cef360e4374104bcf1cf6e
+          - name: current
+            longhaul: main
+            makeextreme: main
+    name: offline (${{ matrix.name }})
     steps:
       - uses: actions/checkout@v4
         with:
           path: flowlore
+          persist-credentials: false
       - uses: actions/checkout@v4
         with:
           repository: dacheng-lu/longhaul
-          ref: 547e04e3f00afd1604edb9ba56002ee118658519
+          ref: ${{ matrix.longhaul }}
           path: longhaul
+          persist-credentials: false
       - uses: actions/checkout@v4
         with:
           repository: dacheng-lu/makeextreme
-          ref: 2358a7f6e66264f830cef360e4374104bcf1cf6e
+          ref: ${{ matrix.makeextreme }}
           path: makeextreme
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -34,9 +48,43 @@ jobs:
           python scripts/test_validate_catalog.py
           python scripts/test_roadmap.py
           python examples/release-digest/test_digest.py
+          python examples/release-digest/test_live_releases.py
+          python examples/release-digest/test_tenon.py
       - name: Exercise all three projects
         working-directory: flowlore
         run: python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
+  live-readonly:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: flowlore
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: dacheng-lu/longhaul
+          ref: main
+          path: longhaul
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: dacheng-lu/makeextreme
+          ref: main
+          path: makeextreme
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Read a bounded sample of public GitHub release metadata
+        working-directory: flowlore
+        run: |
+          python examples/release-digest/live_releases.py cli/cli --per-page 3 --max-pages 1 --allow-partial > "$RUNNER_TEMP/releases.json"
+          python -c 'import json,os; x=json.load(open(os.environ["RUNNER_TEMP"]+"/releases.json")); assert x["repository"] == "cli/cli" and x["complete"] is False and len(x["releases"]) == 3; print("PASS: public API read, three releases, explicitly partial")'
+      - name: Run the three-project example on that snapshot
+        working-directory: flowlore
+        run: python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul --live-snapshot "$RUNNER_TEMP/releases.json"
   sources:
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -44,6 +92,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: flowlore
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
