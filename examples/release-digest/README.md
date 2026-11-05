@@ -6,6 +6,7 @@ checks the generated report. Longhaul records an observation after the example i
 compares that report to `expected.md`. The script then alters the report, verifies old evidence
 is stale, asks Makeextreme to restore the declared output, rechecks and records a new observation.
 The separate upstream Makeextreme demo also exercises an actual interruption and recovery.
+The emitted candidate card is now `tenon/0`; it is an unauthenticated claim, not a receipt.
 
 This is a manually scripted integration demonstration, not an automatic adapter, authenticated
 receipt, or a verified live GitHub API recipe. It sends no requests, needs no keys, performs no
@@ -14,7 +15,8 @@ beyond the stated checks. The evidence card is a proposed local interchange exam
 
 Requirements: Linux, `/proc` in the current PID namespace, Python 3.11+ and three checked-out
 repositories. The checked-in workflow pins Longhaul and Makeextreme commits for reproducibility;
-the FlowLore revision is the workflow commit. From the parent directory of the three checkouts:
+the FlowLore revision is the workflow commit. A second CI combination checks both peers'
+current `main` branches; its precise revisions are recorded in each run. From the parent directory of the three checkouts:
 
 ```bash
 cd flowlore
@@ -31,3 +33,36 @@ Live GitHub API pagination, rate limits, changing upstream data, event delivery 
 external publishing remain untested. The broader Release Digest recipe remains `draft` until
 those requirements and the repository's verification criteria are met. Use host permissions,
 separate authentication and a durable store for any real deployment.
+
+## Bounded public API experiment
+
+`live_releases.py` performs only public GitHub API reads, with a fixed API host, no credentials,
+timeouts and bounded pages. It returns JSON as untrusted data. The default refuses when the
+page limit may truncate results. To deliberately inspect just a small sample:
+
+```bash
+python3 examples/release-digest/live_releases.py cli/cli --per-page 3 --max-pages 1 --allow-partial > /tmp/releases.json
+python3 examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul --live-snapshot /tmp/releases.json
+```
+
+The output explicitly reports `complete: false` for a page-limited sample. The integration
+uses validated repository, release id, tag and URL fields; it replaces untrusted release titles
+with a fixed label. Its structural comparison is derived from that captured input and is not
+an independent semantic review. It does not establish freshness after capture or exactly-once
+delivery. A separate non-blocking PR and manually dispatched CI job exercises this read-only
+path; its failure can reflect external rate limits or upstream changes. Required regression
+checks use offline fixtures and do not depend on this network job.
+[One observed public sample and its limits](evidence/public-sample-2026-11-05.md).
+
+## Inspect a local run
+
+To retain the non-sensitive example records, pass `--evidence-dir /tmp/trio-evidence-new` to
+`integration.py`; the destination must not exist. Then run:
+
+```bash
+python3 examples/release-digest/tenon.py --card /tmp/trio-evidence-new/card.json --artifact /tmp/trio-evidence-new/digest.md --journal /tmp/trio-evidence-new/journal.jsonl --checkpoint /tmp/trio-evidence-new/longhaul.json
+```
+
+The view compares bytes and summarizes events and evidence counts without modifying files.
+It does not authenticate their relationship, validate semantic correctness, or replace the
+Longhaul gate. Its default output does not print the report, prompts or checkpoint content.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exercise pinned projects with fixed local fixtures; no network or credentials."""
+"""Exercise three projects with a fixed fixture or an explicitly captured public snapshot."""
 import argparse
 import hashlib
 import json
@@ -9,6 +9,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import uuid
+import tenon
+import digest as digest_lib
 
 HERE = Path(__file__).resolve().parent
 
@@ -29,10 +32,27 @@ def repository_revision(path):
         return {'commit': 'unknown', 'trackedDirty': None}
 
 
+def snapshot_fixture(snapshot, destination):
+    if (not isinstance(snapshot, dict) or type(snapshot.get('complete')) is not bool
+            or not isinstance(snapshot.get('repository'), str) or not isinstance(snapshot.get('releases'), list)
+            or not snapshot['releases']):
+        raise ValueError('snapshot must contain a labelled nonempty release list')
+    rows = []
+    for row in snapshot['releases']:
+        if not isinstance(row, dict) or row.get('repo') != snapshot['repository']:
+            raise ValueError('snapshot repository mismatch')
+        rows.append({'repo': row.get('repo'), 'id': row.get('id'), 'tag': row.get('tag'),
+                     'title': 'Release', 'url': row.get('url')})
+    destination.write_text(json.dumps(rows))
+    return digest_lib.entries(destination)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--makeextreme', type=Path, required=True)
     p.add_argument('--longhaul', type=Path, required=True)
+    p.add_argument('--evidence-dir', type=Path, help='new local directory for the inspected example records')
+    p.add_argument('--live-snapshot', type=Path, help='JSON captured by live_releases.py; never fetches here')
     a = p.parse_args()
     mx = a.makeextreme.resolve()
     lh = a.longhaul.resolve() / 'scripts' / 'checkpoint.py'
@@ -41,8 +61,16 @@ def main():
     py = shlex.quote(sys.executable)
     with tempfile.TemporaryDirectory(prefix='trio-digest-') as tmp:
         d = Path(tmp)
+        task_id = 'public-release-digest' if a.live_snapshot else 'offline-release-digest'
         for name in ('digest.py', 'releases.json', 'expected.md'):
             shutil.copyfile(HERE / name, d / name)
+        if a.live_snapshot:
+            snap = json.loads(a.live_snapshot.read_text())
+            # Titles from the network are untrusted; the report uses a fixed label.
+            validated = snapshot_fixture(snap, d / 'releases.json')
+            expected = ['# Release digest', '']
+            expected.extend(f"- {r['repo']} — [{r['tag']}: Release]({r['url']})" for r in validated)
+            (d / 'expected.md').write_text('\n'.join(expected) + '\n')
         stages = [
             {'id': 'validate', 'run': f'{py} digest.py validate releases.json && printf valid > input.ok',
              'check': 'test -s input.ok', 'deps': ['releases.json', 'digest.py'], 'outputs': ['input.ok']},
@@ -59,7 +87,7 @@ def main():
         state = d / 'longhaul.json'
         def check(*args, expected=0):
             return call([sys.executable, lh, *args], expected=expected)
-        check('init', state, '--task-id', 'offline-release-digest', '--goal', 'Verify fixed release digest')
+        check('init', state, '--task-id', task_id, '--goal', 'Verify captured release digest')
         check('artifact', state, '--id', 'A1', '--locator', 'digest.md')
         check('evidence', state, '--id', 'E1', '--artifact', 'A1', '--result', 'pass')
         record = json.loads(state.read_text())
@@ -85,20 +113,39 @@ def main():
                   for name in ('validate', 'render')}
         if starts != {'validate': 1, 'render': 2}:
             raise AssertionError(f'unexpected stage starts: {starts}')
-        card = {'schema': 'trio-evidence-example/0.1', 'task': 'offline-release-digest',
+        repo_status = {'flowlore': repository_revision(HERE.parent.parent),
+                       'makeextreme': repository_revision(mx),
+                       'longhaul': repository_revision(lh.parent.parent)}
+        card = {'schema': 'tenon/0', 'task': task_id,
+                'run': str(uuid.uuid4()), 'stage': 'render',
                 'recipe': 'github-release-digest', 'result': 'pass',
-                'revisions': {'flowlore': repository_revision(HERE.parent.parent),
-                              'makeextreme': repository_revision(mx),
-                              'longhaul': repository_revision(lh.parent.parent)},
+                'revisions': {name: value['commit'] for name, value in repo_status.items()},
+                'tracked_dirty': {name: value['trackedDirty'] for name, value in repo_status.items()},
                 'artifact': 'digest.md', 'sha256': hashlib.sha256(digest.read_bytes()).hexdigest(),
+                'source_complete': snap['complete'] if a.live_snapshot else None,
                 'check': 'exact-match expected.md; stage starts validate=1, render=2',
-                'limitations': ['synthetic data', 'not authenticated', 'no live API or external side effects']}
+                'limitations': (['captured public data; completeness as stated in snapshot',
+                                 'fixture-based structural checks; not semantic review'] if a.live_snapshot
+                                else ['synthetic data', 'no live API'])
+                               + ['not authenticated', 'no external writes']}
+        if tenon.inspect(card, digest.read_bytes())[0] != 'match':
+            raise AssertionError('candidate card does not match the output or lacks revisions')
+        if tenon.inspect(card, b'tampered')[0] != 'mismatch':
+            raise AssertionError('candidate card did not detect modified output')
+        call([sys.executable, mx / 'examples/longhaul_recovery/demo.py', '--longhaul', lh.parent.parent], cwd=mx)
+        print('PASS: upstream interruption/recovery demonstration')
+        if a.evidence_dir:
+            out = a.evidence_dir.resolve()
+            out.mkdir(parents=False, exist_ok=False)
+            for source in (digest, d / 'journal.jsonl', state):
+                shutil.copyfile(source, out / source.name)
+            if a.live_snapshot:
+                shutil.copyfile(d / 'releases.json', out / 'sanitized-input.json')
+            (out / 'card.json').write_text(json.dumps(card, indent=2) + '\n')
+            print(f'Local example records: {out}')
         print('Evidence card (example, not a signed receipt):')
         print(json.dumps(card, indent=2))
         print('PASS: stale evidence rejected and modified output restored')
-    # An existing upstream demo independently exercises a real process interruption.
-    call([sys.executable, mx / 'examples/longhaul_recovery/demo.py', '--longhaul', lh.parent.parent], cwd=mx)
-    print('PASS: upstream interruption/recovery demonstration')
 
 
 if __name__ == '__main__':
