@@ -52,6 +52,7 @@ an independent semantic review. It does not establish freshness after capture or
 delivery. A separate non-blocking PR and manually dispatched CI job exercises this read-only
 path; its failure can reflect external rate limits or upstream changes. Required regression
 checks use offline fixtures and do not depend on this network job.
+[One observed public sample and its limits](evidence/public-sample-2026-11-05.md).
 
 ## Inspect a local run
 

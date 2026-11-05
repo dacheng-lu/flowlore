@@ -20,6 +20,10 @@ No tags and no GitHub Releases exist.
 ### P0 — the next three steps, in this order
 
 - [ ] **Verify the first recipe end to end.** The GitHub release digest needs no private infrastructure. Pin the engine version, write the test input and the expected output, run it in an isolated environment, publish the artifact (export and command output) under `examples/release-digest/evidence/`, then change its status from `draft` to `verified` in [recipes/README.md](recipes/README.md). Acceptance: a fresh clone reproduces the published output with one documented command, and the README's "0 of 12" becomes "1 of 12".
+  A bounded, read-only public API experiment and the three-project snapshot demonstration are in
+  [the example](examples/release-digest/README.md). A partial live sample does not satisfy the
+  verified-recipe criteria. Offline CI exercises pinned and current peer revisions separately;
+  the network job is non-blocking and may fail for upstream reasons.
 - [ ] **Add a recipe contract and validator.** Today a recipe is prose in [recipes/README.md](recipes/README.md); nothing checks that a `verified` label has evidence behind it. Define the fields (id, intent, inputs, outputs, engines, source revisions, status, evidence path), add `scripts/validate_recipes.py` with tests, and run it in CI. Acceptance: the twelve recipes validate, and a `verified` recipe without an existing evidence file fails with the recipe id.
 - [x] **Check links and versions in CI.** Every external source is a reference, not a tested dependency, and links rot. Add a check that every URL answers (with an explicit allowlist for bot walls) and that every n8n claim carries the version it was read on. Acceptance: one deliberately broken URL fails CI and names the file and the URL.
 
@@ -35,7 +39,7 @@ No tags and no GitHub Releases exist.
 
 ## Blocked
 
-- **License.** The README says "License not yet specified". Until the owner chooses one, the terms for reuse and contribution are undefined, and no recipe or validator can be copied safely. This needs an owner decision, not an agent default.
+- **License.** The README says "License not yet specified". Until the owner chooses one, the terms for reuse and contribution are undefined. A [scope review and Apache-2.0 candidate](docs/proposals/license-choice.md) are ready for that decision; neither activates a license. Third-party course labels and branding need separate treatment.
 - **Publishing the field-tested evidence.** Four recipes rest on private n8n instances and customer data. Their evidence can only be a dated summary; publishing more needs a redaction policy and the owner's approval.
 - **Compatibility claims beyond the recorded versions.** The n8n field notes cover specific versions (`2.27.5`–`2.46.4` at review time). Testing another version needs an instance the repository does not have.
 
