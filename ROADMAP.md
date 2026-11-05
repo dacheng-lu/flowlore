@@ -46,6 +46,7 @@ No tags and no GitHub Releases exist.
 - A German or English edition of the 30-lesson learning path.
 - Evaluate Huginn and Activepieces as second engines, not only as references.
 - A recipe for the questions that keep recurring in the value experiment.
+- **A next major version: capabilities in the catalog and a read-only query surface.** Proposed, not decided, not scheduled; design only. [docs/proposals/trust-substrate-2.0.md](docs/proposals/trust-substrate-2.0.md) adds per-recipe capabilities, effect classes, an untrusted-by-default rule for fetched web content, and an MCP resource with no write path. The shared exchange format is drafted in [docs/proposals/trio-trust-contract-v0.md](docs/proposals/trio-trust-contract-v0.md) and is not frozen until one real release-digest run passes.
 
 ## Not planned
 
