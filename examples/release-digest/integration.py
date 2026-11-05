@@ -61,6 +61,7 @@ def main():
     py = shlex.quote(sys.executable)
     with tempfile.TemporaryDirectory(prefix='trio-digest-') as tmp:
         d = Path(tmp)
+        task_id = 'public-release-digest' if a.live_snapshot else 'offline-release-digest'
         for name in ('digest.py', 'releases.json', 'expected.md'):
             shutil.copyfile(HERE / name, d / name)
         if a.live_snapshot:
@@ -86,7 +87,7 @@ def main():
         state = d / 'longhaul.json'
         def check(*args, expected=0):
             return call([sys.executable, lh, *args], expected=expected)
-        check('init', state, '--task-id', 'offline-release-digest', '--goal', 'Verify fixed release digest')
+        check('init', state, '--task-id', task_id, '--goal', 'Verify captured release digest')
         check('artifact', state, '--id', 'A1', '--locator', 'digest.md')
         check('evidence', state, '--id', 'E1', '--artifact', 'A1', '--result', 'pass')
         record = json.loads(state.read_text())
@@ -115,12 +116,13 @@ def main():
         repo_status = {'flowlore': repository_revision(HERE.parent.parent),
                        'makeextreme': repository_revision(mx),
                        'longhaul': repository_revision(lh.parent.parent)}
-        card = {'schema': 'tenon/0', 'task': 'offline-release-digest',
+        card = {'schema': 'tenon/0', 'task': task_id,
                 'run': str(uuid.uuid4()), 'stage': 'render',
                 'recipe': 'github-release-digest', 'result': 'pass',
                 'revisions': {name: value['commit'] for name, value in repo_status.items()},
                 'tracked_dirty': {name: value['trackedDirty'] for name, value in repo_status.items()},
                 'artifact': 'digest.md', 'sha256': hashlib.sha256(digest.read_bytes()).hexdigest(),
+                'source_complete': snap['complete'] if a.live_snapshot else None,
                 'check': 'exact-match expected.md; stage starts validate=1, render=2',
                 'limitations': (['captured public data; completeness as stated in snapshot',
                                  'fixture-based structural checks; not semantic review'] if a.live_snapshot
@@ -137,6 +139,8 @@ def main():
             out.mkdir(parents=False, exist_ok=False)
             for source in (digest, d / 'journal.jsonl', state):
                 shutil.copyfile(source, out / source.name)
+            if a.live_snapshot:
+                shutil.copyfile(d / 'releases.json', out / 'sanitized-input.json')
             (out / 'card.json').write_text(json.dumps(card, indent=2) + '\n')
             print(f'Local example records: {out}')
         print('Evidence card (example, not a signed receipt):')

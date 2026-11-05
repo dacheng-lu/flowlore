@@ -49,8 +49,9 @@ The output explicitly reports `complete: false` for a page-limited sample. The i
 uses validated repository, release id, tag and URL fields; it replaces untrusted release titles
 with a fixed label. Its structural comparison is derived from that captured input and is not
 an independent semantic review. It does not establish freshness after capture or exactly-once
-delivery. A manually dispatched CI run exercises this read-only path; automatic PR CI uses
-offline fixtures to avoid external rate limits and mutable upstream results.
+delivery. A separate non-blocking PR and manually dispatched CI job exercises this read-only
+path; its failure can reflect external rate limits or upstream changes. Required regression
+checks use offline fixtures and do not depend on this network job.
 
 ## Inspect a local run
 

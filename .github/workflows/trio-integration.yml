@@ -54,7 +54,8 @@ jobs:
         working-directory: flowlore
         run: python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
   live-readonly:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request'
+    continue-on-error: true
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
