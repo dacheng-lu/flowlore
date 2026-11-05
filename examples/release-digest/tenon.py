@@ -3,7 +3,9 @@
 import argparse
 import hashlib
 import json
+import os
 import re
+import stat
 import sys
 from collections import Counter
 from pathlib import Path
@@ -37,15 +39,32 @@ def inspect(card, artifact):
 
 
 def read_file(path, maximum):
-    with path.open('rb') as f:
+    flags = os.O_RDONLY | getattr(os, 'O_NONBLOCK', 0) | getattr(os, 'O_NOFOLLOW', 0)
+    fd = os.open(path, flags)
+    with os.fdopen(fd, 'rb') as f:
+        if not stat.S_ISREG(os.fstat(f.fileno()).st_mode):
+            raise ValueError('input must be a regular file')
         data = f.read(maximum + 1)
     if len(data) > maximum:
         raise ValueError('input exceeds size limit')
     return data
 
 
+def strict_json(data):
+    def pairs(items):
+        obj = {}
+        for key, value in items:
+            if key in obj:
+                raise ValueError('duplicate JSON key')
+            obj[key] = value
+        return obj
+    def constant(value):
+        raise ValueError('non-finite JSON number')
+    return json.loads(data, object_pairs_hook=pairs, parse_constant=constant)
+
+
 def summary(card_path, artifact_path, journal_path=None, checkpoint_path=None):
-    card = json.loads(read_file(card_path, 1_000_000))
+    card = strict_json(read_file(card_path, 1_000_000))
     outcome, reason = inspect(card, read_file(artifact_path, 50_000_000))
     result = {'schema': 'tenon-view/0', 'artifact': outcome, 'reason': reason,
               'claimed_result': card.get('result') if isinstance(card, dict) else None,
@@ -53,14 +72,14 @@ def summary(card_path, artifact_path, journal_path=None, checkpoint_path=None):
     if journal_path:
         counts = Counter()
         for line in read_file(journal_path, 5_000_000).splitlines():
-            event = json.loads(line)
+            event = strict_json(line)
             if not isinstance(event, dict) or not isinstance(event.get('ev'), str):
                 raise ValueError('malformed journal entry')
             if event['ev'] in ('start', 'end', 'skip', 'fail', 'refused', 'interrupted'):
                 counts[event['ev']] += 1
         result['journal_event_counts'] = dict(sorted(counts.items()))
     if checkpoint_path:
-        checkpoint = json.loads(read_file(checkpoint_path, 5_000_000))
+        checkpoint = strict_json(read_file(checkpoint_path, 5_000_000))
         if not isinstance(checkpoint, dict) or not isinstance(checkpoint.get('evidence'), list):
             raise ValueError('malformed checkpoint')
         result['checkpoint_evidence_count'] = len(checkpoint['evidence'])

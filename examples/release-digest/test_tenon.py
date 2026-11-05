@@ -1,7 +1,7 @@
-import copy
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
 import tempfile
 import unittest
@@ -49,6 +49,17 @@ class TenonTests(unittest.TestCase):
             self.assertEqual(result['checkpoint_evidence_count'], 1)
             self.assertIn('not authenticated', result['linkage'])
             self.assertEqual(before, {x.name: x.read_bytes() for x in p.iterdir()})
+
+    def test_malformed_json_and_special_files_are_refused(self):
+        for value in (b'{"schema":"tenon/0","schema":"other"}', b'{"n": NaN}'):
+            with self.subTest(value=value), self.assertRaises(ValueError):
+                tenon.strict_json(value)
+        if hasattr(os, 'mkfifo'):
+            with tempfile.TemporaryDirectory() as tmp:
+                path = Path(tmp) / 'pipe'
+                os.mkfifo(path)
+                with self.assertRaisesRegex(ValueError, 'regular file'):
+                    tenon.read_file(path, 100)
 
 
 if __name__ == '__main__':
