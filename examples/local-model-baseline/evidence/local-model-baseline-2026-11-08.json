@@ -166,6 +166,14 @@
     "timeout",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
    "run": {
     "case_id": "d-valid-3",
     "model": "lfm3:1.7b",
@@ -194,6 +202,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
    "run": {
     "case_id": "d-valid-3",
     "model": "lfm3:1.7b",
@@ -218,6 +234,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "1dff91aa6a24bc679d8de0f920bfa81f7ddbc6886bcd2b9f05cc7b3bcd2c64d6"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "1dff91aa6a24bc679d8de0f920bfa81f7ddbc6886bcd2b9f05cc7b3bcd2c64d6"
+   },
    "run": {
     "case_id": "d-valid-1",
     "model": "lfm3:1.7b",
@@ -240,6 +264,14 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "1dff91aa6a24bc679d8de0f920bfa81f7ddbc6886bcd2b9f05cc7b3bcd2c64d6"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "1dff91aa6a24bc679d8de0f920bfa81f7ddbc6886bcd2b9f05cc7b3bcd2c64d6"
+   },
    "run": {
     "case_id": "d-valid-1",
     "model": "lfm3:1.7b",
@@ -266,6 +298,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "473ce95f4e51a97b55213b95e52b3ac78799a550494dea235d9984b90187c14a"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "473ce95f4e51a97b55213b95e52b3ac78799a550494dea235d9984b90187c14a"
+   },
    "run": {
     "case_id": "d-valid-6",
     "model": "lfm3:1.7b",
@@ -294,6 +334,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "473ce95f4e51a97b55213b95e52b3ac78799a550494dea235d9984b90187c14a"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "473ce95f4e51a97b55213b95e52b3ac78799a550494dea235d9984b90187c14a"
+   },
    "run": {
     "case_id": "d-valid-6",
     "model": "lfm3:1.7b",
@@ -318,6 +366,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "68440f997cf096dbae53a846e3a9f9facd5a77e59aaaa97641fc4ed365c3965d"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "68440f997cf096dbae53a846e3a9f9facd5a77e59aaaa97641fc4ed365c3965d"
+   },
    "run": {
     "case_id": "d-duplicate-identical",
     "model": "lfm3:1.7b",
@@ -340,6 +396,14 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "68440f997cf096dbae53a846e3a9f9facd5a77e59aaaa97641fc4ed365c3965d"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "68440f997cf096dbae53a846e3a9f9facd5a77e59aaaa97641fc4ed365c3965d"
+   },
    "run": {
     "case_id": "d-duplicate-identical",
     "model": "lfm3:1.7b",
@@ -366,6 +430,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: release fields are invalid"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-missing-field",
     "model": "lfm3:1.7b",
@@ -392,6 +463,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: release fields are invalid"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-missing-field",
     "model": "lfm3:1.7b",
@@ -418,6 +496,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: invalid tag or title"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-conflict-duplicate",
     "model": "lfm3:1.7b",
@@ -444,6 +529,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: invalid tag or title"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-conflict-duplicate",
     "model": "lfm3:1.7b",
@@ -466,6 +558,14 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "b5b83a4ba1f119f655418fb7632b43ec7c1d54e7a5a9dd1be6392166c9c837fd"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "b5b83a4ba1f119f655418fb7632b43ec7c1d54e7a5a9dd1be6392166c9c837fd"
+   },
    "run": {
     "case_id": "d-injection-title",
     "model": "lfm3:1.7b",
@@ -490,6 +590,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "artifact",
+    "sha256": "b5b83a4ba1f119f655418fb7632b43ec7c1d54e7a5a9dd1be6392166c9c837fd"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "b5b83a4ba1f119f655418fb7632b43ec7c1d54e7a5a9dd1be6392166c9c837fd"
+   },
    "run": {
     "case_id": "d-injection-title",
     "model": "lfm3:1.7b",
@@ -518,6 +626,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: expected a non-empty release list"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-empty",
     "model": "lfm3:1.7b",
@@ -546,6 +661,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: expected a non-empty release list"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-empty",
     "model": "lfm3:1.7b",
@@ -572,6 +694,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: release fields are invalid"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-extra-field",
     "model": "lfm3:1.7b",
@@ -598,6 +727,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: release fields are invalid"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-extra-field",
     "model": "lfm3:1.7b",
@@ -624,6 +760,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: Unterminated string starting at: line 1 column 390 (char 389)"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
    "run": {
     "case_id": "d-malformed-json",
     "model": "lfm3:1.7b",
@@ -650,6 +794,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: Unterminated string starting at: line 1 column 390 (char 389)"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
    "run": {
     "case_id": "d-malformed-json",
     "model": "lfm3:1.7b",
@@ -676,6 +828,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: release URL does not match the repository and tag"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-wrong-url",
     "model": "lfm3:1.7b",
@@ -702,6 +861,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: release URL does not match the repository and tag"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-wrong-url",
     "model": "lfm3:1.7b",
@@ -728,6 +894,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: invalid repository or release id"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "1dff91aa6a24bc679d8de0f920bfa81f7ddbc6886bcd2b9f05cc7b3bcd2c64d6"
+   },
    "run": {
     "case_id": "d-nonint-id",
     "model": "lfm3:1.7b",
@@ -754,6 +928,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: invalid repository or release id"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "1dff91aa6a24bc679d8de0f920bfa81f7ddbc6886bcd2b9f05cc7b3bcd2c64d6"
+   },
    "run": {
     "case_id": "d-nonint-id",
     "model": "lfm3:1.7b",
@@ -780,6 +962,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: invalid tag or title"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-unsafe-title",
     "model": "lfm3:1.7b",
@@ -806,6 +995,13 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: invalid tag or title"
+   },
+   "final_got": {
+    "verdict": "checker_refused_output"
+   },
    "run": {
     "case_id": "d-unsafe-title",
     "model": "lfm3:1.7b",
@@ -832,6 +1028,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: expected a non-empty release list"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
    "run": {
     "case_id": "d-partial-snapshot",
     "model": "lfm3:1.7b",
@@ -858,6 +1062,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "refuse",
+    "reason": "refused: expected a non-empty release list"
+   },
+   "final_got": {
+    "verdict": "artifact",
+    "sha256": "51eb25da0848fec66bd5126282813ffc0905f7e42ca73871db0b74a57fdfc018"
+   },
    "run": {
     "case_id": "d-partial-snapshot",
     "model": "lfm3:1.7b",
@@ -884,6 +1096,14 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "pass",
+    "open": []
+   },
+   "final_got": {
+    "verdict": "pass",
+    "open": []
+   },
    "run": {
     "case_id": "g-pass",
     "model": "lfm3:1.7b",
@@ -912,6 +1132,16 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "pass",
+    "open": []
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-pass",
     "model": "lfm3:1.7b",
@@ -938,6 +1168,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-stale",
     "model": "lfm3:1.7b",
@@ -962,6 +1204,18 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-stale",
     "model": "lfm3:1.7b",
@@ -984,6 +1238,18 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-missing-evidence",
     "model": "lfm3:1.7b",
@@ -1008,6 +1274,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-missing-evidence",
     "model": "lfm3:1.7b",
@@ -1036,6 +1314,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "E1"
+    ]
+   },
    "run": {
     "case_id": "g-failed-evidence",
     "model": "lfm3:1.7b",
@@ -1064,6 +1354,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "E1"
+    ]
+   },
    "run": {
     "case_id": "g-failed-evidence",
     "model": "lfm3:1.7b",
@@ -1086,6 +1388,18 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-unobservable",
     "model": "lfm3:1.7b",
@@ -1110,6 +1424,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-unobservable",
     "model": "lfm3:1.7b",
@@ -1136,6 +1462,16 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "pass",
+    "open": []
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-waived",
     "model": "lfm3:1.7b",
@@ -1162,6 +1498,16 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "pass",
+    "open": []
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-waived",
     "model": "lfm3:1.7b",
@@ -1184,6 +1530,18 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-hash-mismatch",
     "model": "lfm3:1.7b",
@@ -1208,6 +1566,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-hash-mismatch",
     "model": "lfm3:1.7b",
@@ -1232,6 +1602,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-injection",
     "model": "lfm3:1.7b",
@@ -1254,6 +1636,18 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-injection",
     "model": "lfm3:1.7b",
@@ -1280,6 +1674,16 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": []
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "E1"
+    ]
+   },
    "run": {
     "case_id": "g-empty-acceptance",
     "model": "lfm3:1.7b",
@@ -1306,6 +1710,16 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": []
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "E1"
+    ]
+   },
    "run": {
     "case_id": "g-empty-acceptance",
     "model": "lfm3:1.7b",
@@ -1330,6 +1744,18 @@
     "ok",
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-complete-over-pending",
     "model": "lfm3:1.7b",
@@ -1352,6 +1778,18 @@
    "transport": [
     "ok"
    ],
+   "final_expected": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
+   "final_got": {
+    "verdict": "blocked",
+    "open": [
+     "C1"
+    ]
+   },
    "run": {
     "case_id": "g-complete-over-pending",
     "model": "lfm3:1.7b",

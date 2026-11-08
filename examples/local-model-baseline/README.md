@@ -75,6 +75,14 @@ accepted) and `g-failed-evidence` (a `result: fail` observation is reported as
 `pass`). The second is a false completion claim and the most serious single failure
 in the set.
 
+One measured detail connects the two scenarios: the digest produced for
+`d-malformed-json` and for `d-partial-snapshot` is byte-identical (sha256
+`51eb25da0848fec6…`) to the digest produced for the valid `d-valid-3`. A checkpoint
+that binds evidence only to the file revision cannot tell those runs apart, so the
+valid case could be "verified" with evidence from a case whose input was invalid.
+The evidence file records `run{case_id, model, input_sha256}` for every case, and
+Longhaul's optional run binding refuses that swap.
+
 ## Budget A/B
 
 Same model, cases, inputs, scorer and inference configuration. Each case has a cap

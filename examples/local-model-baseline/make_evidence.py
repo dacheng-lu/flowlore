@@ -50,6 +50,8 @@ def main():
             "faults_injected": row["faults"],
             "attempt_scores": [a["score"] for a in row["attempts"]],
             "transport": [a["transport"] for a in row["attempts"]],
+            "final_expected": row["attempts"][-1].get("expected"),
+            "final_got": row["attempts"][-1].get("got"),
             "run": {"case_id": row["case"], "model": raw["model"]["name"],
                     "input_sha256": input_sha(row["case"])},
         })
