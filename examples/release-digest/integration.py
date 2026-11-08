@@ -53,7 +53,10 @@ def main():
     p.add_argument('--longhaul', type=Path, required=True)
     p.add_argument('--evidence-dir', type=Path, help='new local directory for the inspected example records')
     p.add_argument('--live-snapshot', type=Path, help='JSON captured by live_releases.py; never fetches here')
+    p.add_argument('--expected', type=Path, help='independently prepared expected digest for a captured snapshot')
     a = p.parse_args()
+    if a.expected and not a.live_snapshot:
+        p.error('--expected requires --live-snapshot')
     mx = a.makeextreme.resolve()
     lh = a.longhaul.resolve() / 'scripts' / 'checkpoint.py'
     if not (mx / 'makeextreme/__main__.py').is_file() or not lh.is_file():
@@ -71,6 +74,8 @@ def main():
             expected = ['# Release digest', '']
             expected.extend(f"- {r['repo']} — [{r['tag']}: Release]({r['url']})" for r in validated)
             (d / 'expected.md').write_text('\n'.join(expected) + '\n')
+            if a.expected:
+                shutil.copyfile(a.expected, d / 'expected.md')
         stages = [
             {'id': 'validate', 'run': f'{py} digest.py validate releases.json && printf valid > input.ok',
              'check': 'test -s input.ok', 'deps': ['releases.json', 'digest.py'], 'outputs': ['input.ok']},
@@ -125,7 +130,7 @@ def main():
                 'source_complete': snap['complete'] if a.live_snapshot else None,
                 'check': 'exact-match expected.md; stage starts validate=1, render=2',
                 'limitations': (['captured public data; completeness as stated in snapshot',
-                                 'fixture-based structural checks; not semantic review'] if a.live_snapshot
+                                 'independent expected fixture' if a.expected else 'fixture-based structural checks; not semantic review'] if a.live_snapshot
                                 else ['synthetic data', 'no live API'])
                                + ['not authenticated', 'no external writes']}
         if tenon.inspect(card, digest.read_bytes())[0] != 'match':

@@ -1,0 +1,7 @@
+{
+  "url": "https://api.github.com/repos/cli/cli/releases?per_page=3&page=1",
+  "captured_at": "2026-11-08T15:22:19.401587+00:00",
+  "raw_sha256": "ed0a13e45cb113a600f808664f644cba038626215dbaaf685e26a88f76f473cb",
+  "complete": false,
+  "scope": "single page; no claim of complete release history"
+}

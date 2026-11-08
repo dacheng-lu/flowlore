@@ -66,3 +66,26 @@ python3 examples/release-digest/tenon.py --card /tmp/trio-evidence-new/card.json
 The view compares bytes and summarizes events and evidence counts without modifying files.
 It does not authenticate their relationship, validate semantic correctness, or replace the
 Longhaul gate. Its default output does not print the report, prompts or checkpoint content.
+
+## Reproduce a captured public sample
+
+A captured GitHub API response is stored at [cli-snapshot](evidence/cli-snapshot/).
+`raw.json.gz` contains the exact response body; `capture.json` records its SHA-256
+(over decompressed bytes), URL, time and scope. It contains one full requested
+page of three releases and is deliberately marked **partial**: it does not claim
+to cover all releases. The independently prepared `expected.md` lists these
+three tags and links, not their release notes. The sample is not a live refresh.
+
+From this repository, with sibling Longhaul and Makeextreme checkouts:
+
+```bash
+python3 examples/release-digest/test_snapshot.py
+python3 examples/release-digest/reproduce_snapshot.py --makeextreme ../makeextreme --longhaul ../longhaul
+```
+
+Replay checks raw SHA-256 and normalization, compares the output to the independent
+expected file, exercises recovery and evidence invalidation, and makes no network
+requests. CI tests pinned and current peer versions. The hash records integrity,
+not authorship or independent proof of origin; it is not a signed receipt.
+The wider API-to-published-digest recipe stays draft: completeness, network failure
+semantics, real publishing and a network-isolated run remain unverified.

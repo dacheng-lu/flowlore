@@ -50,9 +50,12 @@ jobs:
           python examples/release-digest/test_digest.py
           python examples/release-digest/test_live_releases.py
           python examples/release-digest/test_tenon.py
+          python examples/release-digest/test_snapshot.py
       - name: Exercise all three projects
         working-directory: flowlore
-        run: python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
+        run: |
+          python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
+          python examples/release-digest/reproduce_snapshot.py --makeextreme ../makeextreme --longhaul ../longhaul
   live-readonly:
     if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request'
     continue-on-error: true
