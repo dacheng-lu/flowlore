@@ -29,6 +29,14 @@ Longhaul evidence rejected after a change, a restored digest, stage starts 1/2, 
 crash/recovery example passes. Invalid, empty or missing records and conflicting duplicates are
 covered by `test_digest.py`. Failures stop the script; they do not produce a success card.
 
+Use `digest.py verify SOURCE --output DIGEST.md` when the digest came from an untrusted step
+(a model, a generator, a downloaded file). `check` compares two files, so a producer that
+silently repairs an invalid source — dropping an extra field, inventing a missing title —
+can still hand you a digest that passes against a fixture derived from its own repaired
+bytes. `verify` validates the trusted source itself and requires the delivered bytes to be
+exactly its rendering. The local-model baseline measured this failure: see
+[`examples/local-model-baseline`](../local-model-baseline/README.md).
+
 Live GitHub API pagination, rate limits, changing upstream data, event delivery and exactly-once
 external publishing remain untested. The broader Release Digest recipe remains `draft` until
 those requirements and the repository's verification criteria are met. Use host permissions,

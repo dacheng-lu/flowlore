@@ -45,7 +45,7 @@ def render(rows):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('mode', choices=['validate', 'render', 'check'])
+    parser.add_argument('mode', choices=['validate', 'render', 'check', 'verify'])
     parser.add_argument('input', type=Path)
     parser.add_argument('--output', type=Path)
     parser.add_argument('--expected', type=Path)
@@ -61,6 +61,16 @@ def main():
                 parser.error('check requires --output and --expected')
             if args.output.read_text(encoding='utf-8') != args.expected.read_text(encoding='utf-8'):
                 raise ValueError('digest differs from expected fixture')
+        if args.mode == 'verify':
+            # Source-anchored acceptance: the trusted source is validated AND the
+            # delivered bytes must be exactly its rendering. `check` alone compares
+            # two files; when one of them came from an untrusted step, a silently
+            # repaired source can still produce a digest that passes. This mode is
+            # what a caller should use after a model or any other producer ran.
+            if args.output is None:
+                parser.error('verify requires --output')
+            if args.output.read_text(encoding='utf-8') != render(rows):
+                raise ValueError('digest is not the rendering of this source')
         print(f'{args.mode}: {len(rows)} unique releases')
         return 0
     except (OSError, ValueError, json.JSONDecodeError) as exc:
