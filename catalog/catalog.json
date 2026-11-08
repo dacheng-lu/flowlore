@@ -500,6 +500,93 @@
       ],
       "input": "Paired tasks, costs, budgets and failure traces",
       "output": "Completion, spend, recovery evidence and counterexamples"
+    },
+    {
+      "id": "ai-design-skills",
+      "type": "skill",
+      "title": "AI Design Skills",
+      "summary": "Design skill collection including landing page structure and visual systems.",
+      "status": "draft",
+      "url": "https://github.com/elayadesign/ai-design-skills",
+      "tags": [
+        "design",
+        "web"
+      ]
+    },
+    {
+      "id": "impeccable",
+      "type": "skill",
+      "title": "Impeccable",
+      "summary": "Design guidance and critique commands for coding agents.",
+      "status": "draft",
+      "url": "https://github.com/pbakaus/impeccable",
+      "tags": [
+        "design",
+        "web"
+      ]
+    },
+    {
+      "id": "anatomy",
+      "type": "skill",
+      "title": "Anatomy",
+      "summary": "Agent skill for interactive illustrations of systems and concepts.",
+      "status": "draft",
+      "url": "https://github.com/wheresryan22/anatomy",
+      "tags": [
+        "design",
+        "web"
+      ]
+    },
+    {
+      "id": "landing-page-brief",
+      "type": "recipe",
+      "title": "Landing-page brief and structure",
+      "summary": "Draft design workflow with explicit inputs, acceptance criteria and evidence limits.",
+      "status": "draft",
+      "path": "recipes/design-workflows.md",
+      "tags": [
+        "design",
+        "web"
+      ],
+      "sources": [
+        "ai-design-skills"
+      ],
+      "input": "Audience, evidence and brand constraints",
+      "output": "Brief, page outline and draft copy"
+    },
+    {
+      "id": "interface-critique",
+      "type": "recipe",
+      "title": "Interface critique and polish",
+      "summary": "Draft design workflow with explicit inputs, acceptance criteria and evidence limits.",
+      "status": "draft",
+      "path": "recipes/design-workflows.md",
+      "tags": [
+        "design",
+        "web"
+      ],
+      "sources": [
+        "impeccable"
+      ],
+      "input": "Existing page, brand rules and user tasks",
+      "output": "Prioritized critique and revised page"
+    },
+    {
+      "id": "interactive-explanation",
+      "type": "recipe",
+      "title": "Interactive system explanation",
+      "summary": "Draft design workflow with explicit inputs, acceptance criteria and evidence limits.",
+      "status": "draft",
+      "path": "recipes/design-workflows.md",
+      "tags": [
+        "design",
+        "web"
+      ],
+      "sources": [
+        "anatomy"
+      ],
+      "input": "Documented process and audience",
+      "output": "Interactive illustration and static fallback"
     }
   ]
 }

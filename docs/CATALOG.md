@@ -5,7 +5,7 @@ document and recipe with a stable id, a status and its provenance. Humans read t
 agents and tooling read the JSON. The two must agree — where they disagree, the JSON is the
 bug.
 
-**Status:** catalog `0.4`, reviewed 2026-11-08. Validated by
+**Status:** catalog `0.4`, reviewed 2026-11-08; design references remain drafts. Validated by
 `scripts/validate_catalog.py` against `catalog/schema.json`; the validator's own rules are
 covered by `scripts/test_validate_catalog.py`.
 
