@@ -1,6 +1,6 @@
 {
-  "catalogVersion": "0.2",
-  "reviewed": "2026-11-03",
+  "catalogVersion": "0.3",
+  "reviewed": "2026-11-08",
   "entries": [
     {
       "id": "n8n",
@@ -380,6 +380,97 @@
       "sources": ["n8n-docs", "ihk-ki-automatisierung"],
       "tags": ["loop", "self-correction", "quality"],
       "platforms": ["n8n"]
+    },
+    {
+      "id": "openmausbot",
+      "type": "source",
+      "title": "milind-soni/OpenMausBot",
+      "summary": "Optional host; MCP task dispatch, bounded waiting and idempotent send IDs. Platform compatibility untested.",
+      "status": "draft",
+      "url": "https://github.com/milind-soni/OpenMausBot/tree/d7ce39ea08e23bf39d6ec0496f9fef39edcd77ad",
+      "tags": [
+        "agent-ecosystem"
+      ],
+      "evidence": "Source reviewed 2026-11-08; compatibility and execution unverified. See docs/AGENT-ECOSYSTEM.md."
+    },
+    {
+      "id": "billion-context",
+      "type": "source",
+      "title": "ranxianglei/billion-context",
+      "summary": "Optional context experiment; compression does not replace durable checkpoints. License includes an additional attribution term.",
+      "status": "draft",
+      "url": "https://github.com/ranxianglei/billion-context/tree/354e21e23af4f5dc10166c94c47f09f1e514899d",
+      "tags": [
+        "agent-ecosystem"
+      ],
+      "evidence": "Source reviewed 2026-11-08; compatibility and execution unverified. See docs/AGENT-ECOSYSTEM.md."
+    },
+    {
+      "id": "cloudflare-security-audit",
+      "type": "source",
+      "title": "cloudflare/security-audit-skill",
+      "summary": "Audit methodology; Node validators and an OS-enforced sandbox required for the full upstream workflow.",
+      "status": "draft",
+      "url": "https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "tags": [
+        "agent-ecosystem"
+      ],
+      "evidence": "Source reviewed 2026-11-08; compatibility and execution unverified. See docs/AGENT-ECOSYSTEM.md."
+    },
+    {
+      "id": "google-skills",
+      "type": "source",
+      "title": "google/skills",
+      "summary": "Google product recipes; select per cloud task and inspect permissions, cost and prerequisites.",
+      "status": "draft",
+      "url": "https://github.com/google/skills/tree/2194d3b8b1f31975fef2f1a0ae6b9ab55bd7ceee",
+      "tags": [
+        "agent-ecosystem"
+      ],
+      "evidence": "Source reviewed 2026-11-08; compatibility and execution unverified. See docs/AGENT-ECOSYSTEM.md."
+    },
+    {
+      "id": "anthropic-skills",
+      "type": "source",
+      "title": "anthropics/skills",
+      "summary": "Specialist skills and comparative skill evaluation; test host dependencies before use.",
+      "status": "draft",
+      "url": "https://github.com/anthropics/skills/tree/2c5958ecac7cee2b583967a2c4981d0f4a75c579",
+      "tags": [
+        "agent-ecosystem"
+      ],
+      "evidence": "Source reviewed 2026-11-08; compatibility and execution unverified. See docs/AGENT-ECOSYSTEM.md."
+    },
+    {
+      "id": "matt-pocock-skills",
+      "type": "source",
+      "title": "mattpocock/skills",
+      "summary": "Engineering methods: diagnosis, domain modeling, TDD and review. Keep one task orchestrator.",
+      "status": "draft",
+      "url": "https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "tags": [
+        "agent-ecosystem"
+      ],
+      "evidence": "Source reviewed 2026-11-08; compatibility and execution unverified. See docs/AGENT-ECOSYSTEM.md."
+    },
+    {
+      "id": "joint-audit",
+      "type": "recipe",
+      "title": "Joint audit records",
+      "summary": "A bounded offline audit-record pipeline with explicit Longhaul handoff and recovery checks.",
+      "status": "draft",
+      "path": "recipes/joint-audit.md",
+      "tags": [
+        "audit",
+        "evidence"
+      ],
+      "sources": [
+        "cloudflare-security-audit",
+        "matt-pocock-skills",
+        "anthropic-skills"
+      ],
+      "input": "Pinned source scope and reviewed audit bundle",
+      "output": "Validated snapshot, report and explicit handoff"
     }
   ]
 }
