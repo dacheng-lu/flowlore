@@ -133,3 +133,13 @@ can overwrite; a loop without a cap is a cost incident waiting for a slow review
 
 Recommended first implementation remains the GitHub release digest: it needs no private
 infrastructure and can reach `verified` in one sitting.
+
+## Joint audit records (draft)
+
+[Three-project audit recipe](joint-audit.md): coverage, findings, recovery and
+explicit handoff. Synthetic plumbing checks only; real audit effectiveness unverified.
+
+## Recovery budget (draft)
+
+[Paired budget experiment](recovery-budget.md): preserve verification and recovery
+capacity; record actual cost, failures and promotion criteria.

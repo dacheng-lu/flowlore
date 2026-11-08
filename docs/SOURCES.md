@@ -53,3 +53,8 @@ were read on 2026-11-03; the operational conclusions drawn from them are in
 ## Attribution and licensing
 
 No upstream code, prompts or workflows are copied into this catalog. Links and descriptions are editorial summaries, not vendor partnerships. Licenses can differ by repository, directory, template and release; check the source directly before copying or redistribution. n8n describes itself as fair-code; Activepieces distinguishes MIT community features from commercial enterprise features.
+
+## Agent ecosystem candidates
+
+[Six version-pinned sources](AGENT-ECOSYSTEM.md) for audit, engineering methods,
+specialist skills, context compression and optional runtime hosting. References only.
