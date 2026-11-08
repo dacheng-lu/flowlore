@@ -1,0 +1,44 @@
+name: Isolated snapshot replay
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: flowlore
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: dacheng-lu/longhaul
+          ref: b494f078c0dfdba10469354d793d334edcbe8f60
+          path: longhaul
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: dacheng-lu/makeextreme
+          ref: 0c4decc6dc606386c2b106011ee4f7d5f698453f
+          path: makeextreme
+          persist-credentials: false
+      - name: Run with a separate network namespace
+        working-directory: flowlore
+        run: |
+          set -eu
+          mkdir -p "$RUNNER_TEMP/replay-evidence"
+          chmod 777 "$RUNNER_TEMP/replay-evidence"
+          sudo unshare --net -- sudo -u runner env -i PATH=/usr/bin:/bin HOME=/tmp \
+            /bin/bash examples/release-digest/isolated_ci.sh \
+            ../makeextreme ../longhaul "$RUNNER_TEMP/replay-evidence"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-snapshot-evidence
+          path: ${{ runner.temp }}/replay-evidence
+          if-no-files-found: warn

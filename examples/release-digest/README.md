@@ -89,3 +89,13 @@ requests. CI tests pinned and current peer versions. The hash records integrity,
 not authorship or independent proof of origin; it is not a signed receipt.
 The wider API-to-published-digest recipe stays draft: completeness, network failure
 semantics, real publishing and a network-isolated run remain unverified.
+
+## Network namespace CI trial
+
+`.github/workflows/isolated-snapshot.yml` checks out pinned peers and executes
+`isolated_ci.sh` inside an OS network namespace. The script requires an
+`ENETUNREACH` network probe and writes versions, test results and replay output
+as a CI artifact. It fails closed if isolation cannot be created or the probe
+fails. The artifact remains a CI observation, not authentication of the API
+capture; the broader release digest is still draft. A configured workflow alone
+is not evidence that it passed: check the exact run and commit.
