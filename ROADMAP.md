@@ -10,6 +10,8 @@ The roadmap answers one question: what turns this catalog from a reading list in
 
 ## Released
 
+- **0.4** (2026-11-08): Kelly theory reference and recovery-budget experiment draft; 38 entries, **0 of 14 recipes verified**.
+
 - **0.3** (2026-11-08): six pinned agent-ecosystem references and one joint-audit draft; 36 catalog entries and **0 of 13 recipes verified**. The offline cross-project fixture does not establish real audit effectiveness.
 
 - **0.2** (2026-11-03): the catalog became machine-readable and partly checkable: [`catalog/catalog.json`](catalog/catalog.json) with a schema, a validator and its tests (29 entries), the [n8n operations chapter](docs/n8n/OPERATIONS.md) (API surface, publishing model, safe changes, execution diagnosis), [failure modes](docs/n8n/FAILURE-MODES.md) and a [version matrix](docs/n8n/VERSION-MATRIX.md), a [30-lesson learning path](docs/learning-paths/ihk-ki-automatisierung.md), a [three-project release-digest example](examples/release-digest/README.md), a [value-experiment template](docs/VALUE-EXPERIMENT.md) and clarified entry points. `catalogVersion` is 0.2. **0 of 12 recipes are verified.**

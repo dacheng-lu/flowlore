@@ -132,3 +132,8 @@ infrastructure and can reach `verified` in one sitting.
 
 [Three-project audit recipe](joint-audit.md): coverage, findings, recovery and
 explicit handoff. Synthetic plumbing checks only; real audit effectiveness unverified.
+
+## Recovery budget (draft)
+
+[Paired budget experiment](recovery-budget.md): preserve verification and recovery
+capacity; record actual cost, failures and promotion criteria.

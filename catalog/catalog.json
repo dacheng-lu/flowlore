@@ -1,5 +1,5 @@
 {
-  "catalogVersion": "0.3",
+  "catalogVersion": "0.4",
   "reviewed": "2026-11-08",
   "entries": [
     {
@@ -471,6 +471,35 @@
       ],
       "input": "Pinned source scope and reviewed audit bundle",
       "output": "Validated snapshot, report and explicit handoff"
+    },
+    {
+      "id": "kelly-original",
+      "type": "source",
+      "title": "Kelly: information rate and capital growth",
+      "summary": "Original log-growth theory; engineering budget use is an analogy, not a validated allocation formula.",
+      "status": "draft",
+      "url": "https://www.nokia.com/bell-labs/publications-and-media/publications/a-new-interpretation-of-information-rate/",
+      "tags": [
+        "resource-budget",
+        "theory"
+      ]
+    },
+    {
+      "id": "recovery-budget",
+      "type": "recipe",
+      "title": "Recovery budget experiment",
+      "summary": "Compare budget admission policies while preserving verification and recovery capacity.",
+      "status": "draft",
+      "path": "recipes/recovery-budget.md",
+      "tags": [
+        "resource-budget",
+        "evaluation"
+      ],
+      "sources": [
+        "kelly-original"
+      ],
+      "input": "Paired tasks, costs, budgets and failure traces",
+      "output": "Completion, spend, recovery evidence and counterexamples"
     }
   ]
 }
