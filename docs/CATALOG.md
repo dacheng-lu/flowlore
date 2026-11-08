@@ -95,3 +95,13 @@ walls and rate limits say nothing about whether a source is real.
 number when entries are added or a status changes, the major number when the schema breaks.
 The schema is additive where possible; a new field is optional and gets a default in the
 validator, so old catalogs keep validating.
+
+## Recipe promotion evidence
+
+Run `python3 scripts/validate_recipes.py` to check the 17 catalog recipe contracts.
+A `verified` recipe additionally requires `evidence/recipes/<id>.json` containing
+`schema: 1`, matching `recipe`, a full repository `revision`, `components` mapping
+to full commit IDs, a nonempty `command` and `artifacts` entries with repository-
+relative `path` and SHA-256. Missing, escaped or changed artifacts fail with the
+recipe ID. This validates references and bytes, not the truth, isolation, or
+meaning of the evidence; reviewers must assess the actual recipe and run.
