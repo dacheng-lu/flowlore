@@ -31,7 +31,11 @@ Test consecutive failures, shared-provider failures, unknown costs, underestimat
 costs, and reserves so conservative that useful work is refused. No single
 weighted score should merge quality, money and time.
 
-[Kelly's original paper](https://www.nokia.com/bell-labs/publications-and-media/publications/a-new-interpretation-of-information-rate/)
+[Kelly's original paper](https://bpb-us-w2.wpmucdn.com/u.osu.edu/dist/7/36891/files/2017/07/Kelly1956-1uwz47o.pdf)
 provides the log-growth rationale. Engineering budgets use a bounded-resource
 analogy, not literal multiplicative wealth or a universal 25% rule. The video
 summary's 93% success figure is not adopted as evidence.
+
+Source copy: Kelly (1956), Bell System Technical Journal 35(4), 917–926;
+DOI 10.1002/j.1538-7305.1956.tb03809.x. The linked Ohio State-hosted PDF
+reproduces the original paper with AT&T permission.
