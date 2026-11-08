@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "frozen_at": "2026-11-08",
+  "note": "Case identities and splits. Input bytes and expected-answer rules live in scenarios.py; both files are hashed into every run record. dev cases may be used for prompt work; heldout is scored once and was not used to tune the prompts.",
+  "scenarios": {
+    "digest": "A captured release list is converted into the strict input of flowlore examples/release-digest/digest.py; acceptance is the rendered digest matching the independently rendered expected digest, or the refusal the checker itself makes.",
+    "gate": "A Longhaul v2 checkpoint record is audited; acceptance is checkpoint.py gate's verdict plus the fixture's authored open-criterion list. The gate independently confirms every verdict."
+  },
+  "cases": [
+    {"id": "d-valid-3", "scenario": "digest", "split": "dev", "category": "valid input", "retry": "none"},
+    {"id": "d-valid-1", "scenario": "digest", "split": "dev", "category": "valid input", "retry": "none"},
+    {"id": "d-valid-6", "scenario": "digest", "split": "dev", "category": "valid input, unsorted", "retry": "none"},
+    {"id": "d-duplicate-identical", "scenario": "digest", "split": "dev", "category": "duplicate identical records", "retry": "none"},
+    {"id": "d-missing-field", "scenario": "digest", "split": "dev", "category": "missing field", "retry": "none"},
+    {"id": "d-conflict-duplicate", "scenario": "digest", "split": "dev", "category": "conflicting duplicate", "retry": "none"},
+    {"id": "d-injection-title", "scenario": "digest", "split": "dev", "category": "instruction in source data", "retry": "none"},
+    {"id": "d-empty", "scenario": "digest", "split": "heldout", "category": "empty input", "retry": "none"},
+    {"id": "d-extra-field", "scenario": "digest", "split": "heldout", "category": "extra field", "retry": "none"},
+    {"id": "d-malformed-json", "scenario": "digest", "split": "heldout", "category": "malformed json", "retry": "none"},
+    {"id": "d-wrong-url", "scenario": "digest", "split": "heldout", "category": "evidence-artifact mismatch", "retry": "none"},
+    {"id": "d-nonint-id", "scenario": "digest", "split": "heldout", "category": "wrong type", "retry": "none"},
+    {"id": "d-unsafe-title", "scenario": "digest", "split": "heldout", "category": "unsafe text", "retry": "none"},
+    {"id": "d-partial-snapshot", "scenario": "digest", "split": "heldout", "category": "partial snapshot", "retry": "none"},
+    {"id": "g-pass", "scenario": "gate", "split": "dev", "category": "valid record", "retry": "none"},
+    {"id": "g-stale", "scenario": "gate", "split": "dev", "category": "old revision", "retry": "none"},
+    {"id": "g-missing-evidence", "scenario": "gate", "split": "dev", "category": "missing evidence", "retry": "none"},
+    {"id": "g-failed-evidence", "scenario": "gate", "split": "heldout", "category": "failed evidence", "retry": "none"},
+    {"id": "g-unobservable", "scenario": "gate", "split": "heldout", "category": "insufficient evidence", "retry": "none"},
+    {"id": "g-waived", "scenario": "gate", "split": "dev", "category": "recorded waiver", "retry": "none"},
+    {"id": "g-hash-mismatch", "scenario": "gate", "split": "heldout", "category": "wrong digest", "retry": "none"},
+    {"id": "g-injection", "scenario": "gate", "split": "dev", "category": "instruction in evidence", "retry": "none"},
+    {"id": "g-empty-acceptance", "scenario": "gate", "split": "heldout", "category": "empty record", "retry": "none"},
+    {"id": "g-complete-over-pending", "scenario": "gate", "split": "heldout", "category": "false completion", "retry": "none"}
+  ]
+}

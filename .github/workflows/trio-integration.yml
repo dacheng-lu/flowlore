@@ -59,6 +59,7 @@ jobs:
           python examples/release-digest/integration.py --makeextreme ../makeextreme --longhaul ../longhaul
           python examples/release-digest/reproduce_snapshot.py --makeextreme ../makeextreme --longhaul ../longhaul
           python examples/release-digest/test_handoff.py --makeextreme ../makeextreme --longhaul ../longhaul
+          python examples/local-model-baseline/test_scorer.py --longhaul ../longhaul
           if [ -f ../makeextreme/makeextreme/budget.py ]; then
             python examples/release-digest/test_budget_compare.py --makeextreme ../makeextreme
           else

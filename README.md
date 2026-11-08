@@ -83,6 +83,8 @@ The selections cover complementary roles; “top five” is not a live ranking b
 
 The projects are independent. No shared integration or automatic handoff is implemented.
 
+A local-model baseline now measures one model against a frozen 24-case set with the digest and gate checkers as the scorer. In that run LFM3-1.7B produced correct digests from valid input (5/5 valid digest cases, including an instruction planted in the source) but never refused an invalid input (0/9 refusal cases): it silently repaired the source instead. The digest checker therefore grew `digest.py verify SOURCE --output DIGEST.md`, which validates the trusted source and requires the delivered bytes to be exactly its rendering; `check` alone accepts a digest built from repaired bytes. The run is one model, one runner, one machine: [examples/local-model-baseline](examples/local-model-baseline/README.md).
+
 ### Next steps
 
 The machine-readable catalog is in place (`catalog/catalog.json`, schema, validator and tests). The ordered work is in the [roadmap](ROADMAP.md): first verify one recipe end to end, then add a recipe contract and validator. Links and n8n version labels are already checked in CI (`scripts/check_sources.py`). Search and a read-only agent interface follow only after that. The proposed first recipe is still the [GitHub release digest](recipes/README.md).
@@ -149,6 +151,8 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 三个项目各自独立，目前没有实现共享集成或自动交接。
 
+本地模型基线现已用冻结的 24 个用例、以摘要与验收检查器作为评分器实测了一个模型。该运行中，LFM3-1.7B 能从合法输入生成正确摘要（5/5 个合法摘要用例，包括来源中植入的指令），但从未对非法输入给出拒绝（0/9 个拒绝用例）：它选择悄悄修补来源。因此摘要检查器新增 `digest.py verify SOURCE --output DIGEST.md`：先校验可信来源，再要求交付字节恰为该来源的渲染结果；单用 `check` 会接受由修补后字节生成的摘要。该结果仅来自一个模型、一个运行器、一台机器：[examples/local-model-baseline](examples/local-model-baseline/README.md)。
+
 ### 下一步
 
 机器可读目录已就位（`catalog/catalog.json`、schema、校验器与测试）。有序的后续工作见[路线图](ROADMAP.md)：先端到端验证一个配方，再补配方契约与校验器。链接与 n8n 版本标注已在 CI 中检查（`scripts/check_sources.py`）；检索能力和只读智能体接口在此之后。首个建议实现的仍是 [GitHub 发布摘要](recipes/README.md)。
@@ -214,6 +218,8 @@ Die Auswahl deckt ergänzende Rollen ab; sie ist keine aktuelle Rangliste nach S
 | **FlowLore · 流谱** | Quellen, Automatisierungswissen, Muster und Rezeptentwürfe |
 
 Die Projekte sind unabhängig. Eine gemeinsame Integration oder automatische Übergabe ist nicht implementiert.
+
+Eine lokale Modell-Baseline misst nun ein Modell gegen 24 eingefrorene Fälle, bewertet durch die Digest- und Gate-Prüfer. In diesem Lauf erzeugte LFM3-1.7B aus gültiger Eingabe korrekte Zusammenfassungen (5/5 gültige Digest-Fälle, einschließlich einer in die Quelle eingebetteten Anweisung), verweigerte aber nie eine ungültige Eingabe (0/9 Verweigerungsfälle): Es reparierte die Quelle stillschweigend. Deshalb erhielt der Digest-Prüfer `digest.py verify SOURCE --output DIGEST.md`: Er validiert die vertrauenswürdige Quelle und verlangt, dass die gelieferten Bytes genau ihre Darstellung sind; `check` allein akzeptiert eine aus reparierten Bytes gebaute Zusammenfassung. Der Lauf umfasst ein Modell, einen Runner, eine Maschine: [examples/local-model-baseline](examples/local-model-baseline/README.md).
 
 ### Nächste Schritte
 
