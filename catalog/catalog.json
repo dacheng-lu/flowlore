@@ -1,5 +1,5 @@
 {
-  "catalogVersion": "0.4",
+  "catalogVersion": "0.5",
   "reviewed": "2026-11-08",
   "entries": [
     {
@@ -587,6 +587,37 @@
       ],
       "input": "Documented process and audience",
       "output": "Interactive illustration and static fallback"
+    },
+    {
+      "id": "github-release-api",
+      "type": "source",
+      "title": "GitHub REST releases API",
+      "summary": "Official reference for reading repository releases; this replay uses one bounded captured public page.",
+      "status": "draft",
+      "url": "https://docs.github.com/en/rest/releases/releases#list-releases",
+      "tags": [
+        "github",
+        "api"
+      ]
+    },
+    {
+      "id": "captured-release-snapshot",
+      "type": "recipe",
+      "title": "Captured release snapshot replay",
+      "summary": "Verified offline replay of one partial captured release page with fixed expected output.",
+      "status": "verified",
+      "verifiedOn": "2026-11-08",
+      "evidence": "Isolated CI run 42497752231; evidence/recipes/captured-release-snapshot.json records hashes and exact commits.",
+      "path": "recipes/captured-release-snapshot.md",
+      "tags": [
+        "github",
+        "evidence"
+      ],
+      "sources": [
+        "github-release-api"
+      ],
+      "input": "Pinned captured single-page GitHub response",
+      "output": "Three-link digest and revision-bound local evidence"
     }
   ]
 }

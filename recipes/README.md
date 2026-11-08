@@ -13,13 +13,14 @@ states what goes in, what comes out, what it depends on and what still has to be
 
 `field-tested` is not a polite word for verified. The evidence for these recipes is a
 summary, because the instances, customer data and credentials behind them cannot be
-published. No recipe in this repository is `verified` today; the first candidate is the
-GitHub release digest, which needs no private infrastructure.
+published. The [captured snapshot replay](captured-release-snapshot.md) is verified only for its
+pinned offline sample. The broader live GitHub release digest remains draft.
 
 ## Recipes
 
 | Recipe | Status | Input → output | Sources | Validation needed |
 | --- | --- | --- | --- | --- |
+| [Captured release snapshot](captured-release-snapshot.md) | `verified` | Pinned partial response → checked three-link digest | [GitHub Releases API](https://docs.github.com/en/rest/releases/releases#list-releases) | Complete pagination, current data and publishing outside verified scope |
 | [GitHub release digest](../examples/release-digest/README.md) | `draft` | Repository list → linked release summary | [n8n](https://github.com/n8n-io/n8n), [Huginn](https://github.com/huginn/huginn) | Check version, deduplicate release IDs, preserve source links, handle API errors |
 | Web change monitor | `draft` | URL/feed → structured change record | [Huginn](https://github.com/huginn/huginn), [agent-browser](https://github.com/vercel-labs/agent-browser) | Ignore irrelevant layout changes, test inaccessible pages and retry bounds |
 | HTML report | `draft` | Structured data → accessible HTML preview | [frontend-design](https://github.com/anthropics/skills/tree/main/skills/frontend-design), [webapp-testing](https://github.com/anthropics/skills/tree/main/skills/webapp-testing) | Validate rendering, input escaping and links on desktop/mobile |

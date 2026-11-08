@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "recipe": "captured-release-snapshot",
+  "revision": "b81d170bac27ab700127f7bf40c11d4610d7a9a9",
+  "components": {
+    "flowlore": "b81d170bac27ab700127f7bf40c11d4610d7a9a9",
+    "longhaul": "b494f078c0dfdba10469354d793d334edcbe8f60",
+    "makeextreme": "0c4decc6dc606386c2b106011ee4f7d5f698453f"
+  },
+  "command": "python3 examples/release-digest/reproduce_snapshot.py --makeextreme ../makeextreme --longhaul ../longhaul",
+  "artifacts": [
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/isolated-ci-2026-11-08/network-check.txt",
+      "sha256": "15c56dc9c8354007ec650d58ed0d1c484853dbf374e82765ab8c10d8d86b9d95"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/isolated-ci-2026-11-08/replay.txt",
+      "sha256": "662a2986b33812131d6f6b8f30594e1bdbc3d6fcd907e7838a8929a1f91042c4"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/isolated-ci-2026-11-08/tests.txt",
+      "sha256": "844ab8106fb700745ba67fd9b602d4b764b294a5ed653eef4aae68c5db751a46"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/isolated-ci-2026-11-08/versions.txt",
+      "sha256": "330d84e45738afee665bcc5fdef92ea3cdf89fb980dd4bc28d5b625fef65f292"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/isolated-ci-2026-11-08/contracts.txt",
+      "sha256": "e9af62e636f04ad70c3f964039db85a87fe2e45c27f4b8d2e834c120fe93a175"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/raw.json.gz",
+      "sha256": "aabc462f9f92bf43c51b5f650588b645534553c5a8924ff4a90ee08fb3e94212"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/snapshot.json",
+      "sha256": "8d4eec1bd6a82da6c4115c4d9f83e7cf540296694e38384cb99bbb6b186fce64"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/expected.md",
+      "sha256": "1efade348a36dc2f34ed2a6aa47f6fe26d42ae655474863281858e6c23f0cde7"
+    },
+    {
+      "path": "examples/release-digest/evidence/cli-snapshot/capture.json",
+      "sha256": "bde40fdf321591b1db47d5b52cb1ddd497b86200ede7b438e8888dd73b3f93ea"
+    }
+  ]
+}

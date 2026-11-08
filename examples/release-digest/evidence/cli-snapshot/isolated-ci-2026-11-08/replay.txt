@@ -1,0 +1,32 @@
+PASS: upstream interruption/recovery demonstration
+Evidence card (example, not a signed receipt):
+{
+  "schema": "tenon/0",
+  "task": "public-release-digest",
+  "run": "fce378fa-f0ab-4cb2-acd5-cbdb9f884413",
+  "stage": "render",
+  "recipe": "github-release-digest",
+  "result": "pass",
+  "revisions": {
+    "flowlore": "b81d170bac27ab700127f7bf40c11d4610d7a9a9",
+    "makeextreme": "0c4decc6dc606386c2b106011ee4f7d5f698453f",
+    "longhaul": "b494f078c0dfdba10469354d793d334edcbe8f60"
+  },
+  "tracked_dirty": {
+    "flowlore": false,
+    "makeextreme": false,
+    "longhaul": false
+  },
+  "artifact": "digest.md",
+  "sha256": "1efade348a36dc2f34ed2a6aa47f6fe26d42ae655474863281858e6c23f0cde7",
+  "source_complete": false,
+  "check": "exact-match expected.md; stage starts validate=1, render=2",
+  "limitations": [
+    "captured public data; completeness as stated in snapshot",
+    "independent expected fixture",
+    "not authenticated",
+    "no external writes"
+  ]
+}
+PASS: stale evidence rejected and modified output restored
+PASS: pinned raw public response and independent expected digest; sample is partial

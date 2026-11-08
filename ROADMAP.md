@@ -2,13 +2,15 @@
 
 Status: proposed direction, not a release commitment. / 状态：待实施方向，不是发布承诺。 / Stand: vorgeschlagene Richtung, keine Release-Zusage.
 
-Reviewed: 2026-11-08, against `main`. Catalog version **0.4**.
+Reviewed: 2026-11-08, against `main`. Catalog version **0.5**.
 
 This page is in English, like the operating documents; the README is trilingual. Nothing here has a date, and a "Candidate" item is not decided.
 
 The roadmap answers one question: what turns this catalog from a reading list into something a reader can trust and reuse? The order below is the proposal.
 
 ## Released
+
+- **0.5** (2026-11-08): verified one pinned offline captured-snapshot recipe in a network namespace; the broader live digest remains draft.
 
 - **0.4** (2026-11-08): Kelly theory reference and recovery-budget experiment draft; 44 entries, **0 of 17 recipes verified**.
 - **0.3** (2026-11-08): six pinned agent-ecosystem sources, three draft design references, one joint-audit draft and three [design recipes](recipes/design-workflows.md); 42 entries, **0 of 16 recipes verified**. The offline cross-project fixture does not establish real audit effectiveness.

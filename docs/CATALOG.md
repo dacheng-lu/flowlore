@@ -5,7 +5,7 @@ document and recipe with a stable id, a status and its provenance. Humans read t
 agents and tooling read the JSON. The two must agree — where they disagree, the JSON is the
 bug.
 
-**Status:** catalog `0.4`, reviewed 2026-11-08; design references remain drafts. Validated by
+**Status:** catalog `0.5`, reviewed 2026-11-08; design references remain drafts. Validated by
 `scripts/validate_catalog.py` against `catalog/schema.json`; the validator's own rules are
 covered by `scripts/test_validate_catalog.py`.
 
@@ -98,7 +98,7 @@ validator, so old catalogs keep validating.
 
 ## Recipe promotion evidence
 
-Run `python3 scripts/validate_recipes.py` to check the 17 catalog recipe contracts.
+Run `python3 scripts/validate_recipes.py` to check the 18 catalog recipe contracts.
 A `verified` recipe additionally requires `evidence/recipes/<id>.json` containing
 `schema: 1`, matching `recipe`, a full repository `revision`, `components` mapping
 to full commit IDs, a nonempty `command` and `artifacts` entries with repository-
