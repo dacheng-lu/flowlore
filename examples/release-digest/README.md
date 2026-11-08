@@ -99,3 +99,32 @@ as a CI artifact. It fails closed if isolation cannot be created or the probe
 fails. The artifact remains a CI observation, not authentication of the API
 capture; the broader release digest is still draft. A configured workflow alone
 is not evidence that it passed: check the exact run and commit.
+
+## Bounded handoff consistency
+
+The captured-snapshot replay now checks the local card, source and sanitized input,
+report bytes, expected digest, journal, and Longhaul checkpoint gate before
+reporting its bounded handoff consistent. `verify_handoff.py` can also inspect a
+retained `--evidence-dir` bundle when supplied trusted source and component
+revisions; it does not execute a command from a card or grant task acceptance.
+
+This is a local, single-case adapter for trusted, quiescent files, not a general
+shared adapter or authentication mechanism. Supplied revisions and journal entries
+are claims; hashes cannot prove who ran a check or whether it was truthful.
+
+## Budget comparison on the digest workload
+
+With a Makeextreme checkout that has `makeextreme/budget.py`:
+
+```bash
+python3 examples/release-digest/budget_compare.py --makeextreme ../makeextreme
+python3 examples/release-digest/test_budget_compare.py --makeextreme ../makeextreme
+```
+
+This runs actual digest render and check subprocesses on the saved sample; it
+injects malformed inputs on designated attempts and measures wall-clock duration.
+The same four traces feed both policies. Budget units and costs (9 total, 2 per
+attempt, 3 for verification) are deliberately modeled; they are neither actual
+API charges nor enforced wall-time limits. There are no model calls, real recovery
+actions, external effects, or statistical claims. A conservative reserve can
+leave a late success unattempted; unknown real costs still need host metering.

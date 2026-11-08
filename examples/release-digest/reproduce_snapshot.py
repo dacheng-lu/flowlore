@@ -50,7 +50,8 @@ def main():
         if snapshot['complete'] is not False: raise ValueError('sample must remain labelled partial')
         subprocess.run([sys.executable,str(HERE/'integration.py'),'--makeextreme',str(a.makeextreme.resolve()),
                         '--longhaul',str(a.longhaul.resolve()),'--live-snapshot',str((a.evidence/'snapshot.json').resolve()),
-                        '--expected',str((a.evidence/'expected.md').resolve())],check=True)
+                        '--expected',str((a.evidence/'expected.md').resolve()),
+                        '--verify-handoff-source',str(a.evidence.resolve())],check=True)
     except (ValueError,KeyError,OSError,subprocess.CalledProcessError) as exc:
         print(f'refused: {exc}',file=sys.stderr)
         return 1

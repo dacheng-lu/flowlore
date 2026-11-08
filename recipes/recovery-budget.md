@@ -39,3 +39,11 @@ summary's 93% success figure is not adopted as evidence.
 Source copy: Kelly (1956), Bell System Technical Journal 35(4), 917–926;
 DOI 10.1002/j.1538-7305.1956.tb03809.x. The linked Ohio State-hosted PDF
 reproduces the original paper with AT&T permission.
+
+## Paired digest workload (draft observation)
+
+[The captured digest comparison](../examples/release-digest/README.md#budget-comparison-on-the-digest-workload)
+runs actual render/check subprocesses under four identical injected-failure traces.
+[One observed run](../examples/release-digest/evidence/cli-snapshot/budget-observation.json)
+records wall time and modeled budget units separately. Results describe this fixture,
+not real model behavior, fees, or recovery time. No promotion follows automatically.

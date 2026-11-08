@@ -54,9 +54,12 @@ def main():
     p.add_argument('--evidence-dir', type=Path, help='new local directory for the inspected example records')
     p.add_argument('--live-snapshot', type=Path, help='JSON captured by live_releases.py; never fetches here')
     p.add_argument('--expected', type=Path, help='independently prepared expected digest for a captured snapshot')
+    p.add_argument('--verify-handoff-source', type=Path, help='also check a bounded captured-snapshot handoff')
     a = p.parse_args()
     if a.expected and not a.live_snapshot:
         p.error('--expected requires --live-snapshot')
+    if a.verify_handoff_source and (not a.live_snapshot or not a.expected):
+        p.error('--verify-handoff-source requires --live-snapshot and --expected')
     mx = a.makeextreme.resolve()
     lh = a.longhaul.resolve() / 'scripts' / 'checkpoint.py'
     if not (mx / 'makeextreme/__main__.py').is_file() or not lh.is_file():
@@ -137,6 +140,16 @@ def main():
             raise AssertionError('candidate card does not match the output or lacks revisions')
         if tenon.inspect(card, b'tampered')[0] != 'mismatch':
             raise AssertionError('candidate card did not detect modified output')
+        if a.verify_handoff_source:
+            import verify_handoff
+            (d / 'card.json').write_text(json.dumps(card))
+            shutil.copyfile(d / 'releases.json', d / 'sanitized-input.json')
+            revisions = {'flowlore': repository_revision(HERE.parent.parent)['commit'],
+                         'longhaul': repository_revision(lh.parent.parent)['commit'],
+                         'makeextreme': repository_revision(mx)['commit']}
+            verify_handoff.verify(d, a.verify_handoff_source, lh.parent.parent,
+                                  revisions['flowlore'], revisions['longhaul'], revisions['makeextreme'])
+            print('PASS: bounded local handoff consistency; provenance not authenticated')
         call([sys.executable, mx / 'examples/longhaul_recovery/demo.py', '--longhaul', lh.parent.parent], cwd=mx)
         print('PASS: upstream interruption/recovery demonstration')
         if a.evidence_dir:

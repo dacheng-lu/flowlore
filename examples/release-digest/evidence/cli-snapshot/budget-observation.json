@@ -1,0 +1,82 @@
+{
+  "results": {
+    "first_success": {
+      "baseline": {
+        "verified": true,
+        "unverified": false,
+        "attempts": 1,
+        "modeled_units_spent": 5,
+        "wall_seconds": 0.073297
+      },
+      "reserve": {
+        "verified": true,
+        "unverified": false,
+        "attempts": 1,
+        "modeled_units_spent": 5,
+        "wall_seconds": 0.065122
+      }
+    },
+    "retry_success": {
+      "baseline": {
+        "verified": true,
+        "unverified": false,
+        "attempts": 2,
+        "modeled_units_spent": 7,
+        "wall_seconds": 0.103055
+      },
+      "reserve": {
+        "verified": true,
+        "unverified": false,
+        "attempts": 2,
+        "modeled_units_spent": 7,
+        "wall_seconds": 0.085948
+      }
+    },
+    "consecutive_failures": {
+      "baseline": {
+        "verified": false,
+        "unverified": false,
+        "attempts": 4,
+        "modeled_units_spent": 8,
+        "wall_seconds": 0.136769
+      },
+      "reserve": {
+        "verified": false,
+        "unverified": false,
+        "attempts": 3,
+        "modeled_units_spent": 6,
+        "wall_seconds": 0.092534
+      }
+    },
+    "late_success": {
+      "baseline": {
+        "verified": false,
+        "unverified": true,
+        "attempts": 4,
+        "modeled_units_spent": 8,
+        "wall_seconds": 0.125945
+      },
+      "reserve": {
+        "verified": false,
+        "unverified": false,
+        "attempts": 3,
+        "modeled_units_spent": 6,
+        "wall_seconds": 0.107172
+      }
+    }
+  },
+  "limitations": [
+    "modeled units are not money or wall-time limits",
+    "fixed small cases, not statistical inference",
+    "no model, external publishing or real recovery action"
+  ],
+  "provenance": {
+    "flowlore_base": "2eb6d52cca068488684486cc388a625218cf1273",
+    "flowlore_tracked_dirty": true,
+    "makeextreme": "0c4decc6dc606386c2b106011ee4f7d5f698453f",
+    "script_sha256": "bffb075a92e79652050281f6e53b2d3b2a1d41e4ccee350bd4d664b68346297a",
+    "python": "3.12.14",
+    "sample": "cli-snapshot",
+    "note": "exploratory local run; working tree contained uncommitted changes; wall times are environment-specific"
+  }
+}
