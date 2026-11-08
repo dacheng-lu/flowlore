@@ -33,6 +33,12 @@ GitHub release digest, which needs no private infrastructure.
 | [Router with specialists](#router-with-specialists) | `draft` | Mixed request → answer from a specialist, merged | [n8n](https://github.com/n8n-io/n8n), [course map](../docs/learning-paths/ihk-ki-automatisierung.md) | Define the fallback when the classifier is unsure |
 | [Loop with feedback](#loop-with-feedback) | `draft` | Draft + acceptance criteria → accepted text or a bounded failure | [n8n](https://github.com/n8n-io/n8n), [course map](../docs/learning-paths/ihk-ki-automatisierung.md) | Prove the counter stops the loop; measure cost per accepted result |
 
+### Design recipes
+
+Three additional **drafts** cover [landing-page structure, interface critique and interactive
+explanation](design-workflows.md). Each states inputs, dependencies, example, acceptance and
+remaining evidence. They reference AI Design Skills, Impeccable and Anatomy; none is bundled.
+
 ## Operations recipes
 
 These four grew out of running self-hosted instances, not out of building new workflows. The

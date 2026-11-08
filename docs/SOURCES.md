@@ -26,6 +26,19 @@ These five cover complementary parts of a web workflow. Their ranking is editori
 
 The web design guidelines skill retrieves rules from a moving source; record the rules revision for reproducible audits. The HTML artifacts builder targets a specific Claude artifact workflow and is not a general-purpose browser automation tool. Browser automation requires a compatible runtime and site access.
 
+### Additional design references (draft)
+
+The following were added as recipe references, outside the original curated five. They have
+not been installed or tested in FlowLore; consult their current upstream revisions and licenses.
+
+| Source | Role | Status |
+|---|---|---|
+| [AI Design Skills](https://github.com/elayadesign/ai-design-skills) | Landing page planning and visual system | Draft reference |
+| [Impeccable](https://github.com/pbakaus/impeccable) | Interface critique and design guidance | Draft reference |
+| [Anatomy](https://github.com/wheresryan22/anatomy) | Interactive illustrations and explanations | Draft reference |
+
+See the [design recipes](../recipes/design-workflows.md) for inputs, example and acceptance.
+
 ## Primary references
 
 Not projects to evaluate but the sources this catalog checks technical claims against. Both
