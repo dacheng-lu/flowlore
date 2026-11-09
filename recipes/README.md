@@ -40,6 +40,13 @@ Three additional **drafts** cover [landing-page structure, interface critique an
 explanation](design-workflows.md). Each states inputs, dependencies, example, acceptance and
 remaining evidence. They reference AI Design Skills, Impeccable and Anatomy; none is bundled.
 
+## Strategic exploration (draft)
+
+[Bounded zoom-out](bounded-zoom-out.md) turns a request into one falsifiable
+experiment using five inspected source methods. [Sensor reliability](sensor-reliability.md)
+is its RuView/video design example: missing video access stays unknown; no
+hardware performance or fusion benefit is claimed.
+
 ## Operations recipes
 
 These four grew out of running self-hosted instances, not out of building new workflows. The

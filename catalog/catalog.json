@@ -1,7 +1,139 @@
 {
-  "catalogVersion": "0.5",
-  "reviewed": "2026-11-08",
+  "catalogVersion": "0.6",
+  "reviewed": "2026-11-09",
   "entries": [
+    {
+      "id": "zoom-out-labs",
+      "type": "skill",
+      "title": "10x Labs Zoom Out",
+      "summary": "Three-level outcome framing with readiness checks; source reviewed, effectiveness not evaluated.",
+      "status": "draft",
+      "url": "https://github.com/przeprogramowani/labs/blob/main/skills/10x-labs-zoom-out/SKILL.md",
+      "reviewedBlob": "c920c51155d6ee2f468792a24b0fa2c5298ad2b8",
+      "evidence": "Source text inspected 2026-11-09; source lineage in Longhaul references/zoom-out-sources.md. No effectiveness claim.",
+      "tags": [
+        "strategy",
+        "skill",
+        "reframing"
+      ]
+    },
+    {
+      "id": "ten-x-vision",
+      "type": "skill",
+      "title": "10x Vision",
+      "summary": "Leverage and bottleneck prompts; speculative multipliers are not adopted as evidence.",
+      "status": "draft",
+      "url": "https://github.com/zanecole10/software-tailor-skills/blob/main/16-10x-vision/SKILL.md",
+      "reviewedBlob": "74e18426456620a78b466e1e4a758a866c82f8c5",
+      "evidence": "Source text inspected 2026-11-09; source lineage in Longhaul references/zoom-out-sources.md. No effectiveness claim.",
+      "tags": [
+        "strategy",
+        "skill",
+        "reframing"
+      ]
+    },
+    {
+      "id": "generative-thinking",
+      "type": "skill",
+      "title": "Generative Thinking",
+      "summary": "One deliberate framing move before evaluation; numerical novelty heuristics are not calibrated odds.",
+      "status": "draft",
+      "url": "https://github.com/oaustegard/claude-skills/blob/main/generative-thinking/SKILL.md",
+      "reviewedBlob": "09cf3d6b41992605cd8bf02e277edd9b4092d510",
+      "evidence": "Source text inspected 2026-11-09; source lineage in Longhaul references/zoom-out-sources.md. No effectiveness claim.",
+      "tags": [
+        "strategy",
+        "skill",
+        "reframing"
+      ]
+    },
+    {
+      "id": "coach-zoomout",
+      "type": "skill",
+      "title": "Coach Zoom-Out",
+      "summary": "Brief strategic context, stakeholders, tradeoffs and the decisive question.",
+      "status": "draft",
+      "url": "https://github.com/ceyddrick/skills/blob/main/coach:zoomout/SKILL.md",
+      "reviewedBlob": "f17a1b47975cb73ea807da26352f699078fba438",
+      "evidence": "Source text inspected 2026-11-09; source lineage in Longhaul references/zoom-out-sources.md. No effectiveness claim.",
+      "tags": [
+        "strategy",
+        "skill",
+        "reframing"
+      ]
+    },
+    {
+      "id": "meta-agent",
+      "type": "skill",
+      "title": "Meta-Agent",
+      "summary": "Strategic context across workstreams; adapted as an optional role, not a mandatory extra agent.",
+      "status": "draft",
+      "url": "https://github.com/jesseposner/metacraft/blob/main/skills/meta-agent/SKILL.md",
+      "reviewedBlob": "570c237923623c193249a68135631ead6945e232",
+      "evidence": "Source text inspected 2026-11-09; source lineage in Longhaul references/zoom-out-sources.md. No effectiveness claim.",
+      "tags": [
+        "strategy",
+        "skill",
+        "reframing"
+      ]
+    },
+    {
+      "id": "ruview",
+      "type": "source",
+      "title": "RuView",
+      "summary": "WiFi CSI sensing and operator harness; upstream claims and simulation separated from field evidence.",
+      "status": "draft",
+      "url": "https://github.com/ruvnet/RuView",
+      "tags": [
+        "sensing",
+        "edge",
+        "harness"
+      ]
+    },
+    {
+      "id": "bounded-zoom-out",
+      "type": "recipe",
+      "title": "Bounded zoom-out to one experiment",
+      "summary": "Turn a narrow request into a bounded outcome experiment without expanding authority or promising a multiplier.",
+      "status": "draft",
+      "path": "recipes/bounded-zoom-out.md",
+      "sources": [
+        "zoom-out-labs",
+        "ten-x-vision",
+        "generative-thinking",
+        "coach-zoomout",
+        "meta-agent"
+      ],
+      "tags": [
+        "strategy",
+        "experiments"
+      ],
+      "input": "Request, baseline, constraints, available evidence and authority",
+      "output": "Opportunity brief, selected falsifiable experiment and scoped handoff"
+    },
+    {
+      "id": "sensor-reliability",
+      "type": "recipe",
+      "title": "RuView and video monitoring self-check",
+      "summary": "Draft disagreement and freshness experiment; video interface unavailable and no real hardware validation.",
+      "status": "draft",
+      "path": "recipes/sensor-reliability.md",
+      "sources": [
+        "ruview",
+        "zoom-out-labs",
+        "ten-x-vision",
+        "generative-thinking",
+        "coach-zoomout",
+        "meta-agent"
+      ],
+      "tags": [
+        "sensing",
+        "experiments",
+        "reliability"
+      ],
+      "input": "Scoped timestamped events, health signals and independent reference labels",
+      "output": "Baseline comparison, uncertainty report and continue/adjust/stop decision"
+    },
     {
       "id": "n8n",
       "type": "source",

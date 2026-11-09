@@ -2,13 +2,15 @@
 
 Status: proposed direction, not a release commitment. / 状态：待实施方向，不是发布承诺。 / Stand: vorgeschlagene Richtung, keine Release-Zusage.
 
-Reviewed: 2026-11-08, against `main`. Catalog version **0.5**.
+Reviewed: 2026-11-09, against `main`. Catalog version **0.6**.
 
 This page is in English, like the operating documents; the README is trilingual. Nothing here has a date, and a "Candidate" item is not decided.
 
 The roadmap answers one question: what turns this catalog from a reading list into something a reader can trust and reuse? The order below is the proposal.
 
 ## Released
+
+- **0.6** (2026-11-09): five inspected strategic-thinking sources and RuView; two draft recipes for bounded zoom-out and sensor reliability. 54 entries, **1 of 20 recipes verified** (the existing captured snapshot only). No sensor adapter, hardware result or 10x efficacy claim.
 
 - **0.5** (2026-11-08): verified one pinned offline captured-snapshot recipe in a network namespace; the broader live digest remains draft.
 
