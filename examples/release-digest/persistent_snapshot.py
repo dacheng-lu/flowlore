@@ -101,6 +101,7 @@ def main():
     p = sub.add_parser('run', help='start or resume an existing task')
     p.add_argument('task', type=Path)
     p.add_argument('--makeextreme', type=Path, required=True)
+    p.add_argument('--longhaul', type=Path, help='optionally record a run-bound checkpoint after verification')
     p = sub.add_parser('stage', help=argparse.SUPPRESS)
     p.add_argument('stage', choices=['validate', 'check-input', 'render', 'check-output'])
     args = parser.parse_args()
@@ -126,6 +127,10 @@ def main():
                 print(f'runner stopped with exit {proc.returncode}; inspect task state before retrying', file=sys.stderr)
                 return proc.returncode
             verify(task)  # Recheck on every invocation, including after skipped stages.
+            if args.longhaul:
+                import persistent_evidence
+                checkpoint = persistent_evidence.record(task, args.longhaul.resolve())
+                print(f'Run-bound checkpoint: {checkpoint}')
             print(f'PASS: partial offline snapshot verified; digest: {task / "digest.md"}')
         else:
             stage(args.stage)

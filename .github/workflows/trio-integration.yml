@@ -15,7 +15,8 @@ jobs:
       matrix:
         include:
           - name: pinned
-            longhaul: 547e04e3f00afd1604edb9ba56002ee118658519
+            # Run-bound evidence requires the checkpoint contract with --run-* support.
+            longhaul: fd81df28052f1c1d0f29955a8a48170049d4cbf0
             makeextreme: 2358a7f6e66264f830cef360e4374104bcf1cf6e
           - name: current
             longhaul: main

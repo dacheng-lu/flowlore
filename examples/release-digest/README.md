@@ -117,13 +117,31 @@ Run the second command again after an interruption. On success the task contains
 and independent expected digest on every invocation, including skipped stages.
 The task directory contains executable scripts: keep it trusted and do not run
 tasks supplied by an untrusted party. It is a separate local example; it does not
-create a Longhaul checkpoint, fetch live releases, authenticate the source, or
-publish anything. The source is a partial historical capture.
+fetch live releases, authenticate the source, or publish anything. The source is
+a partial historical capture. Longhaul evidence is optional, as described below.
+
+To also record a Longhaul checkpoint, add `--longhaul ../longhaul` to the run
+command. Each successful invocation writes a separate `evidence/snapshot-*.json`
+record, with a fresh run ID and a digest of the four captured source files. The
+checkpoint binds the checked digest and each source file, so changing or
+deleting one causes Longhaul's gate to refuse the old record. Verify it with:
+
+```bash
+python3 ../longhaul/scripts/checkpoint.py gate /tmp/release-digest-task/evidence/snapshot-REPLACE_WITH_PRINTED_ID.json
+```
+
+Replace the example filename with the exact printed checkpoint filename.
+The gate checks the current files and the recorded run binding. An old record
+describes its own past invocation, not the status of a later failed run. Keep
+the task and checkpoint files trusted and unchanged while the check runs. These
+records are local bookkeeping: they do not authenticate the operator or source,
+and hashes do not prove the semantic truth of external data. The persistent
+task remains usable without Longhaul.
 
 Run the synchronized interruption and repair tests with:
 
 ```bash
-python3 examples/release-digest/test_persistent_snapshot.py --makeextreme ../makeextreme
+python3 examples/release-digest/test_persistent_snapshot.py --makeextreme ../makeextreme --longhaul ../longhaul
 ```
 
 Replay checks raw SHA-256 and normalization, compares the output to the independent

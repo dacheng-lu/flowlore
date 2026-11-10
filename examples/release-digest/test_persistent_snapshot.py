@@ -90,10 +90,45 @@ class PersistentSnapshot(unittest.TestCase):
         capture.write_text(json.dumps(data))
         self.run_task(expected=2)
 
+    def test_run_bound_checkpoint_rejects_swaps_and_stale_files(self):
+        for _ in range(2):
+            self.call('run', str(self.task), '--makeextreme', str(MX), '--longhaul', str(LH))
+        records = sorted((self.task / 'evidence').glob('snapshot-*.json'))
+        self.assertEqual(len(records), 2)
+        first, second = (json.loads(p.read_text()) for p in records)
+        self.assertNotEqual(first['acceptance'][0]['run']['case_id'], second['acceptance'][0]['run']['case_id'])
+        self.assertEqual(first['acceptance'][0]['run']['input_sha256'], second['acceptance'][0]['run']['input_sha256'])
+        helper = LH / 'scripts/checkpoint.py'
+        def gate(path):
+            return subprocess.run([sys.executable, str(helper), 'gate', str(path)], capture_output=True, text=True)
+        self.assertEqual(gate(records[0]).returncode, 0)
+        first['evidence'][0]['run'] = second['evidence'][0]['run']
+        records[0].write_text(json.dumps(first))
+        swapped = gate(records[0])
+        self.assertNotEqual(swapped.returncode, 0)
+        self.assertIn('not from the criterion', swapped.stdout)
+        self.assertEqual(gate(records[1]).returncode, 0)
+        digest = self.task / 'digest.md'
+        digest.write_text('tampered')
+        self.assertNotEqual(gate(records[1]).returncode, 0)
+        digest.write_bytes((self.task / 'source/expected.md').read_bytes())
+        self.assertEqual(gate(records[1]).returncode, 0)
+        expected = self.task / 'source/expected.md'
+        expected_bytes = expected.read_bytes()
+        expected.unlink()
+        self.assertNotEqual(gate(records[1]).returncode, 0)
+        expected.write_bytes(expected_bytes)
+        self.assertEqual(gate(records[1]).returncode, 0)
+        source = self.task / 'source/capture.json'
+        source.write_bytes(source.read_bytes() + b' ')
+        self.assertNotEqual(gate(records[1]).returncode, 0)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--makeextreme', type=Path, required=True)
+    parser.add_argument('--longhaul', type=Path)
     args = parser.parse_args()
     MX = args.makeextreme.resolve()
+    LH = (args.longhaul or MX.parent / 'longhaul').resolve()
     unittest.main(argv=[sys.argv[0]])
