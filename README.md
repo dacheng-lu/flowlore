@@ -23,7 +23,7 @@
 
 [Three-project example / 三项目示例 / Drei-Projekte-Beispiel](examples/release-digest/README.md) · [Agent guide / 智能体指南 / Agent-Leitfaden](AGENT-GUIDE.md) · [Sources / 来源目录 / Quellen](docs/SOURCES.md) · [Recipes / 配方 / Rezepte](recipes/README.md) · [Design workflows / 设计工作流 / Design-Workflows](recipes/design-workflows.md) · [n8n operations / n8n 运维 / n8n-Betrieb](docs/n8n/OPERATIONS.md) · [Catalog / 机器可读目录 / Katalog](docs/CATALOG.md) · [Goal / 项目目标 / Ziel](GOAL.md)
 
-Catalog version: **0.5 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
+Catalog version: **0.6 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
 
 [Roadmap / 路线图 / Entwicklungsplan](ROADMAP.md) — the next three steps, what is blocked and what is deliberately not planned; proposed work, not shipped features.
 
@@ -36,9 +36,9 @@ FlowLore is a knowledge catalog for automation platforms, agent skills, web work
 
 ### Status
 
-**v0.5 is a catalog draft.** Documented are five automation sources, two primary references, eight web/HTML-related skills, eighteen recipes, four operating documents, one 30-lesson learning path, a machine-readable catalog and the project goal. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled. One external pinned runner was tested for the snapshot replay. Reference links do not establish compatibility, endorsement or a working integration.
+**v0.6 is a catalog draft.** Documented are five automation sources, two primary references, eight web/HTML-related skills, five strategic-thinking references, RuView, twenty recipes, four operating documents, one 30-lesson learning path, a machine-readable catalog and the project goal. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled. One external pinned runner was tested for the snapshot replay. Reference links do not establish compatibility, endorsement or a working integration.
 
-**At a glance:** 5 automation sources · 8 web/HTML skill references · 18 recipes · 1 learning path (30 lessons) · **1 verified recipe**. [Browse the catalog](docs/CATALOG.md).
+**At a glance:** 5 automation sources · 8 web/HTML skill references · 5 strategy references · RuView · 20 recipes · 1 learning path (30 lessons) · **1 verified recipe**. [Browse the catalog](docs/CATALOG.md).
 
 Recipe labels distinguish `draft`, `field-tested` and `verified`; field-tested does not mean verified. See the [status definitions](recipes/README.md#status). No workflow engine is bundled.
 
@@ -104,9 +104,9 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 ### 当前状态
 
-**v0.5 为目录草稿。** 已收录五个自动化来源、两个一手参考资料、八个网页／HTML 相关技能、十八个配方、四份运维文档、一条三十课学习路径、一份机器可读目录和项目目标。尚未内置执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力；固定快照回放测试使用了外部指定版本的运行器。收录链接不代表已集成、兼容或获得上游背书。
+**v0.6 为目录草稿。** 已收录五个自动化来源、两个一手参考资料、八个网页／HTML 相关技能、五份战略思考参考、RuView、二十个配方、四份运维文档、一条三十课学习路径、一份机器可读目录和项目目标。尚未内置执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力；固定快照回放测试使用了外部指定版本的运行器。收录链接不代表已集成、兼容或获得上游背书。
 
-**一览：** 5 个自动化来源 · 8 个网页／HTML 技能参考 · 18 个配方 · 1 条 30 课学习路径 · **1 个已验证配方**。[浏览目录](docs/CATALOG.md)。
+**一览：** 5 个自动化来源 · 8 个网页／HTML 技能参考 · 5 份战略思考参考 · RuView · 20 个配方 · 1 条 30 课学习路径 · **1 个已验证配方**。[浏览目录](docs/CATALOG.md)。
 
 配方以 `draft`（草稿）、`field-tested`（实战记录）和 `verified`（已验证）区分状态；实战记录不等于已验证。参见[状态定义](recipes/README.md#status)。项目没有内置工作流引擎。
 
@@ -172,9 +172,9 @@ FlowLore ist ein Wissenskatalog für Automatisierungsplattformen, Agent Skills, 
 
 ### Aktueller Stand
 
-**Version 0.5 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, zwei Primärquellen, acht Web-/HTML-bezogene Skills, achtzehn Rezepte, vier Betriebsdokumente, ein Lernpfad über 30 Lektionen, ein maschinenlesbarer Katalog und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung werden nicht mitgeliefert; für den Snapshot wurde ein externer Runner in fester Version getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
+**Version 0.6 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, zwei Primärquellen, acht Web-/HTML-bezogene Skills, fünf Strategie-Referenzen, RuView, zwanzig Rezepte, vier Betriebsdokumente, ein Lernpfad über 30 Lektionen, ein maschinenlesbarer Katalog und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung werden nicht mitgeliefert; für den Snapshot wurde ein externer Runner in fester Version getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
 
-**Auf einen Blick:** 5 Automatisierungsquellen · 8 Web/HTML-Skill-Referenzen · 18 Rezepte · 1 Lernpfad mit 30 Lektionen · **1 verifiziertes Rezept**. [Katalog ansehen](docs/CATALOG.md).
+**Auf einen Blick:** 5 Automatisierungsquellen · 8 Web/HTML-Skill-Referenzen · 5 Strategie-Referenzen · RuView · 20 Rezepte · 1 Lernpfad mit 30 Lektionen · **1 verifiziertes Rezept**. [Katalog ansehen](docs/CATALOG.md).
 
 Die Kennzeichnungen `draft`, `field-tested` und `verified` unterscheiden den Reifegrad; Praxiserfahrung ist keine Verifizierung. Siehe [Statusdefinitionen](recipes/README.md#status). Eine Workflow-Engine ist nicht enthalten.
 
