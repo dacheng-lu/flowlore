@@ -66,7 +66,7 @@ Recipe labels distinguish `draft`, `field-tested` and `verified`; field-tested d
 | [n8n operations](docs/n8n/OPERATIONS.md) | API surface, publishing model, safe changes, execution diagnosis, data tables, AI and MCP nodes | Field notes; every claim version-stamped |
 | [Failure modes](docs/n8n/FAILURE-MODES.md) | Symptom → cause → fix across triggers, data flow, validation, executions, credentials and AI nodes | Field notes |
 | [Version matrix](docs/n8n/VERSION-MATRIX.md) | Which statement holds on which n8n version, plus an upgrade checklist | Reviewed 2026-11-03 |
-| [Recipes](recipes/README.md) | Eighteen recipes: thirteen drafts, four field-tested and one verified for a pinned snapshot | One bounded snapshot replay verified |
+| [Recipes](recipes/README.md) | Twenty recipes: fifteen drafts, four field-tested and one verified for a pinned snapshot | One bounded snapshot replay verified |
 | [Learning path](docs/learning-paths/ihk-ki-automatisierung.md) | A 30-lesson German AI-automation course mapped to competences, checkpoints and gaps | Syllabus verified against certificates |
 | [Catalog](docs/CATALOG.md) | Machine-readable catalog, JSON Schema, validator and its tests | Validated by script |
 | [Project goal](GOAL.md) | Scope, quality principles and next milestones | Planned work |
@@ -87,7 +87,7 @@ A local-model baseline now measures one model against a frozen 24-case set with 
 
 ### Next steps
 
-The machine-readable catalog is in place (`catalog/catalog.json`, schema, validator and tests). The ordered work is in the [roadmap](ROADMAP.md): first verify one recipe end to end, then add a recipe contract and validator. Links and n8n version labels are already checked in CI (`scripts/check_sources.py`). Search and a read-only agent interface follow only after that. The proposed first recipe is still the [GitHub release digest](recipes/README.md).
+The machine-readable catalog is in place (`catalog/catalog.json`, schema, validator and tests). The ordered work is in the [roadmap](ROADMAP.md): extend verification beyond the captured snapshot, then add a recipe contract and validator. Links and n8n version labels are already checked in CI (`scripts/check_sources.py`). Search and a read-only agent interface follow only after that. The proposed first recipe is still the [GitHub release digest](recipes/README.md).
 
 ### Working principles
 
@@ -134,7 +134,7 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 | [n8n 运维](docs/n8n/OPERATIONS.md) | API 面、发布模型、安全变更、执行排查、数据表、AI 与 MCP 节点 | 实战笔记；逐条标注版本 |
 | [故障速查](docs/n8n/FAILURE-MODES.md) | 触发器、数据流、校验、执行、凭据与 AI 节点的症状 → 原因 → 处置 | 实战笔记 |
 | [版本矩阵](docs/n8n/VERSION-MATRIX.md) | 哪条结论适用于哪个 n8n 版本，附升级检查表 | 2026-11-03 复核 |
-| [配方](recipes/README.md) | 十八个配方：十三个草案、四个实战记录、一个固定快照已验证 | 已验证一个固定快照回放 |
+| [配方](recipes/README.md) | 二十个配方：十五个草案、四个实战记录、一个固定快照已验证 | 已验证一个固定快照回放 |
 | [学习路径](docs/learning-paths/ihk-ki-automatisierung.md) | 三十课德语 AI 自动化课程，映射到能力、检验点与缺口 | 大纲已对照证书 |
 | [目录规范](docs/CATALOG.md) | 机器可读目录、JSON Schema、校验器及其测试 | 由脚本校验 |
 | [项目目标](GOAL.md) | 范围、质量原则与后续里程碑 | 后续计划 |
@@ -155,7 +155,7 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 ### 下一步
 
-机器可读目录已就位（`catalog/catalog.json`、schema、校验器与测试）。有序的后续工作见[路线图](ROADMAP.md)：先端到端验证一个配方，再补配方契约与校验器。链接与 n8n 版本标注已在 CI 中检查（`scripts/check_sources.py`）；检索能力和只读智能体接口在此之后。首个建议实现的仍是 [GitHub 发布摘要](recipes/README.md)。
+机器可读目录已就位（`catalog/catalog.json`、schema、校验器与测试）。有序的后续工作见[路线图](ROADMAP.md)：将验证从固定快照扩展到完整流程，再补配方契约与校验器。链接与 n8n 版本标注已在 CI 中检查（`scripts/check_sources.py`）；检索能力和只读智能体接口在此之后。首个建议实现的仍是 [GitHub 发布摘要](recipes/README.md)。
 
 ### 使用原则
 
@@ -202,7 +202,7 @@ Die Kennzeichnungen `draft`, `field-tested` und `verified` unterscheiden den Rei
 | [n8n-Betrieb](docs/n8n/OPERATIONS.md) | API-Oberfläche, Veröffentlichungsmodell, sichere Änderungen, Ausführungsdiagnose, Data Tables, AI- und MCP-Knoten | Feldnotizen; jede Aussage versioniert |
 | [Fehlerbilder](docs/n8n/FAILURE-MODES.md) | Symptom → Ursache → Abhilfe bei Triggern, Datenfluss, Validierung, Ausführungen, Credentials und AI-Knoten | Feldnotizen |
 | [Versionsmatrix](docs/n8n/VERSION-MATRIX.md) | Welche Aussage auf welcher n8n-Version gilt, plus Upgrade-Checkliste | Geprüft 2026-11-03 |
-| [Rezepte](recipes/README.md) | Achtzehn Rezepte: dreizehn Entwürfe, vier feldgetestet und ein verifizierter Snapshot | Ein begrenzter Snapshot verifiziert |
+| [Rezepte](recipes/README.md) | Zwanzig Rezepte: fünfzehn Entwürfe, vier feldgetestet und ein verifizierter Snapshot | Ein begrenzter Snapshot verifiziert |
 | [Lernpfad](docs/learning-paths/ihk-ki-automatisierung.md) | 30-teiliger deutscher KI-Automatisierungskurs, auf Kompetenzen, Prüfsteine und Lücken abgebildet | Lehrplan gegen Zertifikate geprüft |
 | [Katalog](docs/CATALOG.md) | Maschinenlesbarer Katalog, JSON-Schema, Validator und Tests | Durch Skript validiert |
 | [Projektziel](GOAL.md) | Umfang, Qualitätsprinzipien und nächste Meilensteine | Geplante Arbeit |
@@ -223,7 +223,7 @@ Eine lokale Modell-Baseline misst nun ein Modell gegen 24 eingefrorene Fälle, b
 
 ### Nächste Schritte
 
-Der maschinenlesbare Katalog liegt vor (`catalog/catalog.json`, Schema, Validator und Tests). Die geordnete Arbeit steht im [Entwicklungsplan](ROADMAP.md): zuerst ein Rezept Ende zu Ende verifizieren, dann einen Rezept-Vertrag mit Validator ergänzen. Links und n8n-Versionsangaben prüft bereits die CI (`scripts/check_sources.py`). Suche und eine lesende Agent-Schnittstelle folgen erst danach. Erster Kandidat bleibt die [GitHub-Release-Zusammenfassung](recipes/README.md).
+Der maschinenlesbare Katalog liegt vor (`catalog/catalog.json`, Schema, Validator und Tests). Die geordnete Arbeit steht im [Entwicklungsplan](ROADMAP.md): zuerst die Verifizierung über den Snapshot hinaus erweitern, dann einen Rezept-Vertrag mit Validator ergänzen. Links und n8n-Versionsangaben prüft bereits die CI (`scripts/check_sources.py`). Suche und eine lesende Agent-Schnittstelle folgen erst danach. Erster Kandidat bleibt die [GitHub-Release-Zusammenfassung](recipes/README.md).
 
 ### Arbeitsprinzipien
 

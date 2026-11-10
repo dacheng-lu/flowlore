@@ -26,19 +26,19 @@ No tags and no GitHub Releases exist.
 
 ### P0 — the next three steps, in this order
 
-- [ ] **Verify the first recipe end to end.** The GitHub release digest needs no private infrastructure. Pin the engine version, write the test input and the expected output, run it in an isolated environment, publish the artifact (export and command output) under `examples/release-digest/evidence/`, then change its status from `draft` to `verified` in [recipes/README.md](recipes/README.md). Acceptance: a fresh clone reproduces the published output with one documented command, and the README's "0 of 17" becomes "1 of 17".
+- [ ] **Verify the broader GitHub release digest end to end.** The captured partial snapshot is already verified within its bounded offline scope; the live digest remains `draft`. Pin the engine version, document test input and independent expected output, exercise pagination and failure paths in an isolated test environment, and publish reproducible evidence under `examples/release-digest/evidence/`. Acceptance: a fresh clone can reproduce the documented checks, including completeness and failure behavior; update the broader recipe status only when its full stated scope has evidence.
   A bounded, read-only public API experiment and the three-project snapshot demonstration are in
   [the example](examples/release-digest/README.md). A partial live sample does not satisfy the
   verified-recipe criteria. Offline CI exercises pinned and current peer revisions separately;
   the network job is non-blocking and may fail for upstream reasons.
-- [ ] **Add a recipe contract and validator.** Today a recipe is prose in [recipes/README.md](recipes/README.md); nothing checks that a `verified` label has evidence behind it. Define the fields (id, intent, inputs, outputs, engines, source revisions, status, evidence path), add `scripts/validate_recipes.py` with tests, and run it in CI. Acceptance: all seventeen recipes validate, and a `verified` recipe without an existing evidence file fails with the recipe id.
+- [ ] **Add a recipe contract and validator.** Today a recipe is prose in [recipes/README.md](recipes/README.md); nothing checks that a `verified` label has evidence behind it. Define the fields (id, intent, inputs, outputs, engines, source revisions, status, evidence path), add `scripts/validate_recipes.py` with tests, and run it in CI. Acceptance: all cataloged recipes validate, and a `verified` recipe without an existing evidence file fails with the recipe id.
 - [x] **Check links and versions in CI.** Every external source is a reference, not a tested dependency, and links rot. Add a check that every URL answers (with an explicit allowlist for bot walls) and that every n8n claim carries the version it was read on. Acceptance: one deliberately broken URL fails CI and names the file and the URL.
 
-### P1 — after the first recipe is verified
+### P1 — after the broader recipe is verified
 
 - [ ] **Search by intent, platform, dependencies and status.** Generate a static index from `catalog.json`; a query returns entries and their evidence state. No server. Acceptance: ten recorded sample queries return the expected entries.
 - [ ] **Watch upstream changes.** Read releases and commits for the five sources and open a review queue when a pinned revision moves. Never edit the catalog automatically. Acceptance: one dry run against pinned revisions produces a review list, not a write.
-- [ ] **Give every recipe the same page.** Input, output, dependencies, validation, evidence and failure path — the four field-tested operations recipes already show the shape; the drafts do not. Acceptance: all seventeen have every section, and an empty section says "not yet tested" instead of being omitted.
+- [ ] **Give every recipe the same page.** Input, output, dependencies, validation, evidence and failure path — the four field-tested operations recipes already show the shape; the drafts do not. Acceptance: all cataloged recipes have every section, and an empty section says "not yet tested" instead of being omitted.
 
 ### P2 — only if the earlier steps hold
 

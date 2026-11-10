@@ -91,6 +91,41 @@ python3 examples/release-digest/test_snapshot.py
 python3 examples/release-digest/reproduce_snapshot.py --makeextreme ../makeextreme --longhaul ../longhaul
 ```
 
+To retain the digest and records for inspection, pass `--output-dir /tmp/release-digest-records`
+to the second command. The directory must not already exist and its parent must
+exist. It contains `digest.md`, `card.json`, the sanitized input, journal and
+Longhaul checkpoint. The command runs a fresh temporary task each time; the
+retained records are evidence for inspection, not a resumable task directory.
+Use a new output directory for another run. The card records the checked-out
+component revisions and whether tracked files were dirty; a dirty checkout does
+not identify all source bytes. The capture remains a partial historical sample.
+
+For interruption and resume behavior, the command also runs the separate upstream
+crash-recovery demonstration. It does not test interruption of this snapshot run.
+
+### Run the captured snapshot as a resumable task
+
+For a persistent Makeextreme task, initialize a new directory and run it:
+
+```bash
+python3 examples/release-digest/persistent_snapshot.py init /tmp/release-digest-task
+python3 examples/release-digest/persistent_snapshot.py run /tmp/release-digest-task --makeextreme ../makeextreme
+```
+
+Run the second command again after an interruption. On success the task contains
+`digest.md` and Makeextreme's state and journal. It verifies the captured source
+and independent expected digest on every invocation, including skipped stages.
+The task directory contains executable scripts: keep it trusted and do not run
+tasks supplied by an untrusted party. It is a separate local example; it does not
+create a Longhaul checkpoint, fetch live releases, authenticate the source, or
+publish anything. The source is a partial historical capture.
+
+Run the synchronized interruption and repair tests with:
+
+```bash
+python3 examples/release-digest/test_persistent_snapshot.py --makeextreme ../makeextreme
+```
+
 Replay checks raw SHA-256 and normalization, compares the output to the independent
 expected file, exercises recovery and evidence invalidation, and makes no network
 requests. CI tests pinned and current peer versions. The hash records integrity,
@@ -121,6 +156,22 @@ shared adapter or authentication mechanism. Supplied revisions and journal entri
 are claims; hashes cannot prove who ran a check or whether it was truthful.
 
 ## Budget comparison on the digest workload
+
+For a separate deterministic comparison of a plain script, Makeextreme, and
+Makeextreme plus a Longhaul checkpoint, run:
+
+```bash
+python3 examples/release-digest/compare_recovery.py --makeextreme ../makeextreme --longhaul ../longhaul --output /tmp/digest-comparison.json
+python3 examples/release-digest/test_compare_recovery.py
+```
+
+All conditions apply the same source verification for final acceptance. The
+separately reported weaker check is a diagnostic and does not decide acceptance.
+The output records revisions, commands, observations and local wall times. This
+is one run of four synthetic scenarios; it does not measure a real process
+interruption, model call, or cross-run evidence binding, and does not establish
+statistical significance or real-world cost savings. Choose a new output path
+for each run; the command will not overwrite an existing file.
 
 With a Makeextreme checkout that has `makeextreme/budget.py`:
 

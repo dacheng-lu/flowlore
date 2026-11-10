@@ -44,14 +44,20 @@ def main():
     p.add_argument('--makeextreme',required=True,type=Path)
     p.add_argument('--longhaul',required=True,type=Path)
     p.add_argument('--evidence',type=Path,default=EVIDENCE)
+    p.add_argument('--output-dir',type=Path,help='new directory for the retained digest and verification records; parent must exist')
     a=p.parse_args()
     try:
         snapshot=validate(a.evidence)
         if snapshot['complete'] is not False: raise ValueError('sample must remain labelled partial')
-        subprocess.run([sys.executable,str(HERE/'integration.py'),'--makeextreme',str(a.makeextreme.resolve()),
+        if a.output_dir and (a.output_dir.exists() or not a.output_dir.parent.is_dir()):
+            raise ValueError('output directory must not exist and its parent must exist')
+        cmd=[sys.executable,str(HERE/'integration.py'),'--makeextreme',str(a.makeextreme.resolve()),
                         '--longhaul',str(a.longhaul.resolve()),'--live-snapshot',str((a.evidence/'snapshot.json').resolve()),
                         '--expected',str((a.evidence/'expected.md').resolve()),
-                        '--verify-handoff-source',str(a.evidence.resolve())],check=True)
+                        '--verify-handoff-source',str(a.evidence.resolve())]
+        if a.output_dir:
+            cmd += ['--evidence-dir',str(a.output_dir.resolve())]
+        subprocess.run(cmd,check=True)
     except (ValueError,KeyError,OSError,subprocess.CalledProcessError) as exc:
         print(f'refused: {exc}',file=sys.stderr)
         return 1

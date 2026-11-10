@@ -8,6 +8,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(HERE))
@@ -53,5 +54,24 @@ class SavedSnapshot(unittest.TestCase):
         output=self.root/'out.md';output.write_text(digest.render(digest.entries(fixture)))
         p=subprocess.run([sys.executable,str(HERE/'digest.py'),'check',str(fixture),'--output',str(output),'--expected',str(expected)],capture_output=True)
         self.assertNotEqual(p.returncode,0)
+
+    def test_output_directory_is_forwarded_for_retention(self):
+        out=Path(self.temp.name)/'records'
+        argv=['reproduce_snapshot.py','--makeextreme','mx','--longhaul','lh',
+              '--output-dir',str(out)]
+        with patch.object(sys,'argv',argv), patch.object(replay.subprocess,'run') as run:
+            self.assertEqual(replay.main(),0)
+        cmd=run.call_args.args[0]
+        self.assertEqual(cmd[cmd.index('--evidence-dir')+1],str(out))
+
+    def test_existing_output_directory_is_not_overwritten(self):
+        out=Path(self.temp.name)/'records';out.mkdir()
+        marker=out/'marker';marker.write_text('keep')
+        argv=['reproduce_snapshot.py','--makeextreme','mx','--longhaul','lh',
+              '--output-dir',str(out)]
+        with patch.object(sys,'argv',argv), patch.object(replay.subprocess,'run') as run:
+            self.assertEqual(replay.main(),1)
+        run.assert_not_called()
+        self.assertEqual(marker.read_text(),'keep')
 
 if __name__=='__main__': unittest.main()
