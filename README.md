@@ -19,7 +19,7 @@
 **Three independent projects:** [FlowLore](https://github.com/dacheng-lu/flowlore) · [Longhaul](https://github.com/dacheng-lu/longhaul) · [Makeextreme](https://github.com/dacheng-lu/makeextreme)  
 **No shared adapter or automatic handoff is built in.**
 
-[Value experiment template / 价值实验模板 / Nutzenexperiment-Vorlage](docs/VALUE-EXPERIMENT.md)
+[Value experiment template / 价值实验模板 / Nutzenexperiment-Vorlage](docs/VALUE-EXPERIMENT.md) · [Asset prompt → build pipeline](docs/ASSET-PIPELINE.md)
 
 [Three-project example / 三项目示例 / Drei-Projekte-Beispiel](examples/release-digest/README.md) · [Agent guide / 智能体指南 / Agent-Leitfaden](AGENT-GUIDE.md) · [Sources / 来源目录 / Quellen](docs/SOURCES.md) · [Recipes / 配方 / Rezepte](recipes/README.md) · [Design workflows / 设计工作流 / Design-Workflows](recipes/design-workflows.md) · [n8n operations / n8n 运维 / n8n-Betrieb](docs/n8n/OPERATIONS.md) · [Catalog / 机器可读目录 / Katalog](docs/CATALOG.md) · [Goal / 项目目标 / Ziel](GOAL.md)
 
