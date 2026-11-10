@@ -54,6 +54,8 @@ PLACEHOLDERS = {
         "sample data of examples/release-digest, never meant to resolve",
     "https://github.com/sample/beta/releases/tag/v2.1":
         "sample data of examples/release-digest, never meant to resolve",
+    "https://github.com/grad5-gmbh/video-ueberwachung":
+        "recipes/sensor-reliability.md records that it returned 404 to the reviewer",
 }
 
 # A host that answers a bot with 403/405/429/501 still serves the page to a reader.
