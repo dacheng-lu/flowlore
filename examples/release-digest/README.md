@@ -138,6 +138,15 @@ records are local bookkeeping: they do not authenticate the operator or source,
 and hashes do not prove the semantic truth of external data. The persistent
 task remains usable without Longhaul.
 
+New checkpoints use task-relative paths. After moving or copying the complete
+task directory on the same machine, the gate checks the files beside that copy;
+re-run the task at its new location to continue processing. Earlier checkpoints
+created with absolute paths keep pointing at the original location: copying them
+does not retarget them, and moving the original makes those checks fail. To get
+a checkpoint for the new location, re-run with `--longhaul`. The old record is
+not rewritten. Moving between machines is not covered by this example: stage
+commands contain the original Python interpreter path and the runner is Linux-only.
+
 Run the synchronized interruption and repair tests with:
 
 ```bash

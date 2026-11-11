@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -122,6 +123,69 @@ class PersistentSnapshot(unittest.TestCase):
         source = self.task / 'source/capture.json'
         source.write_bytes(source.read_bytes() + b' ')
         self.assertNotEqual(gate(records[1]).returncode, 0)
+
+    def test_checkpoint_follows_copied_and_moved_task(self):
+        self.call('run', str(self.task), '--makeextreme', str(MX), '--longhaul', str(LH))
+        record = next((self.task / 'evidence').glob('snapshot-*.json'))
+        doc = json.loads(record.read_text())
+        self.assertTrue(all(not Path(a['locator']).is_absolute() for a in doc['artifacts']))
+        def gate(path):
+            return subprocess.run([sys.executable, str(LH / 'scripts/checkpoint.py'),
+                                   'gate', str(path)], capture_output=True, text=True)
+        copied = self.task.parent / 'copy'
+        shutil.copytree(self.task, copied)
+        copied_record = copied / 'evidence' / record.name
+        self.assertEqual(gate(copied_record).returncode, 0)
+        (copied / 'digest.md').write_text('wrong')
+        self.assertNotEqual(gate(copied_record).returncode, 0)
+        self.assertEqual(gate(record).returncode, 0)
+        (copied / 'digest.md').write_bytes((self.task / 'digest.md').read_bytes())
+        moved = self.task.parent / 'moved'
+        shutil.move(self.task, moved)
+        moved_record = moved / 'evidence' / record.name
+        self.assertEqual(gate(moved_record).returncode, 0)
+        self.call('run', str(moved), '--makeextreme', str(MX), '--longhaul', str(LH))
+        self.assertEqual(gate(moved_record).returncode, 0)
+
+    def test_old_absolute_checkpoint_is_not_silently_rewritten(self):
+        self.call('run', str(self.task), '--makeextreme', str(MX), '--longhaul', str(LH))
+        record = next((self.task / 'evidence').glob('snapshot-*.json'))
+        doc = json.loads(record.read_text())
+        for artifact in doc['artifacts']:
+            artifact['locator'] = str((record.parent / artifact['locator']).resolve())
+        for evidence in doc['evidence']:
+            evidence['locator'] = str((record.parent / evidence['locator']).resolve())
+        record.write_text(json.dumps(doc))
+        original = record.read_bytes()
+        moved = self.task.parent / 'moved'
+        shutil.move(self.task, moved)
+        moved_record = moved / 'evidence' / record.name
+        result = subprocess.run([sys.executable, str(LH / 'scripts/checkpoint.py'),
+                                 'gate', str(moved_record)], capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(moved_record.read_bytes(), original)
+        self.call('run', str(moved), '--makeextreme', str(MX), '--longhaul', str(LH))
+        new_records = set((moved / 'evidence').glob('snapshot-*.json')) - {moved_record}
+        self.assertEqual(len(new_records), 1)
+        result = subprocess.run([sys.executable, str(LH / 'scripts/checkpoint.py'),
+                                 'gate', str(new_records.pop())], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_missing_task_output_does_not_bind_working_directory_fallback(self):
+        work = self.task.parent / 'working'
+        work.mkdir()
+        (self.task.parent / 'digest.md').write_text('unrelated file')
+        code = ("import sys; from pathlib import Path; sys.path.insert(0, sys.argv[1]); "
+                "import persistent_evidence; persistent_evidence.record(Path(sys.argv[2]), Path(sys.argv[3]))")
+        result = subprocess.run([sys.executable, '-c', code, str(HERE), str(self.task), str(LH)],
+                                cwd=work, capture_output=True, text=True)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('working-directory fallback', result.stderr)
+        records = list((self.task / 'evidence').glob('snapshot-*.json'))
+        self.assertEqual(len(records), 1)
+        gate = subprocess.run([sys.executable, str(LH / 'scripts/checkpoint.py'), 'gate', str(records[0])],
+                              capture_output=True, text=True)
+        self.assertNotEqual(gate.returncode, 0)
 
 
 if __name__ == '__main__':

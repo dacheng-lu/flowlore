@@ -39,11 +39,18 @@ def record(task, longhaul):
                               capture_output=True, text=True, timeout=30)
         if proc.returncode:
             raise ValueError('checkpoint refused: ' + (proc.stderr or proc.stdout).strip())
+        return proc.stdout
 
     checkpoint('init', state, '--task-id', run_id, '--goal', 'Verify partial snapshot digest')
-    paths = [task / 'digest.md'] + [task / 'source' / n for n in SOURCE_NAMES]
+    # Locators are relative to the checkpoint inside evidence/, so a trusted
+    # task can be moved or copied without referring back to the old directory.
+    paths = [Path('../digest.md')] + [Path('../source') / n for n in SOURCE_NAMES]
     for index, path in enumerate(paths):
-        checkpoint('artifact', state, '--id', 'A' + str(index), '--locator', path)
+        result = json.loads(checkpoint('artifact', state, '--id', 'A' + str(index), '--locator', path))
+        # The helper may fall back to its working directory if the state-relative
+        # file is missing. Do not let that bind a similarly named unrelated file.
+        if result['artifact']['locator'] != str(path):
+            raise ValueError('checkpoint used a working-directory fallback: ' + str(path))
     args = ['evidence', state, '--id', 'E1']
     for index in range(len(paths)):
         args += ['--artifact', 'A' + str(index)]
