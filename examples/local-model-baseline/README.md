@@ -168,6 +168,13 @@ python3 examples/local-model-baseline/make_evidence.py /tmp/local-model-run \
 `makeextreme/budget.py` and Longhaul's gate, and holds an exclusive lock on its
 output directory so two runs cannot share one local model at the same time.
 
+## Optional Promptfoo adapter
+
+An experimental [Promptfoo adapter](promptfoo/README.md) reuses this frozen case
+set and the original scorer. Its Python callbacks have direct offline tests;
+Promptfoo end-to-end execution has not been verified. It does not change the
+historical observation above or reproduce the A/B experiment.
+
 ## What this does not show
 
 - One model and quantisation. A different model or a larger one can behave

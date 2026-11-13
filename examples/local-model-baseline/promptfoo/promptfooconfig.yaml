@@ -1,0 +1,12 @@
+# Synthetic checks only. Replace this provider in a separate local config to use a model.
+description: "FlowLore frozen cases: SYNTHETIC fixture provider, NOT a model run"
+prompts:
+  - '{{case_prompt}}'
+providers:
+  - id: file://synthetic_provider.py
+    label: synthetic-not-a-model
+tests: file://adapter.py:generate_tests
+defaultTest:
+  assert:
+    - type: python
+      value: file://adapter.py:get_assert

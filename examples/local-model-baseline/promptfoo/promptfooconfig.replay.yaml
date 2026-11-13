@@ -1,0 +1,12 @@
+# Reads a raw run.py results.json; it does not call a model.
+description: "FlowLore: explicit raw-result replay (not a new model run)"
+prompts:
+  - '{{case_prompt}}'
+providers:
+  - id: file://replay_provider.py
+    label: recorded-reply-not-a-new-run
+tests: file://adapter.py:generate_tests
+defaultTest:
+  assert:
+    - type: python
+      value: file://adapter.py:get_assert

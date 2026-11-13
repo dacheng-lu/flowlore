@@ -1,0 +1,9 @@
+{
+  "name": "flowlore-offline-promptfoo-adapter",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Optional Promptfoo adapter for FlowLore's frozen local-model cases",
+  "devDependencies": {
+    "promptfoo": "0.125.1"
+  }
+}
