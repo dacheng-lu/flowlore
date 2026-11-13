@@ -127,7 +127,8 @@ def attempt(args, case, index, policy, fault=None, previous=None):
     reply = call_model(args, prompt, tag, 0.4 if fault == "timeout" else args.timeout)
     text = (reply["record"] or {}).get("response") or ""
     result = {"case": case["id"], "policy": policy, "index": index, "fault": fault,
-              "prompt_sha256": sha(prompt), "reply_sha256": sha(text), "reply": text,
+              "prompt_sha256": sha(prompt), "prompt": prompt,
+              "reply_sha256": sha(text), "reply": text,
               "transport": reply["status"], "exit": reply["exit"],
               "model_digest": (reply["record"] or {}).get("model_digest"),
               "run": {"case_id": case["id"], "model": args.model,

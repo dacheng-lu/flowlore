@@ -168,6 +168,14 @@ python3 examples/local-model-baseline/make_evidence.py /tmp/local-model-run \
 `makeextreme/budget.py` and Longhaul's gate, and holds an exclusive lock on its
 output directory so two runs cannot share one local model at the same time.
 
+Each attempt in `results.json` carries the exact prompt text next to its
+`prompt_sha256`. Policy B's reserved verification pass is sent a repair prompt
+built from the candidate, not the frozen prompt; storing the text is what makes
+that attempt replayable from the record alone (`promptfoo/replay_provider.py`
+re-hashes the stored text and marks the replay `repair_pass: true`). Records
+written before this field existed stay replayable for ordinary attempts only and
+are refused with "attempt prompt is not replayable" for a repair pass.
+
 ## Optional Promptfoo adapter
 
 An experimental [Promptfoo adapter](promptfoo/README.md) reuses this frozen case

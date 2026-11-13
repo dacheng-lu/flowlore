@@ -74,6 +74,47 @@ class AdapterTests(unittest.TestCase):
         changed = dict(context, prompt=expected[:-1] + " ")
         self.assertTrue(adapter.get_assert(reply, changed)["reason"].startswith(adapter.ERROR))
 
+    def test_repair_pass_replay_needs_the_stored_prompt(self):
+        case = self.cases["d-valid-3"]
+        row = next(r for r in self.rows if r["vars"]["case_id"] == case["id"])
+        context = self.context(row)
+        reply = synthetic_provider.call_api(context["prompt"], {}, context)["output"]
+        repair = context["prompt"] + "\nRepair only the failing field."
+        attempt = {"case": case["id"], "policy": "B", "index": 3, "fault": None,
+                   "transport": "ok", "reply": reply, "reply_sha256": adapter.sha(reply)[:16],
+                   "model_digest": "synthetic-digest", "prompt_sha256": adapter.sha(repair)[:16],
+                   "prompt": repair,
+                   "run": {"case_id": case["id"], "model": "fixture-not-model",
+                           "input_sha256": adapter.sha(adapter.input_text(case))}}
+        record = {"scenario_set": {
+                      "cases_json_sha256": adapter.sha((adapter.BASE / "cases.json").read_text())[:16],
+                      "scenarios_sha256": adapter.sha((adapter.BASE / "scenarios.py").read_text())[:16]},
+                  "model": {"name": "fixture-not-model", "digest": "synthetic-digest"},
+                  "cases": [{"case": case["id"], "policy": "B", "scenario": case["scenario"],
+                             "split": case["split"], "attempts": [attempt]}]}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp, "results.json")
+
+            def save():
+                path.write_text(json.dumps(record))
+
+            env = {"FLOWLORE_RESULTS": str(path), "FLOWLORE_POLICY": "B", "FLOWLORE_ATTEMPT": "3"}
+            save()
+            with patch.dict(os.environ, env):
+                out = replay_provider.call_api(context["prompt"], {}, context)
+                self.assertEqual(out["output"], reply)
+                self.assertTrue(out["metadata"]["flowlore_replay"]["repair_pass"])
+                # a hash-only record (older runs) stays explicitly not replayable
+                attempt.pop("prompt")
+                save()
+                with self.assertRaisesRegex(ValueError, "not replayable"):
+                    replay_provider.call_api(context["prompt"], {}, context)
+                # stored text that no longer hashes to the record is refused
+                attempt["prompt"] = repair + "x"
+                save()
+                with self.assertRaisesRegex(ValueError, "stored prompt hash mismatch"):
+                    replay_provider.call_api(context["prompt"], {}, context)
+
     def test_checker_crashes_not_refusals(self):
         class P:
             returncode, stdout, stderr = 1, "", "Traceback: crash"
@@ -89,7 +130,7 @@ class AdapterTests(unittest.TestCase):
         reply = synthetic_provider.call_api(context["prompt"], {}, context)["output"]
         attempt = {"case": case["id"], "policy": "A", "index": 1, "fault": None, "transport": "ok", "reply": reply,
                    "reply_sha256": adapter.sha(reply)[:16], "model_digest": "synthetic-digest",
-                   "prompt_sha256": adapter.sha(context["prompt"])[:16],
+                   "prompt_sha256": adapter.sha(adapter.prompt_for(case))[:16],
                    "run": {"case_id": case["id"], "model": "fixture-not-model",
                            "input_sha256": adapter.sha(adapter.input_text(case))}}
         record = {"scenario_set": {},
@@ -131,7 +172,8 @@ class AdapterTests(unittest.TestCase):
                 attempt["fault"] = None
                 attempt["prompt_sha256"] = "tampered"
                 save()
-                with self.assertRaisesRegex(ValueError, "binding mismatch"):
+                # a non-frozen hash without stored prompt text cannot be replayed
+                with self.assertRaisesRegex(ValueError, "not replayable"):
                     replay_provider.call_api(context["prompt"], {}, context)
                 with patch.dict(os.environ, {"FLOWLORE_ATTEMPT": "2"}):
                     with self.assertRaisesRegex(ValueError, "missing or duplicated"):

@@ -50,12 +50,25 @@ def call_api(prompt, options, context):
         attempt_digest = attempt.get("model_digest")
         if attempt_digest is not None and attempt_digest != record["model"].get("digest"):
             raise ValueError("model digest mismatch")
+        expected_prompt = adapter.prompt_for(case)
+        frozen = attempt["prompt_sha256"] == adapter.sha(expected_prompt)[:16]
+        repair_pass = False
+        if not frozen:
+            # Policy B's reserved verification pass is sent a repair prompt built from the
+            # candidate, so it is not the frozen prompt. It is replayable only when the record
+            # carries the exact text and that text still hashes to the recorded value; a
+            # hash-only record from an older run stays explicitly not replayable.
+            stored = attempt.get("prompt")
+            if not isinstance(stored, str) or not stored:
+                raise ValueError("attempt prompt is not replayable: no stored prompt text")
+            if adapter.sha(stored)[:16] != attempt["prompt_sha256"]:
+                raise ValueError("stored prompt hash mismatch")
+            repair_pass = True
         if (run["case_id"] != case["id"] or run["model"] != record["model"]["name"]
-                or run["input_sha256"] != adapter.sha(adapter.input_text(case))
-                or attempt["prompt_sha256"] != adapter.sha(adapter.prompt_for(case))[:16]):
+                or run["input_sha256"] != adapter.sha(adapter.input_text(case))):
             raise ValueError("attempt input, model, or prompt binding mismatch")
         return {"output": reply, "metadata": {"flowlore_replay": {
             "policy": policy, "attempt": int(raw_attempt), "model": run["model"],
-            "model_digest": attempt_digest}}}
+            "model_digest": attempt_digest, "repair_pass": repair_pass}}}
     except (KeyError, TypeError, ValueError, OSError) as exc:
         raise ValueError("FLOWLORE_REPLAY_ERROR: " + str(exc)) from exc
