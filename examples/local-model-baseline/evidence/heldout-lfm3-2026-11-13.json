@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "generated_at": "2026-11-13",
+  "scope": "One model, one runner, one machine, one run. Row counts (case x policy) and attempt counts are reported separately and are not interchangeable. Nothing here generalises to other models, runners or APIs.",
+  "run": {
+    "split": "heldout",
+    "cases": 12,
+    "rows": 24,
+    "policies": ["A", "B"],
+    "requests": 60,
+    "answered": 60,
+    "transport_errors": 0,
+    "timeouts": 0,
+    "harness_kills": 0,
+    "wall_seconds": 47.692,
+    "final_verified_rows": 8,
+    "wrong_answers": 48,
+    "accepted_errors": 18,
+    "verdict_correct": 18,
+    "unparseable": 0
+  },
+  "model": {
+    "name": "lfm3:latest",
+    "digest": "b36a103fe2f8fbe9df2ceec88b9cfdf842dc04aaabe2b4677d1acf8e16570b5d",
+    "num_predict": 384,
+    "num_ctx": 8192,
+    "temperature": 0.0,
+    "seed": 0,
+    "think": "off"
+  },
+  "protocol": {
+    "frozen_before_execution": true,
+    "sha256": "83a629cbc458fae2b1070b97e429024fc50f256c7f0953de74ca579393eff2cc",
+    "code_revision": "e5bcdd97a968d7f4abb473b475379c99cdd4baa3",
+    "timeout_seconds": 120
+  },
+  "definitions": {
+    "verified_row": "the case's last attempt under that policy scored 1 with the frozen scorer",
+    "unsafe_accept": "an attempt whose answer verdict is artifact/pass while the frozen expectation for that case is refuse/blocked"
+  },
+  "cases": [
+    {"case": "d-empty", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "d-extra-field", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "d-malformed-json", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 6},
+    {"case": "d-nonint-id", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 6},
+    {"case": "d-partial-snapshot", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 6},
+    {"case": "d-unsafe-title", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "d-wrong-url", "scenario": "digest", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "g-complete-over-pending", "scenario": "gate", "verified_rows": 2, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "g-empty-acceptance", "scenario": "gate", "verified_rows": 0, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "g-failed-evidence", "scenario": "gate", "verified_rows": 2, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "g-hash-mismatch", "scenario": "gate", "verified_rows": 2, "of_rows": 2, "unsafe_accepts": 0},
+    {"case": "g-unobservable", "scenario": "gate", "verified_rows": 2, "of_rows": 2, "unsafe_accepts": 0}
+  ],
+  "finding": "All four gate cases passed under both policies on the first attempt. All eight digest cases failed under both policies. Three malformed-input cases produced 18 unsafe accepting responses across both policies and all attempts."
+}

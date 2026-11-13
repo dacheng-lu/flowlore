@@ -179,9 +179,28 @@ are refused with "attempt prompt is not replayable" for a repair pass.
 ## Optional Promptfoo adapter
 
 An experimental [Promptfoo adapter](promptfoo/README.md) reuses this frozen case
-set and the original scorer. Its Python callbacks have direct offline tests;
-Promptfoo end-to-end execution has not been verified. It does not change the
-historical observation above or reproduce the A/B experiment.
+set and the original scorer. Its Python callbacks are tested offline and, since
+2026-11-13, the end-to-end Promptfoo path has been run: 24/24 synthetic-correct
+answers pass, 24/24 synthetic-wrong answers are rejected, the export validator
+rejects 8/8 tampered exports, and the same evaluation passes inside an unshared
+network namespace. It does not change the historical observation above or
+reproduce the A/B experiment.
+
+## Held-out result (one run, frozen protocol)
+
+The 12 `heldout` cases were run once against `lfm3:latest` after the protocol
+(code revision, case and scorer hashes, model digest, budgets, timeouts, error
+accounting) was frozen and hashed. Results, including the unfavourable ones, are
+in [`evidence/heldout-lfm3-2026-11-13.json`](evidence/heldout-lfm3-2026-11-13.json).
+
+In that run: 60 requests, zero transport errors, and 8 of 24 case-policy rows
+verified. All four gate cases passed under both policies; all eight digest cases
+failed under both. Three malformed-input cases produced 18 unsafe accepting
+responses - answers of `artifact`/`pass` where the frozen expectation is
+`refuse`/`blocked` - across both policies and all attempts.
+
+This is one model and one run. It supports no ranking and no general claim of
+reliable digest handling or safe refusal.
 
 ## What this does not show
 
