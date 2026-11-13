@@ -18,7 +18,7 @@ def call_api(prompt, options, context):
             raise ValueError("set policy A/B and a positive attempt index")
         record = json.loads(Path(path).read_text(encoding="utf-8"))
         case = adapter.integrity()[context["vars"]["case_id"]]
-        if prompt != adapter.prompt_for(case):
+        if not adapter.prompt_matches(prompt, adapter.prompt_for(case)):
             raise ValueError("delivered prompt differs from the frozen prompt")
         scenario_set = record["scenario_set"]
         for name, key in (("cases.json", "cases_json_sha256"), ("scenarios.py", "scenarios_sha256")):
@@ -52,7 +52,7 @@ def call_api(prompt, options, context):
             raise ValueError("model digest mismatch")
         if (run["case_id"] != case["id"] or run["model"] != record["model"]["name"]
                 or run["input_sha256"] != adapter.sha(adapter.input_text(case))
-                or attempt["prompt_sha256"] != adapter.sha(prompt)[:16]):
+                or attempt["prompt_sha256"] != adapter.sha(adapter.prompt_for(case))[:16]):
             raise ValueError("attempt input, model, or prompt binding mismatch")
         return {"output": reply, "metadata": {"flowlore_replay": {
             "policy": policy, "attempt": int(raw_attempt), "model": run["model"],

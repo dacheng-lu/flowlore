@@ -43,6 +43,21 @@ def prompt_for(case):
             else scenarios.gate_prompt(data))
 
 
+def prompt_matches(observed, expected):
+    """True when observed is the frozen prompt, or that prompt minus one trailing newline.
+
+    promptfoo 0.125.1 renders a bare ``{{var}}`` template through nunjucks, which
+    strips exactly one trailing newline from the rendered value. That single
+    documented transport transformation is tolerated; any other difference (a
+    second newline, a changed character, a different prompt) is a binding failure.
+    """
+    if not isinstance(observed, str):
+        return False
+    if observed == expected:
+        return True
+    return expected.endswith("\n") and observed == expected[:-1]
+
+
 def requested_revision():
     revision = os.environ.get("FLOWLORE_LONGHAUL_REV", LONGHAUL_REV)
     if not re.fullmatch(r"[0-9a-f]{40}", revision):
@@ -191,7 +206,8 @@ def get_assert(output, context):
             raise AdapterError("unknown case id")
         case = cases[cid]
         expected = prompt_for(case)
-        if (variables.get("case_prompt") != expected or context.get("prompt") != expected
+        if (not prompt_matches(variables.get("case_prompt"), expected)
+                or not prompt_matches(context.get("prompt"), expected)
                 or variables.get("input_sha256") != sha(input_text(case))
                 or variables.get("longhaul_rev") != requested_revision()
                 or variables.get("runtime_binding") != runtime_binding()):

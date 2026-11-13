@@ -52,6 +52,28 @@ class AdapterTests(unittest.TestCase):
         with patch.object(adapter, "probe", side_effect=adapter.AdapterError("checker crashed")):
             self.assertTrue(adapter.get_assert('{"refuse":"x"}', context)["reason"].startswith(adapter.ERROR))
 
+    def test_promptfoo_trailing_newline_transport(self):
+        # promptfoo 0.125.1 strips exactly one trailing newline when it renders a
+        # bare {{var}} template; that single transformation must pass the binding,
+        # anything else must not.
+        case = self.cases["d-valid-3"]
+        row = next(r for r in self.rows if r["vars"]["case_id"] == case["id"])
+        context = self.context(row)
+        expected = adapter.prompt_for(case)
+        self.assertTrue(expected.endswith("\n"))
+        self.assertTrue(adapter.prompt_matches(expected, expected))
+        self.assertTrue(adapter.prompt_matches(expected[:-1], expected))
+        self.assertFalse(adapter.prompt_matches(expected[:-2], expected))
+        self.assertFalse(adapter.prompt_matches(expected + "\n", expected))
+        self.assertFalse(adapter.prompt_matches(expected.replace("a", "b", 1), expected))
+        self.assertFalse(adapter.prompt_matches(None, expected))
+        trimmed = dict(context, prompt=expected[:-1])
+        reply = synthetic_provider.call_api(trimmed["prompt"], {}, trimmed)["output"]
+        self.assertTrue(adapter.get_assert(reply, trimmed)["pass"])
+        # a prompt that differs by more than the documented trim is a harness error
+        changed = dict(context, prompt=expected[:-1] + " ")
+        self.assertTrue(adapter.get_assert(reply, changed)["reason"].startswith(adapter.ERROR))
+
     def test_checker_crashes_not_refusals(self):
         class P:
             returncode, stdout, stderr = 1, "", "Traceback: crash"
@@ -135,6 +157,8 @@ class AdapterTests(unittest.TestCase):
         record = {"evalId": "synthetic-test", "metadata": {"promptfooVersion": "0.125.1"}, "results": {"results": rows}}
         self.assertEqual(validate_results.validate(record, "all"), (24, 24, "synthetic"))
         # Promptfoo also sets row.error for ordinary failed assertions.
+        # An empty answer is a provider/transport fault, not a model judgement:
+        # it must invalidate the whole evaluation instead of scoring 23/24.
         wrong_row = rows[0]
         wrong_context = self.context(self.rows[0])
         wrong = adapter.get_assert("", wrong_context)
@@ -142,7 +166,8 @@ class AdapterTests(unittest.TestCase):
         wrong_row.update(failureReason=1, success=False, score=0, error=wrong["reason"])
         wrong_row["gradingResult"] = {"pass": False, "score": 0, "reason": wrong["reason"],
             "componentResults": [dict(wrong, assertion={"type": "python", "value": "file://adapter.py:get_assert"})]}
-        self.assertEqual(validate_results.validate(record, "all"), (23, 24, "synthetic"))
+        with self.assertRaisesRegex(ValueError, "empty answer"):
+            validate_results.validate(record, "all")
         good_output = synthetic_provider.call_api(wrong_context["prompt"], {}, wrong_context)["output"]
         good = adapter.get_assert(good_output, wrong_context)
         wrong_row["response"]["output"] = good_output

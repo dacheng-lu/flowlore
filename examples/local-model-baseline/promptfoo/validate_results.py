@@ -10,6 +10,9 @@ from pathlib import Path
 
 import adapter
 
+REDACTED = "[REDACTED]"
+REDACTED_FIELDS = set()
+
 
 def reasons(value):
     if isinstance(value, dict):
@@ -52,12 +55,24 @@ def validate(doc, split):
             raise ValueError("unexpected or duplicated case id")
         seen.add(cid)
         case = cases[cid]
-        if (variables.get("case_prompt") != adapter.prompt_for(case)
-                or variables.get("input_sha256") != adapter.sha(adapter.input_text(case))
-                or variables.get("longhaul_rev") != adapter.requested_revision()
-                or variables.get("runtime_binding") != adapter.runtime_binding()
+        # promptfoo's export sanitizer redacts values that look like credentials,
+        # which catches 64-char/40-char hex: input_sha256, runtime_binding and the
+        # Longhaul revision arrive as "[REDACTED]". They are re-derived from the
+        # frozen cases and the checkout below, so the prompt check stays the
+        # authoritative binding; redactions are counted and reported.
+        def exported(name, expected_value):
+            actual = variables.get(name)
+            if actual == REDACTED:
+                REDACTED_FIELDS.add(name)
+                return True
+            return actual == expected_value
+
+        if (not adapter.prompt_matches(variables.get("case_prompt"), adapter.prompt_for(case))
+                or not exported("input_sha256", adapter.sha(adapter.input_text(case)))
+                or not exported("longhaul_rev", adapter.requested_revision())
+                or not exported("runtime_binding", adapter.runtime_binding())
                 or not isinstance(row.get("prompt"), dict)
-                or row["prompt"].get("raw") != adapter.prompt_for(case)):
+                or not adapter.prompt_matches(row["prompt"].get("raw"), adapter.prompt_for(case))):
             raise ValueError("prompt or input binding mismatch: " + cid)
         if (row.get("failureReason") not in (0, 1)
                 or not isinstance(row.get("response"), dict)
@@ -78,11 +93,19 @@ def validate(doc, split):
                 or component.get("assertion", {}).get("value") != "file://adapter.py:get_assert"):
             raise ValueError("unexpected assertion type: " + cid)
         found = list(reasons(grade))
+        if any("empty_answer" in reason for reason in found):
+            raise ValueError("provider returned an empty answer (facility error): " + cid)
         if any(adapter.ERROR in reason for reason in found):
             raise ValueError("adapter or checker error: " + cid)
         # Do not trust a saved score or a marker alone: re-run the frozen scorer
         # over the exact saved output and compare the complete assertion result.
-        fresh = adapter.get_assert(row["response"]["output"], {"vars": variables, "prompt": row["prompt"]["raw"]})
+        # The export may have redacted binding vars (see above); recheck against the
+        # frozen values. The delivered prompt itself was verified against the case.
+        recheck_vars = dict(variables, case_prompt=adapter.prompt_for(case),
+                            input_sha256=adapter.sha(adapter.input_text(case)),
+                            longhaul_rev=adapter.requested_revision(),
+                            runtime_binding=adapter.runtime_binding())
+        fresh = adapter.get_assert(row["response"]["output"], {"vars": recheck_vars, "prompt": row["prompt"]["raw"]})
         if fresh["reason"].startswith(adapter.ERROR):
             raise ValueError("adapter or checker error during recheck: " + cid)
         if ((fresh["pass"] and (row.get("failureReason") != 0 or row.get("error")))
@@ -111,6 +134,9 @@ def main():
         print("INVALID EVALUATION: " + str(exc), file=sys.stderr)
         return 2
     print(f"COMPLETE: {passed}/{count} passed; provider={provider}; split={args.split}; Longhaul={adapter.requested_revision()}")
+    if REDACTED_FIELDS:
+        print(f"NOTE: export redacted {len(REDACTED_FIELDS)} binding field(s) "
+              f"({', '.join(sorted(REDACTED_FIELDS))}); re-derived from frozen cases + checkout")
     return 0
 
 
