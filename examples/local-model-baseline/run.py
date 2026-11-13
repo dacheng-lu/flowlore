@@ -191,10 +191,14 @@ def summarize(rows, cases):
             "requests": requests,
             "timeouts": sum(a["transport"] == "timeout" for a in attempts),
             "harness_kills": sum(a["transport"] == "killed_by_harness" for a in attempts),
+            # A request that never produced an answer (transport error, timeout, harness kill)
+            # is not a wrong answer: counting it would turn a dead endpoint into a model score.
+            "transport_errors": sum(a["transport"] == "transport_error" for a in attempts),
+            "answered": sum(a["transport"] == "ok" for a in attempts),
             "accepted_errors": sum(1 for a in attempts if a["got"] and a["expected"] and
                                    (a["got"].get("verdict") in ("artifact", "pass")) and
                                    a["expected"].get("verdict") in ("refuse", "blocked")),
-            "wrong_answers": sum(a["score"] == 0 for a in attempts),
+            "wrong_answers": sum(a["transport"] == "ok" and a["score"] == 0 for a in attempts),
             "verdict_correct": sum(a.get("verdict_correct") is True for a in attempts),
             "unparseable": sum((a.get("failure") or "") == "unparseable" for a in attempts),
             "eval_tokens_known": sum(t["eval"] for t in known),
