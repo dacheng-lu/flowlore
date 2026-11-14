@@ -12,7 +12,8 @@ What is checked
 ---------------
 1. **Links.** Every `http(s)` URL in the Markdown and JSON files answers (2xx/3xx). A host
    that blocks bots is allowlisted by prefix, and a URL that is deliberately unresolvable
-   (sample data, a JSON Schema `$id`) is allowlisted by exact value with a reason.
+   (sample data, a JSON Schema `$id`, a loopback preview a reader must start themselves) is
+   allowlisted by exact value with a reason.
 2. **Versions.** In `docs/n8n/OPERATIONS.md` every observation marked ``*field*`` names a
    version. In `docs/n8n/VERSION-MATRIX.md` every claim row has an evidence kind
    (`spec` / `docs` / `field`) and a range that names a version or says `all`.
@@ -56,6 +57,10 @@ PLACEHOLDERS = {
         "sample data of examples/release-digest, never meant to resolve",
     "https://github.com/grad5-gmbh/video-ueberwachung":
         "recipes/sensor-reliability.md records that it returned 404 to the reviewer",
+    "http://127.0.0.1:8901/":
+        "local preview a reader serves from their own snapshot; never resolves from CI",
+    "http://127.0.0.1:8901/#digest-demo":
+        "local preview route of the browser-acceptance recipe; never resolves from CI",
 }
 
 # A host that answers a bot with 403/405/429/501 still serves the page to a reader.
