@@ -3,7 +3,9 @@
 **Status:** draft. This recipe describes a bounded code change against a real site and a
 browser check against its local preview. On 2026-11-14 the *check* half was run against an
 existing public page in a real browser; **no source change has yet been made and accepted**
-through this recipe, so it does not leave `draft`.
+through this recipe. That keeps it `draft`: the label `field-tested` claims the workflow ran on
+a real instance, and this workflow did not run end to end — only its last two steps did. The
+dated summary below says exactly what did and did not execute.
 
 **Input:** a source-controlled website, a local start command, one user-visible task with
 observable acceptance criteria, and permission to inspect the target page.
