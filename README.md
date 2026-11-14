@@ -23,7 +23,7 @@
 
 [Three-project example / 三项目示例 / Drei-Projekte-Beispiel](examples/release-digest/README.md) · [Agent guide / 智能体指南 / Agent-Leitfaden](AGENT-GUIDE.md) · [Sources / 来源目录 / Quellen](docs/SOURCES.md) · [Recipes / 配方 / Rezepte](recipes/README.md) · [Design workflows / 设计工作流 / Design-Workflows](recipes/design-workflows.md) · [n8n operations / n8n 运维 / n8n-Betrieb](docs/n8n/OPERATIONS.md) · [Catalog / 机器可读目录 / Katalog](docs/CATALOG.md) · [Goal / 项目目标 / Ziel](GOAL.md)
 
-Catalog version: **0.6 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
+Catalog version: **0.7 · draft / 草稿 / Entwurf** · Licensing: **not yet specified / 尚未指定 / noch nicht festgelegt**
 
 [Roadmap / 路线图 / Entwicklungsplan](ROADMAP.md) — the next three steps, what is blocked and what is deliberately not planned; proposed work, not shipped features.
 
@@ -36,9 +36,9 @@ FlowLore is a knowledge catalog for automation platforms, agent skills, web work
 
 ### Status
 
-**v0.6 is a catalog draft.** Documented are five automation sources, two primary references, eight web/HTML-related skills, five strategic-thinking references, RuView, twenty recipes, four operating documents, one 30-lesson learning path, a machine-readable catalog and the project goal. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled. One external pinned runner was tested for the snapshot replay. Reference links do not establish compatibility, endorsement or a working integration.
+**v0.7 is a catalog draft.** Documented are five automation sources, two primary references, eight web/HTML-related skills, five strategic-thinking references, RuView, twenty-one recipes, four operating documents, one 30-lesson learning path, a machine-readable catalog and the project goal. No workflow engine, MCP server, third-party skill, browser integration or autonomous execution is bundled. One external pinned runner was tested for the snapshot replay. Reference links do not establish compatibility, endorsement or a working integration.
 
-**At a glance:** 5 automation sources · 8 web/HTML skill references · 5 strategy references · RuView · 20 recipes · 1 learning path (30 lessons) · **1 verified recipe**. [Browse the catalog](docs/CATALOG.md).
+**At a glance:** 5 automation sources · 8 web/HTML skill references · 5 strategy references · RuView · 21 recipes · 1 learning path (30 lessons) · **1 verified recipe**. [Browse the catalog](docs/CATALOG.md).
 
 Recipe labels distinguish `draft`, `field-tested` and `verified`; field-tested does not mean verified. See the [status definitions](recipes/README.md#status). No workflow engine is bundled.
 
@@ -66,7 +66,7 @@ Recipe labels distinguish `draft`, `field-tested` and `verified`; field-tested d
 | [n8n operations](docs/n8n/OPERATIONS.md) | API surface, publishing model, safe changes, execution diagnosis, data tables, AI and MCP nodes | Field notes; every claim version-stamped |
 | [Failure modes](docs/n8n/FAILURE-MODES.md) | Symptom → cause → fix across triggers, data flow, validation, executions, credentials and AI nodes | Field notes |
 | [Version matrix](docs/n8n/VERSION-MATRIX.md) | Which statement holds on which n8n version, plus an upgrade checklist | Reviewed 2026-11-03 |
-| [Recipes](recipes/README.md) | Twenty recipes: fifteen drafts, four field-tested and one verified for a pinned snapshot | One bounded snapshot replay verified |
+| [Recipes](recipes/README.md) | Twenty-one recipes: sixteen drafts, four field-tested and one verified for a pinned snapshot | One bounded snapshot replay verified |
 | [Learning path](docs/learning-paths/ihk-ki-automatisierung.md) | A 30-lesson German AI-automation course mapped to competences, checkpoints and gaps | Syllabus verified against certificates |
 | [Catalog](docs/CATALOG.md) | Machine-readable catalog, JSON Schema, validator and its tests | Validated by script |
 | [Project goal](GOAL.md) | Scope, quality principles and next milestones | Planned work |
@@ -104,9 +104,9 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 
 ### 当前状态
 
-**v0.6 为目录草稿。** 已收录五个自动化来源、两个一手参考资料、八个网页／HTML 相关技能、五份战略思考参考、RuView、二十个配方、四份运维文档、一条三十课学习路径、一份机器可读目录和项目目标。尚未内置执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力；固定快照回放测试使用了外部指定版本的运行器。收录链接不代表已集成、兼容或获得上游背书。
+**v0.7 为目录草稿。** 已收录五个自动化来源、两个一手参考资料、八个网页／HTML 相关技能、五份战略思考参考、RuView、二十一个配方、四份运维文档、一条三十课学习路径、一份机器可读目录和项目目标。尚未内置执行引擎、MCP 服务、第三方技能、浏览器集成或自主执行能力；固定快照回放测试使用了外部指定版本的运行器。收录链接不代表已集成、兼容或获得上游背书。
 
-**一览：** 5 个自动化来源 · 8 个网页／HTML 技能参考 · 5 份战略思考参考 · RuView · 20 个配方 · 1 条 30 课学习路径 · **1 个已验证配方**。[浏览目录](docs/CATALOG.md)。
+**一览：** 5 个自动化来源 · 8 个网页／HTML 技能参考 · 5 份战略思考参考 · RuView · 21 个配方 · 1 条 30 课学习路径 · **1 个已验证配方**。[浏览目录](docs/CATALOG.md)。
 
 配方以 `draft`（草稿）、`field-tested`（实战记录）和 `verified`（已验证）区分状态；实战记录不等于已验证。参见[状态定义](recipes/README.md#status)。项目没有内置工作流引擎。
 
@@ -134,7 +134,7 @@ FlowLore 是面向人与智能体的自动化知识目录，汇集自动化平�
 | [n8n 运维](docs/n8n/OPERATIONS.md) | API 面、发布模型、安全变更、执行排查、数据表、AI 与 MCP 节点 | 实战笔记；逐条标注版本 |
 | [故障速查](docs/n8n/FAILURE-MODES.md) | 触发器、数据流、校验、执行、凭据与 AI 节点的症状 → 原因 → 处置 | 实战笔记 |
 | [版本矩阵](docs/n8n/VERSION-MATRIX.md) | 哪条结论适用于哪个 n8n 版本，附升级检查表 | 2026-11-03 复核 |
-| [配方](recipes/README.md) | 二十个配方：十五个草案、四个实战记录、一个固定快照已验证 | 已验证一个固定快照回放 |
+| [配方](recipes/README.md) | 二十一个配方：十六个草案、四个实战记录、一个固定快照已验证 | 已验证一个固定快照回放 |
 | [学习路径](docs/learning-paths/ihk-ki-automatisierung.md) | 三十课德语 AI 自动化课程，映射到能力、检验点与缺口 | 大纲已对照证书 |
 | [目录规范](docs/CATALOG.md) | 机器可读目录、JSON Schema、校验器及其测试 | 由脚本校验 |
 | [项目目标](GOAL.md) | 范围、质量原则与后续里程碑 | 后续计划 |
@@ -172,9 +172,9 @@ FlowLore ist ein Wissenskatalog für Automatisierungsplattformen, Agent Skills, 
 
 ### Aktueller Stand
 
-**Version 0.6 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, zwei Primärquellen, acht Web-/HTML-bezogene Skills, fünf Strategie-Referenzen, RuView, zwanzig Rezepte, vier Betriebsdokumente, ein Lernpfad über 30 Lektionen, ein maschinenlesbarer Katalog und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung werden nicht mitgeliefert; für den Snapshot wurde ein externer Runner in fester Version getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
+**Version 0.7 ist ein Katalogentwurf.** Dokumentiert sind fünf Automatisierungsquellen, zwei Primärquellen, acht Web-/HTML-bezogene Skills, fünf Strategie-Referenzen, RuView, einundzwanzig Rezepte, vier Betriebsdokumente, ein Lernpfad über 30 Lektionen, ein maschinenlesbarer Katalog und das Projektziel. Eine Workflow-Engine, ein MCP-Server, fremde Skills, Browser-Integrationen oder autonome Ausführung werden nicht mitgeliefert; für den Snapshot wurde ein externer Runner in fester Version getestet. Ein Quellenlink belegt keine Kompatibilität, Empfehlung durch den Anbieter oder funktionierende Integration.
 
-**Auf einen Blick:** 5 Automatisierungsquellen · 8 Web/HTML-Skill-Referenzen · 5 Strategie-Referenzen · RuView · 20 Rezepte · 1 Lernpfad mit 30 Lektionen · **1 verifiziertes Rezept**. [Katalog ansehen](docs/CATALOG.md).
+**Auf einen Blick:** 5 Automatisierungsquellen · 8 Web/HTML-Skill-Referenzen · 5 Strategie-Referenzen · RuView · 21 Rezepte · 1 Lernpfad mit 30 Lektionen · **1 verifiziertes Rezept**. [Katalog ansehen](docs/CATALOG.md).
 
 Die Kennzeichnungen `draft`, `field-tested` und `verified` unterscheiden den Reifegrad; Praxiserfahrung ist keine Verifizierung. Siehe [Statusdefinitionen](recipes/README.md#status). Eine Workflow-Engine ist nicht enthalten.
 
@@ -202,7 +202,7 @@ Die Kennzeichnungen `draft`, `field-tested` und `verified` unterscheiden den Rei
 | [n8n-Betrieb](docs/n8n/OPERATIONS.md) | API-Oberfläche, Veröffentlichungsmodell, sichere Änderungen, Ausführungsdiagnose, Data Tables, AI- und MCP-Knoten | Feldnotizen; jede Aussage versioniert |
 | [Fehlerbilder](docs/n8n/FAILURE-MODES.md) | Symptom → Ursache → Abhilfe bei Triggern, Datenfluss, Validierung, Ausführungen, Credentials und AI-Knoten | Feldnotizen |
 | [Versionsmatrix](docs/n8n/VERSION-MATRIX.md) | Welche Aussage auf welcher n8n-Version gilt, plus Upgrade-Checkliste | Geprüft 2026-11-03 |
-| [Rezepte](recipes/README.md) | Zwanzig Rezepte: fünfzehn Entwürfe, vier feldgetestet und ein verifizierter Snapshot | Ein begrenzter Snapshot verifiziert |
+| [Rezepte](recipes/README.md) | Einundzwanzig Rezepte: sechzehn Entwürfe, vier feldgetestet und ein verifizierter Snapshot | Ein begrenzter Snapshot verifiziert |
 | [Lernpfad](docs/learning-paths/ihk-ki-automatisierung.md) | 30-teiliger deutscher KI-Automatisierungskurs, auf Kompetenzen, Prüfsteine und Lücken abgebildet | Lehrplan gegen Zertifikate geprüft |
 | [Katalog](docs/CATALOG.md) | Maschinenlesbarer Katalog, JSON-Schema, Validator und Tests | Durch Skript validiert |
 | [Projektziel](GOAL.md) | Umfang, Qualitätsprinzipien und nächste Meilensteine | Geplante Arbeit |
