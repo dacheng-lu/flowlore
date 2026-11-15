@@ -1,6 +1,6 @@
 {
-  "catalogVersion": "0.6",
-  "reviewed": "2026-11-09",
+  "catalogVersion": "0.7",
+  "reviewed": "2026-11-14",
   "entries": [
     {
       "id": "zoom-out-labs",
@@ -387,6 +387,18 @@
       "sources": ["frontend-design", "webapp-testing"],
       "tags": ["reporting", "html", "design"],
       "platforms": ["browser"]
+    },
+    {
+      "id": "real-web-improvement-browser-acceptance",
+      "type": "recipe",
+      "title": "Real-page improvement and browser acceptance",
+      "summary": "Make a focused source change to a real website and record scoped browser acceptance evidence without claiming deployment or unsupported checks.",
+      "status": "draft",
+      "path": "recipes/real-web-improvement-browser-acceptance.md",
+      "sources": ["webapp-testing", "agent-browser", "web-design-guidelines"],
+      "tags": ["browser", "web", "acceptance", "accessibility"],
+      "input": "Website source, local preview command and one user task with observable acceptance criteria",
+      "output": "Focused diff, local preview and browser acceptance record with scope and evidence"
     },
     {
       "id": "workflow-authoring-assistant",
