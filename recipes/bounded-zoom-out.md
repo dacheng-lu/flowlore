@@ -7,6 +7,43 @@ established. This is an original recipe, not five imported or installed skills.
 **Output:** a short opportunity brief and one selected falsifiable experiment, or
 an explicit blocker with independent preparation completed.
 
+## Decide whether to explore or execute
+
+Use this draft when a process is repeated, a measured bottleneck or unnecessary
+steps have been identified, or an architectural choice needs exploration. A
+small local fix normally needs no zoom-out. If an existing recipe fits the goal,
+input, evidence scope, permissions and acceptance criteria, a person or agent may
+prepare its known stages for authorized execution without repeating a full
+exploration. Check side effects and recovery first. An absent, incompatible or
+out-of-scope recipe, unclear goal, or unknown failure calls for further
+exploration. These are decisions for the operator: no automatic routing or
+handoff between the projects is implemented by this recipe.
+
+Before choosing a shorter path, write down:
+
+- The requested task and intended outcome, with observable acceptance criteria.
+- The steps proposed for removal or consolidation and the evidence that their
+  outputs, dependencies and failure handling are covered elsewhere. Uncertainty
+  is a reason to test, not proof that a step is unnecessary.
+- One primary metric, such as elapsed time, calls, manual actions or cost. An
+  ideal lower bound is an estimate unless calculated from stated assumptions;
+  distinguish it from the path feasible under current constraints.
+- The accepted limitation and the condition that triggers another review. Where
+  Longhaul is used, reuse its existing `shortcuts` record rather than inventing
+  another ledger.
+
+Keep user requirements, authorization, data integrity, acceptance checks and
+necessary recovery controls. Compare alternatives against the same inputs and
+acceptance criteria, including the cost of investigation and any rework. Start
+with a small reversible experiment where possible; record measured results and
+unknowns separately from predictions.
+
+For example, if a documented, applicable recipe already produces the required
+artifact, proposing another full planning pass is a candidate for removal. First
+confirm its input and version match, checks cover the same outcome and execution
+is authorized. If those conditions fail, explore the gap instead. This is a design
+example, not a measured speedup or evidence of a cross-project integration.
+
 ## Procedure
 
 1. In Longhaul, preserve the request and identify task → beneficiary outcome →
