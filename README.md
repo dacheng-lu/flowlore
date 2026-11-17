@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="FlowLore · 流谱 logo: a river-filled book, an f and an infinity loop within a gold compass" width="640">
+  <img src="assets/logo-banner.svg" alt="FlowLore · 流谱 logo: a river-filled book, an f and an infinity loop within a gold compass" width="640">
 </p>
 
 # 流谱 · FlowLore
