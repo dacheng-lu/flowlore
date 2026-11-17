@@ -33,6 +33,7 @@ from __future__ import annotations
 import re
 import ssl
 import sys
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -71,6 +72,7 @@ BOT_WALLS = {
 
 ACCEPTED_BOT_WALL_CODES = {403, 405, 429, 501}
 TIMEOUT = 20
+TRANSIENT_ATTEMPTS = 3
 USER_AGENT = "flowlore-link-check/1.0 (+https://github.com/dacheng-lu/flowlore)"
 
 
@@ -134,7 +136,12 @@ def check_links(root: Path = REPO_ROOT, fetch=fetch_status) -> list[str]:
                 continue
             status = seen.get(url)
             if status is None:
-                status = seen[url] = fetch(url)
+                for attempt in range(TRANSIENT_ATTEMPTS):
+                    status = fetch(url)
+                    if status != 503 or attempt == TRANSIENT_ATTEMPTS - 1:
+                        break
+                    time.sleep(1)
+                seen[url] = status
             ok = isinstance(status, int) and 200 <= status < 400
             tolerated = (isinstance(status, int) and status in ACCEPTED_BOT_WALL_CODES
                          and _bot_wall(url) is not None)
