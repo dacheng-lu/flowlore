@@ -25,6 +25,7 @@ import sys
 import tempfile
 import threading
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -78,6 +79,18 @@ class CheckLinks(unittest.TestCase):
     def test_a_link_that_answers_passes(self) -> None:
         self.write("doc.md", "see [ok](%s/ok.md)\n" % self.server.base)
         self.assertEqual(check.check_links(self.root), [])
+
+    def test_transient_503_retries_but_persistent_503_fails(self) -> None:
+        self.write("doc.md", "[source](https://example.invalid/page)\n")
+        statuses = iter((503, 200))
+        with patch.object(check.time, "sleep") as delay:
+            self.assertEqual(check.check_links(self.root, fetch=lambda url: next(statuses)), [])
+            delay.assert_called_once_with(1)
+        with patch.object(check.time, "sleep") as delay:
+            problems = check.check_links(self.root, fetch=lambda url: 503)
+            self.assertEqual(delay.call_count, 2)
+            self.assertEqual(len(problems), 1)
+            self.assertIn("-> 503", problems[0])
 
     def test_a_broken_link_fails_and_names_the_file_the_line_and_the_url(self) -> None:
         """The acceptance case from ROADMAP.md P0 item 3."""
