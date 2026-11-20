@@ -1,0 +1,76 @@
+{
+  "baseline": {
+    "all_fail": {
+      "calls": 4,
+      "complete": false,
+      "remaining": 2,
+      "spent": 8,
+      "unverified_output": false
+    },
+    "completed": 14,
+    "total_spent": 102,
+    "traces": 16,
+    "unverified_outputs": 1
+  },
+  "correlated_failure": {
+    "baseline": [
+      {
+        "calls": 4,
+        "complete": false,
+        "remaining": 2,
+        "spent": 8,
+        "unverified_output": false
+      },
+      {
+        "calls": 4,
+        "complete": false,
+        "remaining": 2,
+        "spent": 8,
+        "unverified_output": false
+      },
+      {
+        "calls": 4,
+        "complete": false,
+        "remaining": 2,
+        "spent": 8,
+        "unverified_output": false
+      }
+    ],
+    "reserve": [
+      {
+        "calls": 3,
+        "complete": false,
+        "remaining": 4,
+        "spent": 6,
+        "unverified_output": false
+      },
+      {
+        "calls": 3,
+        "complete": false,
+        "remaining": 4,
+        "spent": 6,
+        "unverified_output": false
+      },
+      {
+        "calls": 3,
+        "complete": false,
+        "remaining": 4,
+        "spent": 6,
+        "unverified_output": false
+      }
+    ]
+  },
+  "reserve": {
+    "all_fail": {
+      "calls": 3,
+      "complete": false,
+      "remaining": 4,
+      "spent": 6,
+      "unverified_output": false
+    },
+    "completed": 14,
+    "total_spent": 98,
+    "traces": 16,
+    "unverified_outputs": 0
+  }
+}

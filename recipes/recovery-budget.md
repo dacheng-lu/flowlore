@@ -1,7 +1,11 @@
 # Recovery budget experiment
 
-Status: **draft**. Synthetic paired evidence is available in Makeextreme; no
-real-model gain or universal allocation fraction has been established.
+Status: **verified for this pinned offline sample only** (2026-11-20). The synthetic
+example reproduces exactly in an isolated container with no network: `baseline` completes
+14 of 16 traces at cost 102 with 1 unverified output, `reserve` completes 14 of 16 at
+cost 98 with 0 unverified outputs; two consecutive runs hash identically. Evidence:
+`evidence/recipes/recovery-budget.json`. No real-model gain or universal allocation
+fraction has been established — the correlated-failure fixture is synthetic, not an estimate.
 
 Inputs: the same tasks, acceptance criteria, budgets, outcome traces and measured
 costs for both policies. Outputs: completion, spend, unverified-output counts,
