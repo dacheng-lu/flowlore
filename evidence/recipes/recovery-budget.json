@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "recipe": "recovery-budget",
+  "revision": "e295c3d0a40db123a4a446f3ab4cfc68d85ce237",
+  "components": {
+    "flowlore": "e295c3d0a40db123a4a446f3ab4cfc68d85ce237",
+    "longhaul": "3b021f410bc3784dba7eee39379e72e5a417f9a4",
+    "makeextreme": "47bf04e64c0949ce6e14e87ece742334cb921d78"
+  },
+  "command": "docker run --rm --network none -v .../makeextreme:/me:ro -w /me python:3.12-slim sh -c \"python3 examples/recovery_budget/compare.py\"",
+  "artifacts": [
+    {
+      "path": "examples/release-digest/evidence/recovery-budget/isolated-run-2026-11-20/versions.txt",
+      "sha256": "0f66330c121de28062f94b0f69f768f9e4b44e0783d9c91085ab282636c62eef"
+    },
+    {
+      "path": "examples/release-digest/evidence/recovery-budget/isolated-run-2026-11-20/network-check.txt",
+      "sha256": "103a5840192de4777cac0c9cdca5e6fd603a99646cb06b21f69934b10bb6c3bb"
+    },
+    {
+      "path": "examples/release-digest/evidence/recovery-budget/isolated-run-2026-11-20/result.json",
+      "sha256": "efdae52290adf8f57f6aa85488599bb559453c0b8c322941f1bcaff0a8d03e13"
+    },
+    {
+      "path": "examples/release-digest/evidence/recovery-budget/isolated-run-2026-11-20/result-repeat.json",
+      "sha256": "efdae52290adf8f57f6aa85488599bb559453c0b8c322941f1bcaff0a8d03e13"
+    },
+    {
+      "path": "examples/release-digest/evidence/recovery-budget/isolated-run-2026-11-20/sha256sums.txt",
+      "sha256": "7b2808a9be576008efcd8d5c647e38e440f0ab073f2eafea4872bf6b05ab75ca"
+    }
+  ]
+}

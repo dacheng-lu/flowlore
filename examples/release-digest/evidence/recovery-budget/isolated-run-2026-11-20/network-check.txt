@@ -1,0 +1,5 @@
+{
+  "1.1.1.1": "blocked: OSError",
+  "pypi.org": "blocked: gaierror",
+  "github.com": "blocked: gaierror"
+}
