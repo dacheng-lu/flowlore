@@ -1,0 +1,135 @@
+{
+ "compose": {
+  "n": 26,
+  "strict": 22,
+  "wall_median": 129,
+  "tokens_median": 775263
+ },
+ "mod_20261122_1718": {
+  "N1/C": {
+   "bugs": 6,
+   "fixed": 6,
+   "wall": 33
+  },
+  "N1/H1": {
+   "bugs": 6,
+   "fixed": 6,
+   "wall": 94
+  },
+  "N4/C": {
+   "bugs": 48,
+   "fixed": 44,
+   "wall": 42
+  },
+  "N4/H3": {
+   "bugs": 48,
+   "fixed": 48,
+   "wall": 197
+  },
+  "N8/C": {
+   "bugs": 48,
+   "fixed": 48,
+   "wall": 44
+  },
+  "N8/H3": {
+   "bugs": 48,
+   "fixed": 45,
+   "wall": 189
+  }
+ },
+ "mod_20261122_1747": {
+  "N4/C": {
+   "bugs": 48,
+   "fixed": 48,
+   "wall": 62
+  },
+  "N4/H3": {
+   "bugs": 48,
+   "fixed": 47,
+   "wall": 161
+  }
+ },
+ "mod_20261122_1929": {
+  "N16/C": {
+   "bugs": 64,
+   "fixed": 50,
+   "wall": 157
+  },
+  "N16/H8": {
+   "bugs": 16,
+   "fixed": 16,
+   "wall": 1301
+  }
+ },
+ "flask_n16": {
+  "N": 16,
+  "C": {
+   "bugs": 96,
+   "fixed": 82,
+   "wall_median": 215,
+   "strict": "5/6"
+  },
+  "H8": {
+   "bugs": 96,
+   "fixed": 91,
+   "wall_median": 1316,
+   "strict": "4/6",
+   "conflicts": 38
+  }
+ },
+ "vehicle": {
+  "task": "click n8, 8 bugs",
+  "N": {
+   "fixed": "32/32",
+   "wall_median": 241,
+   "tokens_median": 2280000
+  },
+  "P": {
+   "fixed": "32/32",
+   "wall_median": 275,
+   "tokens_median": 2160000
+  }
+ },
+ "pi_cluster_benefit": {
+  "task": "flask f32_00, 32 mutants, 46 broken tests",
+  "cap_s": 600,
+  "C_pi_alone": {
+   "fixed": "45/46",
+   "wall": 56,
+   "tokens": 608000
+  },
+  "A_hermes_alone": {
+   "fixed": "45/46",
+   "wall": 325,
+   "tokens": 3550000
+  },
+  "B_hermes_8pi": {
+   "fixed": "45/46",
+   "wall": 382,
+   "tokens": 4520000
+  }
+ },
+ "audit_haiku": {
+  "model": "claude-haiku-5-5",
+  "genuine": 20,
+  "genuine_flagged": 5,
+  "corrupt": 9,
+  "corrupt_caught": 5,
+  "calls": 29
+ },
+ "budget_matched": {
+  "task": "flask N=16, 600 s hard cap, 3 reps x 2 instances",
+  "C_pi_alone": {
+   "fixed": "96/96",
+   "wall_median": 91,
+   "tokens_median": 3150000,
+   "conflicts": 0
+  },
+  "H8_hermes_8pi": {
+   "fixed": "96/96",
+   "wall_median": 385,
+   "tokens_median": 12000000,
+   "conflicts": 7
+  }
+ }
+}

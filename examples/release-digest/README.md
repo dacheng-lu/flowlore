@@ -214,3 +214,6 @@ attempt, 3 for verification) are deliberately modeled; they are neither actual
 API charges nor enforced wall-time limits. There are no model calls, real recovery
 actions, external effects, or statistical claims. A conservative reserve can
 leave a late success unattempted; unknown real costs still need host metering.
+
+A second handoff recipe is available in [harness-report](../harness-report/README.md).
+It tests a producer mapping defect against an independently transcribed reference.
